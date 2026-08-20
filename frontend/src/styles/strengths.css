@@ -1,0 +1,195 @@
+/* ============================================================
+   STRENGTHS & SOFT SKILLS — HIGH CONTRAST THEME
+   Guarantees 100% crisp legibility, balanced intensity,
+   and clean aesthetics in both light and dark themes.
+   ============================================================ */
+
+.strength-header-icon {
+  display: flex;
+  height: 2.5rem;
+  width: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  background-color: #fef3c7;
+  border: 1.5px solid #fde68a;
+  color: #b45309;
+}
+
+.dark .strength-header-icon {
+  background-color: rgba(245, 158, 11, 0.15);
+  border-color: rgba(245, 158, 11, 0.35);
+  color: #fbbf24;
+}
+
+.strength-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  border-radius: 9999px;
+  background-color: #fffbeb;
+  border: 1.5px solid #fde68a;
+  padding: 0.2rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #92400e;
+}
+
+.dark .strength-badge {
+  background-color: rgba(245, 158, 11, 0.15);
+  border-color: rgba(245, 158, 11, 0.3);
+  color: #fcd34d;
+}
+
+.strength-item-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  border-radius: 0.75rem;
+  border: 1.5px solid #cbd5e1;
+  background-color: #ffffff;
+  padding: 0.65rem 0.875rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  transition: all 0.15s ease;
+  user-select: none;
+  cursor: grab;
+}
+
+.strength-item-card:hover {
+  border-color: #94a3b8;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+.dark .strength-item-card {
+  border-color: #1e293b;
+  background-color: #111827;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.dark .strength-item-card:hover {
+  border-color: #334155;
+}
+
+.strength-item-num {
+  display: flex;
+  height: 1.35rem;
+  width: 1.35rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background-color: #fef3c7;
+  border: 1.5px solid #fde68a;
+  font-size: 0.6875rem;
+  font-weight: 800;
+  color: #92400e;
+}
+
+.dark .strength-item-num {
+  background-color: #1e293b;
+  border-color: #334155;
+  color: #fcd34d;
+}
+
+.strength-item-text {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #0f172a;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dark .strength-item-text {
+  color: #f8fafc;
+}
+
+/* Suggestion Buttons */
+.strength-preset-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 0.625rem;
+  border: 1.5px solid #f59e0b;
+  background-color: #ffffff;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #92400e;
+  box-shadow: 0 1px 3px rgba(245, 158, 11, 0.15);
+  transition: all 0.15s ease;
+  user-select: none;
+  cursor: grab;
+}
+
+.strength-preset-btn:hover {
+  border-color: #d97706;
+  background-color: #fef3c7;
+  color: #78350f;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 6px rgba(245, 158, 11, 0.25);
+}
+
+.strength-preset-btn:active {
+  transform: scale(0.97);
+}
+
+.dark .strength-preset-btn {
+  border-color: #f59e0b;
+  background-color: #1e293b;
+  color: #fef3c7;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.35);
+}
+
+.dark .strength-preset-btn:hover {
+  border-color: #fbbf24;
+  background-color: rgba(245, 158, 11, 0.22);
+  color: #ffffff;
+  box-shadow: 0 3px 8px rgba(245, 158, 11, 0.35);
+}
+
+.strength-preset-btn-added {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 0.625rem;
+  border: 1.5px solid #cbd5e1;
+  background-color: #f8fafc;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #334155;
+  cursor: not-allowed;
+  user-select: none;
+  opacity: 0.9;
+}
+
+.dark .strength-preset-btn-added {
+  border-color: #334155;
+  background-color: #111827;
+  color: #cbd5e1;
+  opacity: 0.85;
+}
+
+/* Drop targets */
+.strength-drop-zone {
+  border-radius: 0.75rem;
+  border: 2px dashed #f59e0b;
+  background-color: #fffbeb;
+  padding: 0.65rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #92400e;
+  box-shadow: inset 0 0 8px rgba(245, 158, 11, 0.15);
+}
+
+.dark .strength-drop-zone {
+  border-color: #f59e0b;
+  background-color: rgba(245, 158, 11, 0.15);
+  color: #fde68a;
+}

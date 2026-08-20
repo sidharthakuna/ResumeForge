@@ -1,0 +1,74 @@
+/* ============================================================
+   DARK THEME DESIGN TOKENS & OVERRIDES
+   Applied when the <html> element has the .dark class.
+   Modern Obsidian Studio palette with solid accents and sharp contrast.
+   ============================================================ */
+
+.dark {
+  color-scheme: dark;
+
+  /* --- Neutrals: Obsidian Slate Scale --- */
+  --color-ink-950: #ffffff;
+  --color-ink-900: #f8fafc; /* Primary Text (Crisp Pure White) */
+  --color-ink-800: #f1f5f9;
+  --color-ink-700: #cbd5e1; /* Secondary Text */
+  --color-ink-600: #94a3b8;
+  --color-ink-500: #64748b; /* Muted Text / Icons */
+  --color-ink-400: #475569; /* Subtle borders */
+  --color-ink-300: #334155; /* Dividers */
+  --color-ink-200: #1e293b; /* Subtle hover borders */
+  --color-ink-100: #1e293b; /* Card borders */
+  --color-ink-50:  #161f30; /* Elevated hover surface */
+
+  /* --- Surfaces --- */
+  --color-paper-100: #0b0f19; /* Page Background (Deep Obsidian Canvas) */
+  --color-paper-50:  #111827; /* Card Surface (Elevated Slate) */
+
+  /* --- Primary: Solid Indigo Accent --- */
+  --color-brass-700: #c7d2fe;
+  --color-brass-600: #818cf8; /* Active link text */
+  --color-brass-500: #6366f1; /* Primary Button Fill (Solid Indigo) */
+  --color-brass-400: #4f46e5; /* Primary Button Hover */
+  --color-brass-300: #4338ca;
+  --color-brass-100: rgba(99, 102, 241, 0.16); /* Active pill background */
+  --color-brass-50:  rgba(99, 102, 241, 0.08);
+
+  /* --- Secondary: Cyan / Teal --- */
+  --color-cyan-700: #67e8f9;
+  --color-cyan-600: #22d3ee;
+  --color-cyan-500: #06b6d4;
+  --color-cyan-400: #0891b2;
+  --color-cyan-300: #0e7490;
+  --color-cyan-100: rgba(6, 182, 212, 0.16);
+  --color-cyan-50:  rgba(6, 182, 212, 0.08);
+
+  /* --- Semantics --- */
+  --color-success-600: #6ee7b7;
+  --color-success-500: #10b981;
+  --color-success-100: rgba(16, 185, 129, 0.16);
+
+  --color-warn-600: #fde047;
+  --color-warn-500: #f59e0b;
+  --color-warn-100: rgba(245, 158, 11, 0.16);
+
+  --color-danger-600: #fca5a5;
+  --color-danger-500: #ef4444;
+  --color-danger-100: rgba(239, 68, 68, 0.16);
+}
+
+/* Dark mode body overrides */
+.dark body {
+  background: var(--color-paper-100);
+  color: var(--color-ink-900);
+}
+
+/* Dark mode glass surface override */
+.dark .glass-surface {
+  background: rgba(11, 15, 25, 0.85);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Dark scrollbar */
+.dark .scrollbar-thin::-webkit-scrollbar-thumb {
+  background: var(--color-ink-300);
+}

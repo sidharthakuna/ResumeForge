@@ -1,0 +1,27 @@
+/* ============================================================
+   SETTINGS TAB — DARK THEME (OBSIDIAN STUDIO)
+   ============================================================ */
+
+.dark .settings-card {
+  border-color: #1e293b;
+  background-color: #111827;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.dark .settings-nav-item {
+  color: #cbd5e1;
+}
+
+.dark .settings-nav-item:hover {
+  background-color: #161f30;
+  color: #ffffff;
+}
+
+.dark .settings-nav-item-active {
+  background-color: rgba(99, 102, 241, 0.18);
+  color: #c7d2fe;
+}
+
+.dark .settings-section-title {
+  color: #ffffff;
+}

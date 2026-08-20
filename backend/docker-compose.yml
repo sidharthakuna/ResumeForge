@@ -1,0 +1,35 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: resumebuilder-db
+    environment:
+      POSTGRES_DB: resumebuilder
+      POSTGRES_USER: ${DB_USERNAME:-resumebuilder}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-changeme}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME:-resumebuilder}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: resumebuilder-app
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DB_USERNAME: ${DB_USERNAME:-resumebuilder}
+      DB_PASSWORD: ${DB_PASSWORD:-changeme}
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/resumebuilder
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRATION_MS: ${JWT_EXPIRATION_MS:-86400000}
+    ports:
+      - "8080:8080"
+volumes:
+  pgdata:

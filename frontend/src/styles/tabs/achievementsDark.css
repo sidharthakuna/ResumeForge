@@ -1,0 +1,25 @@
+/* ============================================================
+   ACHIEVEMENTS TAB — DARK THEME (OBSIDIAN STUDIO)
+   ============================================================ */
+
+.dark .achieve-form-card,
+.dark .achieve-item-card {
+  border-color: #1e293b;
+  background-color: #111827;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.dark .achieve-item-card:hover {
+  border-color: #334155;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+.dark .achieve-item-title {
+  color: #ffffff;
+}
+
+.dark .achieve-header-icon {
+  border-color: rgba(234, 179, 8, 0.35);
+  background-color: rgba(234, 179, 8, 0.18);
+  color: #fde047;
+}

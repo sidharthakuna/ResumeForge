@@ -1,0 +1,75 @@
+/* ThemeToggle.module.css
+   A pill-shaped toggle switch that animates between Sun (light) and Moon (dark).
+   Uses CSS custom properties so the dark theme overrides cascade automatically.
+*/
+
+.toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  border-radius: 9999px;
+  outline: none;
+}
+
+.toggle:focus-visible .track {
+  outline: 2px solid var(--color-brass-400);
+  outline-offset: 2px;
+}
+
+/* ---- Track ---- */
+.track {
+  position: relative;
+  width: 52px;
+  height: 28px;
+  border-radius: 9999px;
+  background: var(--toggle-track-bg, #e5e7eb);
+  border: 1.5px solid var(--toggle-track-border, #d1d5db);
+  transition: background 280ms cubic-bezier(0.2, 0, 0, 1),
+              border-color 280ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* ---- Thumb ---- */
+.thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 22px;
+  height: 22px;
+  border-radius: 9999px;
+  background: #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18), 0 0 0 0.5px rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 280ms cubic-bezier(0.2, 0, 0, 1),
+              background 280ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.thumb svg {
+  width: 13px;
+  height: 13px;
+  color: #f59e0b;
+  transition: color 280ms;
+}
+
+/* ---- Dark (active) state ---- */
+.dark .track {
+  background: var(--color-ink-300);
+  border-color: var(--color-ink-400);
+}
+
+.dark .thumb {
+  transform: translateX(24px);
+  background: var(--color-paper-100);
+}
+
+.dark .thumb svg {
+  color: var(--color-brass-500);
+}
+
+

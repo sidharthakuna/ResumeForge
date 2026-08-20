@@ -1,0 +1,31 @@
+/* ============================================================
+   SKILLS TAB — DARK THEME (OBSIDIAN STUDIO)
+   ============================================================ */
+
+.dark .skills-form-card,
+.dark .skills-group-card {
+  border-color: #1e293b;
+  background-color: #111827;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.dark .skills-group-card:hover {
+  border-color: #334155;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+.dark .skills-category-title {
+  color: #ffffff;
+}
+
+.dark .skills-chip {
+  border-color: #334155;
+  background-color: #161f30;
+  color: #cbd5e1;
+}
+
+.dark .skills-header-icon {
+  border-color: rgba(99, 102, 241, 0.35);
+  background-color: rgba(99, 102, 241, 0.18);
+  color: #a5b4fc;
+}

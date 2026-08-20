@@ -1,0 +1,130 @@
+/* ============================================================
+   MOBILE VIEW — LIGHT THEME STYLES (CLEAN PORCELAIN & SLATE)
+   Guarantees crisp borders, safe bottom padding, and high-contrast
+   touch elements on mobile viewports.
+   ============================================================ */
+
+.mobile-app-root {
+  min-height: 100vh;
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+/* Mobile Top App Bar */
+.mobile-top-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  height: 3.5rem;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1.5px solid #e2e8f0;
+  background-color: rgba(255, 255, 255, 0.96);
+  padding: 0 1rem;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.mobile-header-btn {
+  display: flex;
+  height: 2.25rem;
+  width: 2.25rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  color: #475569;
+  transition: all 0.15s ease;
+}
+
+.mobile-header-btn:hover {
+  background-color: #f1f5f9;
+  color: #0f172a;
+}
+
+.mobile-header-btn:active {
+  transform: scale(0.95);
+}
+
+/* Mobile Search Overlay */
+.mobile-search-panel {
+  border-bottom: 1.5px solid #e2e8f0;
+  background-color: #ffffff;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.mobile-search-input {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1.5px solid #cbd5e1;
+  background-color: #f1f5f9;
+  padding: 0.5rem 2.25rem;
+  font-size: 0.8125rem;
+  color: #0f172a;
+  outline: none;
+  transition: all 0.15s ease;
+}
+
+.mobile-search-input:focus {
+  border-color: #6366f1;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+/* Mobile Drawer */
+.mobile-drawer-sheet {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  height: 100%;
+  width: 18rem;
+  max-width: 80vw;
+  flex-direction: column;
+  border-right: 1.5px solid #e2e8f0;
+  background-color: #ffffff;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.mobile-drawer-top {
+  display: flex;
+  height: 3.5rem;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1.5px solid #e2e8f0;
+  padding: 0 1rem;
+}
+
+.mobile-drawer-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-radius: 0.75rem;
+  padding: 0.625rem 0.875rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #334155;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.mobile-drawer-item:hover {
+  background-color: #f1f5f9;
+  color: #0f172a;
+}
+
+.mobile-drawer-item-active {
+  background-color: #eef2ff;
+  color: #4338ca;
+  font-weight: 700;
+}
+
+.mobile-drawer-bottom {
+  border-top: 1.5px solid #e2e8f0;
+  padding: 1rem;
+}
+
+/* Mobile Main Body — Safe Bottom Clearance */
+.mobile-main-body {
+  padding-bottom: 7rem; /* 112px clearance to guarantee no overlap with bottom nav */
+}

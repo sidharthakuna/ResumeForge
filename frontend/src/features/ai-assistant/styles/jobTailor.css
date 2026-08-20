@@ -1,0 +1,48 @@
+/* Job Description Tailor Subsystem Styles */
+.tailor-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+}
+
+.tailor-header-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(248, 250, 252, 0.9) 60%, rgba(168, 85, 247, 0.06) 100%);
+  padding: 1.75rem 2rem;
+  box-shadow: 0 4px 20px -2px rgba(99, 102, 241, 0.08);
+}
+
+.dark .tailor-header-card {
+  border-color: rgba(99, 102, 241, 0.25);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(15, 23, 42, 0.85) 60%, rgba(168, 85, 247, 0.1) 100%);
+  box-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.4);
+}
+
+.tailor-editor-surface {
+  border-radius: 1rem;
+  border: 1px solid var(--color-ink-200);
+  background: var(--color-paper-50);
+  padding: 1.25rem;
+  transition: all 0.2s ease;
+}
+
+.dark .tailor-editor-surface {
+  background: rgba(15, 23, 42, 0.7);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.tailor-match-card {
+  border-radius: 1rem;
+  border: 1px solid rgba(99, 102, 241, 0.18);
+  background: var(--color-paper-50);
+  padding: 1.25rem;
+  box-shadow: 0 2px 10px rgba(99, 102, 241, 0.04);
+}
+
+.dark .tailor-match-card {
+  border-color: rgba(99, 102, 241, 0.25);
+  background: rgba(15, 23, 42, 0.8);
+}

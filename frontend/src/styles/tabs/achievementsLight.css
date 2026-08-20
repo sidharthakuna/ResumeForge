@@ -1,0 +1,36 @@
+/* ============================================================
+   ACHIEVEMENTS TAB — LIGHT THEME (HIGH CONTRAST)
+   ============================================================ */
+
+.achieve-form-card,
+.achieve-item-card {
+  border-radius: 1rem;
+  border: 1.5px solid #cbd5e1;
+  background-color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.achieve-item-card:hover {
+  border-color: #94a3b8;
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.08);
+}
+
+.achieve-item-title {
+  font-family: var(--font-display, inherit);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.achieve-header-icon {
+  display: flex;
+  height: 2.75rem;
+  width: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  border: 1.5px solid #fde047;
+  background-color: #fefce8;
+  color: #ca8a04;
+}

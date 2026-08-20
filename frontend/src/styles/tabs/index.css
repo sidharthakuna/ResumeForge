@@ -1,0 +1,56 @@
+/* ============================================================
+   TABS MODULAR STYLESHEET INDEX
+   Bundles modular light and dark stylesheets for each editor tab.
+   ============================================================ */
+
+/* 1. Personal Info */
+@import './personalLight.css';
+@import './personalDark.css';
+
+/* 2. Education */
+@import './educationLight.css';
+@import './educationDark.css';
+
+/* 3. Experience */
+@import './experienceLight.css';
+@import './experienceDark.css';
+
+/* 4. Projects */
+@import './projectsLight.css';
+@import './projectsDark.css';
+
+/* 5. Skills */
+@import './skillsLight.css';
+@import './skillsDark.css';
+
+/* 6. Certifications */
+@import './certificationsLight.css';
+@import './certificationsDark.css';
+
+/* 7. Achievements */
+@import './achievementsLight.css';
+@import './achievementsDark.css';
+
+/* 8. Strengths */
+@import './strengthsLight.css';
+@import './strengthsDark.css';
+
+/* 9. Languages */
+@import './languagesLight.css';
+@import './languagesDark.css';
+
+/* 10. Summary */
+@import './summaryLight.css';
+@import './summaryDark.css';
+
+/* 11. Templates */
+@import './templatesLight.css';
+@import './templatesDark.css';
+
+/* 12. Export */
+@import './exportLight.css';
+@import './exportDark.css';
+
+/* 13. Settings */
+@import './settingsLight.css';
+@import './settingsDark.css';

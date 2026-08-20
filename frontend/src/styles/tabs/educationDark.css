@@ -1,0 +1,33 @@
+/* ============================================================
+   EDUCATION TAB — DARK THEME (OBSIDIAN STUDIO)
+   ============================================================ */
+
+.dark .education-form-card,
+.dark .education-item-card {
+  border-color: #1e293b;
+  background-color: #111827;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.dark .education-item-card:hover {
+  border-color: #334155;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+.dark .education-item-title {
+  color: #ffffff;
+}
+
+.dark .education-item-school {
+  color: #a5b4fc;
+}
+
+.dark .education-item-date {
+  color: #94a3b8;
+}
+
+.dark .education-header-icon {
+  border-color: rgba(16, 185, 129, 0.35);
+  background-color: rgba(16, 185, 129, 0.18);
+  color: #6ee7b7;
+}

@@ -1,0 +1,102 @@
+/* ============================================================
+   LIGHT THEME DESIGN TOKENS & BASE STYLES
+   ResumeForge Light System: High-contrast Slate canvas, pure white cards,
+   crisp borders, and deep legible typography.
+   ============================================================ */
+
+@theme {
+  /* ---- Color: neutrals (Slate Scale) ---- */
+  --color-ink-950: #020617; /* Deep Slate */
+  --color-ink-900: #0f172a; /* Primary Text (Slate 900 - High Contrast) */
+  --color-ink-800: #1e293b; /* Secondary Headings */
+  --color-ink-700: #334155; /* Secondary Text (Slate 700) */
+  --color-ink-600: #475569; /* Body / Subtext */
+  --color-ink-500: #64748b; /* Muted Labels / Icons */
+  --color-ink-400: #94a3b8; /* Subtle Icons / Placeholders (Slate 400) */
+  --color-ink-300: #64748b; /* Clear Dividers / Secondary Borders (Slate 500) */
+  --color-ink-200: #94a3b8; /* Crisp Visible Card Borders (Slate 400 - Darker & Prominent) */
+  --color-ink-100: #cbd5e1; /* Clear Card Outline Borders (Slate 300 - Darker) */
+  --color-ink-50:  #f1f5f9; /* Elevated Light Surface (Slate 100) */
+
+  --color-paper-950: #0f172a;
+  --color-paper-100: #f1f5f9; /* Slate 100 Page Canvas (Contrasting backdrop for white cards) */
+  --color-paper-50:  #ffffff; /* Card Surface (Pure Crisp White) */
+
+  /* ---- Color: primary — Royal Indigo ---- */
+  --color-brass-700: #312e81;
+  --color-brass-600: #3730a3;
+  --color-brass-500: #4f46e5; /* Primary Solid Indigo */
+  --color-brass-400: #6366f1; /* Hover State */
+  --color-brass-300: #818cf8;
+  --color-brass-100: #e0e7ff;
+  --color-brass-50:  #eef2ff;
+
+  /* ---- Color: secondary — Cyan ---- */
+  --color-cyan-700: #0e7490;
+  --color-cyan-600: #0891b2;
+  --color-cyan-500: #06b6d4;
+  --color-cyan-400: #22d3ee;
+  --color-cyan-300: #67e8f9;
+  --color-cyan-100: #cffafe;
+  --color-cyan-50:  #ecfeff;
+
+  /* ---- Color: semantics ---- */
+  --color-success-600: #047857;
+  --color-success-500: #059669;
+  --color-success-100: #d1fae5;
+
+  --color-warn-600: #b45309;
+  --color-warn-500: #d97706;
+  --color-warn-100: #fef3c7;
+
+  --color-danger-600: #b91c1c;
+  --color-danger-500: #dc2626;
+  --color-danger-100: #fee2e2;
+
+  /* ---- Type ---- */
+  --font-display: 'Hanken Grotesk', -apple-system, sans-serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* ---- Shape ---- */
+  --radius-card: 0.875rem;
+  --radius-control: 0.5rem;
+
+  /* ---- Motion ---- */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+  }
+
+  body {
+    background: var(--color-paper-100);
+    color: var(--color-ink-900);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brass-500);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+
+  ::selection {
+    background: var(--color-brass-100);
+    color: var(--color-brass-700);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}

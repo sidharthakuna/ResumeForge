@@ -1,0 +1,125 @@
+/* ============================================================
+   STRENGTHS TAB — LIGHT THEME (GOLDEN FLAME & CRISP WHITE)
+   ============================================================ */
+
+.strength-header-icon {
+  display: flex;
+  height: 2.5rem;
+  width: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  background-color: #fef3c7;
+  border: 1.5px solid #fde68a;
+  color: #b45309;
+}
+
+.strength-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  border-radius: 9999px;
+  background-color: #fffbeb;
+  border: 1.5px solid #fde68a;
+  padding: 0.2rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #92400e;
+}
+
+.strength-item-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  border-radius: 0.75rem;
+  border: 1.5px solid #cbd5e1;
+  background-color: #ffffff;
+  padding: 0.65rem 0.875rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  transition: all 0.15s ease;
+  user-select: none;
+  cursor: grab;
+}
+
+.strength-item-card:hover {
+  border-color: #94a3b8;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+.strength-item-num {
+  display: flex;
+  height: 1.35rem;
+  width: 1.35rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background-color: #fef3c7;
+  border: 1.5px solid #fde68a;
+  font-size: 0.6875rem;
+  font-weight: 800;
+  color: #92400e;
+}
+
+.strength-item-text {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #0f172a;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.strength-preset-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 9999px;
+  border: 1.5px solid #f59e0b;
+  background-color: #ffffff;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #92400e;
+  box-shadow: 0 1px 2px rgba(245, 158, 11, 0.1);
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+
+.strength-preset-btn:hover {
+  border-color: #d97706;
+  background-color: #fef3c7;
+  color: #78350f;
+  transform: translateY(-1px);
+}
+
+.strength-preset-btn-added {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 9999px;
+  border: 1.5px solid #cbd5e1;
+  background-color: #f8fafc;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #64748b;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.strength-drop-zone {
+  display: flex;
+  min-height: 120px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 1rem;
+  border: 2px dashed #cbd5e1;
+  background-color: #f8fafc;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.2s ease;
+}

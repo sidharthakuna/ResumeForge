@@ -1,0 +1,29 @@
+/* ============================================================
+   CERTIFICATIONS TAB — DARK THEME (OBSIDIAN STUDIO)
+   ============================================================ */
+
+.dark .cert-form-card,
+.dark .cert-item-card {
+  border-color: #1e293b;
+  background-color: #111827;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.dark .cert-item-card:hover {
+  border-color: #334155;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+.dark .cert-item-title {
+  color: #ffffff;
+}
+
+.dark .cert-item-issuer {
+  color: #a5b4fc;
+}
+
+.dark .cert-header-icon {
+  border-color: rgba(234, 179, 8, 0.35);
+  background-color: rgba(234, 179, 8, 0.18);
+  color: #fde047;
+}

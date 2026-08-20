@@ -1,0 +1,443 @@
+/* MobileFloatingDock.module.css */
+
+.dockWrapper {
+  position: fixed;
+  bottom: 1rem;
+  left: 0.5rem;
+  right: 0.5rem;
+  z-index: 40;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+  max-width: calc(100vw - 1rem);
+}
+
+.dockContainer {
+  position: relative;
+  width: 100%;
+}
+
+/* Base Light Theme Dock Pill */
+.dockPill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  border: 1.5px solid #cbd5e1;
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 0.4rem 0.6rem;
+  color: #0f172a;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: all 0.2s ease-in-out;
+  box-sizing: border-box;
+}
+
+:global(.dark) .dockPill {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background-color: rgba(3, 7, 18, 0.92);
+  color: #ffffff;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.5);
+}
+
+.stepNavGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  flex-shrink: 0;
+}
+
+.navArrowBtn {
+  display: flex;
+  height: 2.25rem;
+  width: 2.25rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background-color: #f1f5f9;
+  color: #0f172a;
+  flex-shrink: 0;
+  transition: all 0.15s ease-in-out;
+}
+
+.navArrowBtn:hover:not(:disabled) {
+  background-color: #e2e8f0;
+}
+
+.navArrowBtn:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.navArrowBtn:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+}
+
+:global(.dark) .navArrowBtn {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+:global(.dark) .navArrowBtn:hover:not(:disabled) {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.stepPillBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  border-radius: 9999px;
+  background-color: #fef3c7;
+  padding: 0.375rem 0.625rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #92400e;
+  box-shadow: inset 0 0 0 1.5px #fde68a;
+  flex-shrink: 0;
+  transition: all 0.15s ease-in-out;
+}
+
+.stepPillBtn:hover {
+  background-color: #fde68a;
+}
+
+.stepPillBtn:active {
+  transform: scale(0.95);
+}
+
+:global(.dark) .stepPillBtn {
+  background-color: rgba(217, 119, 6, 0.2);
+  color: #fcd34d;
+  box-shadow: inset 0 0 0 1px rgba(217, 119, 6, 0.4);
+}
+
+:global(.dark) .stepPillBtn:hover {
+  background-color: rgba(217, 119, 6, 0.3);
+}
+
+.stepIcon {
+  height: 1rem;
+  width: 1rem;
+  color: #d97706;
+  flex-shrink: 0;
+}
+
+:global(.dark) .stepIcon {
+  color: #fbbf24;
+}
+
+.stepLabel {
+  max-width: 90px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.stepCounterBadge {
+  border-radius: 9999px;
+  background-color: #fde68a;
+  padding: 0.125rem 0.375rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.625rem;
+  font-weight: 700;
+  color: #78350f;
+  white-space: nowrap;
+}
+
+:global(.dark) .stepCounterBadge {
+  background-color: rgba(217, 119, 6, 0.3);
+  color: #fef3c7;
+}
+
+.stepChevron {
+  height: 0.875rem;
+  width: 0.875rem;
+  color: #d97706;
+  flex-shrink: 0;
+}
+
+:global(.dark) .stepChevron {
+  color: #fbbf24;
+}
+
+.controlsGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  flex-shrink: 0;
+}
+
+.handBtn {
+  display: flex;
+  height: 2.25rem;
+  align-items: center;
+  gap: 0.375rem;
+  border-radius: 9999px;
+  padding: 0 0.625rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.15s ease-in-out;
+}
+
+.handBtn:active {
+  transform: scale(0.95);
+}
+
+.handBtnDefault {
+  background-color: #eef2ff;
+  color: #3730a3;
+  box-shadow: inset 0 0 0 1.5px #c7d2fe;
+}
+
+.handBtnDefault:hover {
+  background-color: #e0e7ff;
+  color: #1e1b4b;
+}
+
+:global(.dark) .handBtnDefault {
+  background-color: rgba(99, 102, 241, 0.15);
+  color: #a5b4fc;
+  box-shadow: inset 0 0 0 1px rgba(99, 102, 241, 0.35);
+}
+
+:global(.dark) .handBtnDefault:hover {
+  background-color: rgba(99, 102, 241, 0.25);
+  color: #c7d2fe;
+}
+
+.handBtnActive {
+  background-color: #f5f3ff;
+  color: #5b21b6;
+  box-shadow: inset 0 0 0 1.5px #ddd6fe;
+}
+
+.handBtnActive:hover {
+  background-color: #ede9fe;
+}
+
+:global(.dark) .handBtnActive {
+  background-color: rgba(139, 92, 246, 0.28);
+  color: #c4b5fd;
+  box-shadow: inset 0 0 0 1px rgba(139, 92, 246, 0.5);
+}
+
+:global(.dark) .handBtnActive:hover {
+  background-color: rgba(139, 92, 246, 0.38);
+}
+
+.viewModePill {
+  display: flex;
+  height: 2.25rem;
+  align-items: center;
+  gap: 0.375rem;
+  border-radius: 9999px;
+  padding: 0 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: all 0.15s ease-in-out;
+}
+
+.viewModePill:active {
+  transform: scale(0.95);
+}
+
+.viewModePreview {
+  background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+
+.viewModeEdit {
+  background-color: #0f172a;
+  color: #ffffff;
+}
+
+.viewModeEdit:hover {
+  background-color: #1e293b;
+}
+
+:global(.dark) .viewModeEdit {
+  background-color: #ffffff;
+  color: #030712;
+}
+
+:global(.dark) .viewModeEdit:hover {
+  background-color: #f9fafb;
+}
+
+/* Floating Bottom Sheet */
+.bottomSheet {
+  position: absolute;
+  bottom: 3.75rem;
+  z-index: 50;
+  width: 18rem;
+  max-height: 65vh;
+  overflow-y: auto;
+  border-radius: 1.25rem;
+  border: 1.5px solid #cbd5e1;
+  background-color: #ffffff;
+  padding: 0.75rem;
+  color: #0f172a;
+  box-shadow: 0 20px 35px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+:global(.dark) .bottomSheet {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background-color: rgba(3, 7, 18, 0.95);
+  color: #ffffff;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.bottomSheetAlignLeft {
+  left: 0;
+}
+
+.bottomSheetAlignRight {
+  right: 0;
+}
+
+.bottomSheetHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  border-bottom: 1px solid #e2e8f0;
+  margin-bottom: 0.5rem;
+}
+
+:global(.dark) .bottomSheetHeader {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+.bottomSheetTitle {
+  font-size: 0.6875rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #64748b;
+}
+
+:global(.dark) .bottomSheetTitle {
+  color: #94a3b8;
+}
+
+.doneBtn {
+  border-radius: 9999px;
+  background-color: #f1f5f9;
+  padding: 0.15rem 0.55rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: #334155;
+  border: none;
+  cursor: pointer;
+}
+
+.doneBtn:hover {
+  background-color: #e2e8f0;
+  color: #0f172a;
+}
+
+:global(.dark) .doneBtn {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #cbd5e1;
+}
+
+:global(.dark) .doneBtn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.sectionGroupTitle {
+  padding-left: 0.5rem;
+  padding-top: 0.35rem;
+  font-size: 0.6875rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #b45309;
+}
+
+:global(.dark) .sectionGroupTitle {
+  color: #fbbf24;
+}
+
+.sectionItemBtn {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.75rem;
+  transition: all 0.15s ease-in-out;
+  cursor: pointer;
+}
+
+.sectionItemActive {
+  background-color: #fef3c7;
+  font-weight: 700;
+  color: #92400e;
+  box-shadow: inset 0 0 0 1.5px #f59e0b;
+}
+
+:global(.dark) .sectionItemActive {
+  background-color: rgba(217, 119, 6, 0.25);
+  color: #fcd34d;
+  box-shadow: inset 0 0 0 1px rgba(217, 119, 6, 0.4);
+}
+
+.sectionItemInactive {
+  color: #334155;
+  font-weight: 500;
+}
+
+.sectionItemInactive:hover {
+  background-color: #f1f5f9;
+  color: #0f172a;
+}
+
+:global(.dark) .sectionItemInactive {
+  color: #e2e8f0;
+}
+
+:global(.dark) .sectionItemInactive:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.sectionItemContent {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.sectionItemStepBadge {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.625rem;
+  font-weight: 700;
+  color: #64748b;
+}
+
+:global(.dark) .sectionItemStepBadge {
+  color: #94a3b8;
+}
+
+.divider {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+:global(.dark) .divider {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}

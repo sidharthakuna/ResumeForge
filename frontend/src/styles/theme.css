@@ -1,0 +1,56 @@
+@import 'tailwindcss';
+@custom-variant dark (&:where(.dark, .dark *));
+
+@import './lightTheme.css';
+@import './darkTheme.css';
+@import './dashboardLight.css';
+@import './dashboardDark.css';
+@import './mobileLight.css';
+@import './mobileDark.css';
+@import './globalAiLight.css';
+@import './globalAiDark.css';
+@import './tabs/index.css';
+@import './notFound.css';
+
+/* ============================================================
+   SHARED UTILITIES
+   ============================================================ */
+
+@layer utilities {
+  /* Faint deckle/margin-guide texture used only on the A4 preview page. */
+  .page-guide {
+    background-image:
+      linear-gradient(to right, transparent 0, transparent 47.5mm, rgba(25, 28, 29, 0.035) 47.5mm, rgba(25, 28, 29, 0.035) calc(47.5mm + 0.5px), transparent calc(47.5mm + 0.5px));
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: var(--color-ink-200);
+    border-radius: 999px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  /* Glass surface for topbar and floating toolbars */
+  .glass-surface {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+}
+
+/* Mobile input & virtual keyboard usability safeguards */
+@media (max-width: 640px) {
+  input, textarea, select {
+    font-size: 16px !important; /* Prevents iOS/Android from auto-zooming and cropping form */
+  }
+  html, body {
+    scroll-padding-bottom: 7rem;
+    -webkit-text-size-adjust: 100%;
+  }
+}
+

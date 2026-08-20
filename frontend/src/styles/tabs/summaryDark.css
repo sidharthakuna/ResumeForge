@@ -1,0 +1,32 @@
+/* ============================================================
+   SUMMARY TAB — DARK THEME (OBSIDIAN STUDIO)
+   ============================================================ */
+
+.dark .summary-editor-card {
+  border-color: #1e293b;
+  background-color: #111827;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.dark .summary-textarea {
+  border-color: #334155;
+  background-color: #0b0f19;
+  color: #ffffff;
+}
+
+.dark .summary-textarea:focus {
+  border-color: #818cf8;
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.25);
+}
+
+.dark .summary-ai-suggestion-box {
+  border-color: rgba(99, 102, 241, 0.35);
+  background-color: rgba(99, 102, 241, 0.15);
+  color: #c7d2fe;
+}
+
+.dark .summary-header-icon {
+  border-color: rgba(99, 102, 241, 0.35);
+  background-color: rgba(99, 102, 241, 0.18);
+  color: #a5b4fc;
+}

@@ -1,0 +1,31 @@
+/* ============================================================
+   LANGUAGES TAB — DARK THEME (OBSIDIAN STUDIO)
+   ============================================================ */
+
+.dark .lang-form-card,
+.dark .lang-item-card {
+  border-color: #1e293b;
+  background-color: #111827;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.dark .lang-item-card:hover {
+  border-color: #334155;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+.dark .lang-item-name {
+  color: #ffffff;
+}
+
+.dark .lang-proficiency-pill {
+  border-color: rgba(99, 102, 241, 0.35);
+  background-color: rgba(99, 102, 241, 0.18);
+  color: #c7d2fe;
+}
+
+.dark .lang-header-icon {
+  border-color: #334155;
+  background-color: #161f30;
+  color: #cbd5e1;
+}

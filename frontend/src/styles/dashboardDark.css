@@ -1,0 +1,141 @@
+/* ============================================================
+   DASHBOARD — DARK THEME STYLES (OBSIDIAN STUDIO PALETTE)
+   Guarantees solid borders, pure white text, and rich glowing
+   hover elevations across all desktop & tablet dashboard cards.
+   ============================================================ */
+
+/* Header Hero Card */
+.dark .dashboard-hero-card {
+  border-color: #1e293b;
+  background-color: #111827;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.dark .dashboard-hero-icon {
+  border-color: rgba(99, 102, 241, 0.35);
+  background-color: rgba(99, 102, 241, 0.15);
+  color: #a5b4fc;
+}
+
+.dark .dashboard-greeting-title {
+  color: #ffffff; /* Pure Crisp White */
+}
+
+.dark .dashboard-greeting-sub {
+  color: #94a3b8; /* Slate 400 */
+}
+
+/* Metric KPI Cards */
+.dark .dashboard-metric-card {
+  border-color: #1e293b;
+  background-color: #111827;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.dark .dashboard-metric-card:hover {
+  border-color: #334155;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+.dark .dashboard-metric-label {
+  color: #94a3b8;
+}
+
+.dark .dashboard-metric-value {
+  color: #ffffff;
+}
+
+.dark .dashboard-metric-subtext {
+  color: #64748b;
+}
+
+/* Metric Icon Boxes */
+.dark .dashboard-icon-indigo {
+  border-color: rgba(99, 102, 241, 0.35);
+  background-color: rgba(99, 102, 241, 0.18);
+  color: #a5b4fc;
+}
+
+.dark .dashboard-icon-emerald {
+  border-color: rgba(16, 185, 129, 0.35);
+  background-color: rgba(16, 185, 129, 0.18);
+  color: #6ee7b7;
+}
+
+.dark .dashboard-icon-cyan {
+  border-color: rgba(6, 182, 212, 0.35);
+  background-color: rgba(6, 182, 212, 0.18);
+  color: #67e8f9;
+}
+
+.dark .dashboard-icon-purple {
+  border-color: rgba(168, 85, 247, 0.35);
+  background-color: rgba(168, 85, 247, 0.18);
+  color: #d8b4fe;
+}
+
+/* Section Header */
+.dark .dashboard-section-title {
+  color: #ffffff;
+}
+
+.dark .dashboard-count-badge {
+  border-color: #334155;
+  background-color: #161f30;
+  color: #cbd5e1;
+}
+
+/* Resume Cards */
+.dark .dashboard-resume-card {
+  border-color: #1e293b;
+  background-color: #111827;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.dark .dashboard-resume-card:hover {
+  border-color: #6366f1;
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.25);
+}
+
+.dark .dashboard-resume-preview-box {
+  border-bottom-color: #1e293b;
+  background-color: #0b0f19;
+  background-image: radial-gradient(#1e293b 1.2px, transparent 1.2px);
+  background-size: 12px 12px;
+}
+
+.dark .dashboard-resume-title {
+  color: #ffffff;
+}
+
+.dark .dashboard-resume-card:hover .dashboard-resume-title {
+  color: #818cf8;
+}
+
+.dark .dashboard-resume-subtext {
+  color: #94a3b8;
+}
+
+.dark .dashboard-resume-divider {
+  border-top-color: #1e293b;
+}
+
+/* Create Resume Dashed Tile */
+.dark .dashboard-create-tile {
+  border-color: #334155;
+  background-color: #111827;
+}
+
+.dark .dashboard-create-tile:hover {
+  border-color: #818cf8;
+  background-color: rgba(99, 102, 241, 0.1);
+  box-shadow: 0 6px 24px rgba(99, 102, 241, 0.2);
+}
+
+.dark .dashboard-create-tile-title {
+  color: #ffffff;
+}
+
+.dark .dashboard-create-tile:hover .dashboard-create-tile-title {
+  color: #a5b4fc;
+}

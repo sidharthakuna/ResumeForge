@@ -1,0 +1,23 @@
+# Environment
+.env
+.env.*
+!.env.example
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Build
+target/
+build/
+dist/
+node_modules/
+
+# Generated/runtime files
+generated-pdfs/
+uploads/
+
+# OS
+.DS_Store
+Thumbs.db

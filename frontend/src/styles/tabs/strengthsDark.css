@@ -1,0 +1,59 @@
+/* ============================================================
+   STRENGTHS TAB — DARK THEME (OBSIDIAN STUDIO)
+   ============================================================ */
+
+.dark .strength-header-icon {
+  background-color: rgba(245, 158, 11, 0.15);
+  border-color: rgba(245, 158, 11, 0.35);
+  color: #fbbf24;
+}
+
+.dark .strength-badge {
+  background-color: rgba(245, 158, 11, 0.15);
+  border-color: rgba(245, 158, 11, 0.3);
+  color: #fcd34d;
+}
+
+.dark .strength-item-card {
+  border-color: #1e293b;
+  background-color: #111827;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.dark .strength-item-card:hover {
+  border-color: #334155;
+}
+
+.dark .strength-item-num {
+  background-color: #1e293b;
+  border-color: #334155;
+  color: #fcd34d;
+}
+
+.dark .strength-item-text {
+  color: #ffffff;
+}
+
+.dark .strength-preset-btn {
+  border-color: rgba(245, 158, 11, 0.5);
+  background-color: rgba(245, 158, 11, 0.12);
+  color: #fde68a;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.dark .strength-preset-btn:hover {
+  border-color: #f59e0b;
+  background-color: rgba(245, 158, 11, 0.22);
+  color: #ffffff;
+}
+
+.dark .strength-preset-btn-added {
+  border-color: #334155;
+  background-color: #161f30;
+  color: #64748b;
+}
+
+.dark .strength-drop-zone {
+  border-color: #334155;
+  background-color: #111827;
+}

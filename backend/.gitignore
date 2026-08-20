@@ -1,0 +1,34 @@
+
+.apt_generated
+build/
+.classpath
+/dist/
+.env
+.factorypath
+HELP.md
+.idea
+*.iml
+### IntelliJ IDEA ###
+*.ipr
+*.iws
+.mvn/wrapper/maven-wrapper.jar
+/nbbuild/
+/nbdist/
+/.nb-gradle/
+/nbproject/private/
+### NetBeans ###
+.project
+.settings
+.springBeans
+!**/src/main/**/build/
+!**/src/main/**/target/
+!**/src/test/**/build/
+!**/src/test/**/target/
+### STS ###
+.sts4-cache
+target/
+.vscode/
+### VS Code ###
+
+generated-pdfs/
+uploads/

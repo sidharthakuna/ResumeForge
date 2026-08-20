@@ -1,0 +1,276 @@
+/* ============================================================
+   DASHBOARD — LIGHT THEME STYLES (HIGH CONTRAST & CRISP BORDERS)
+   Guarantees distinct borders, crystal-clear typography, and rich
+   hover elevation across all desktop & tablet dashboard cards.
+   ============================================================ */
+
+/* Dashboard Layout */
+.dashboard-container {
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2rem 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .dashboard-container {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .dashboard-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Header Hero Card */
+.dashboard-hero-card {
+  border-radius: 1rem;
+  border: 1.5px solid #94a3b8;
+  background-color: #ffffff;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px -1px rgba(0, 0, 0, 0.04);
+}
+
+@media (min-width: 640px) {
+  .dashboard-hero-card {
+    padding: 1.75rem;
+  }
+}
+
+.dashboard-hero-icon {
+  display: flex;
+  height: 3rem;
+  width: 3rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1rem;
+  border: 1.5px solid #c7d2fe;
+  background-color: #eef2ff;
+  color: #4338ca;
+  box-shadow: 0 1px 2px rgba(67, 56, 202, 0.08);
+}
+
+.dashboard-greeting-title {
+  font-family: var(--font-display, inherit);
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: #020617; /* Deep Slate 950 - Pure High Contrast */
+}
+
+@media (min-width: 640px) {
+  .dashboard-greeting-title {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+}
+
+.dashboard-greeting-sub {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  color: #475569; /* Slate 600 */
+}
+
+/* Metric KPI Cards */
+.dashboard-metric-card {
+  border-radius: 1rem;
+  border: 1.5px solid #94a3b8;
+  background-color: #ffffff;
+  padding: 1.25rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  transition: all 0.2s ease-in-out;
+}
+
+.dashboard-metric-card:hover {
+  border-color: #64748b;
+  box-shadow: 0 4px 12px -1px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.dashboard-metric-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #475569;
+}
+
+.dashboard-metric-value {
+  font-family: var(--font-display, inherit);
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: #0f172a;
+}
+
+.dashboard-metric-subtext {
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #64748b;
+}
+
+/* Metric Icon Boxes */
+.dashboard-icon-indigo {
+  border: 1.5px solid #a5b4fc;
+  background-color: #eef2ff;
+  color: #4338ca;
+}
+
+.dashboard-icon-emerald {
+  border: 1.5px solid #86efac;
+  background-color: #ecfdf5;
+  color: #047857;
+}
+
+.dashboard-icon-cyan {
+  border: 1.5px solid #7dd3fc;
+  background-color: #f0f9ff;
+  color: #0369a1;
+}
+
+.dashboard-icon-purple {
+  border: 1.5px solid #d8b4fe;
+  background-color: #faf5ff;
+  color: #7e22ce;
+}
+
+/* Section Header */
+.dashboard-section-title {
+  font-family: var(--font-display, inherit);
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.dashboard-count-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  border: 1.5px solid #94a3b8;
+  background-color: #ffffff;
+  padding: 0.125rem 0.625rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #1e293b;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+/* Resume Cards */
+.dashboard-resume-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 1rem;
+  border: 1.5px solid #94a3b8;
+  background-color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease-in-out;
+}
+
+.dashboard-resume-card:hover {
+  border-color: #6366f1;
+  box-shadow: 0 8px 24px -4px rgba(99, 102, 241, 0.16);
+  transform: translateY(-2px);
+}
+
+.dashboard-resume-preview-box {
+  position: relative;
+  display: block;
+  height: 12.5rem;
+  width: 100%;
+  overflow: hidden;
+  border-bottom: 1.5px solid #94a3b8;
+  background-color: #f8fafc;
+  background-image: radial-gradient(#cbd5e1 1.2px, transparent 1.2px);
+  background-size: 12px 12px;
+}
+
+.dashboard-resume-title {
+  font-family: var(--font-display, inherit);
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 700;
+  color: #0f172a;
+  transition: color 0.15s ease;
+}
+
+.dashboard-resume-card:hover .dashboard-resume-title {
+  color: #4f46e5;
+}
+
+.dashboard-resume-subtext {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #64748b;
+}
+
+.dashboard-resume-divider {
+  border-top: 1.5px solid #cbd5e1;
+}
+
+/* Create Resume Dashed Tile */
+.dashboard-create-tile {
+  position: relative;
+  display: flex;
+  min-height: 310px;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  border-radius: 1rem;
+  border: 2px dashed #64748b;
+  background-color: #ffffff;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.dashboard-create-tile:hover {
+  border-color: #6366f1;
+  background-color: #f5f3ff;
+  box-shadow: 0 4px 16px -2px rgba(99, 102, 241, 0.12);
+  transform: translateY(-2px);
+}
+
+.dashboard-create-tile-icon {
+  display: flex;
+  height: 3rem;
+  width: 3rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  background-color: #6366f1;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+  transition: transform 0.2s ease;
+}
+
+.dashboard-create-tile:hover .dashboard-create-tile-icon {
+  transform: scale(1.08);
+}
+
+.dashboard-create-tile-title {
+  font-family: var(--font-display, inherit);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #0f172a;
+  transition: color 0.15s ease;
+}
+
+.dashboard-create-tile:hover .dashboard-create-tile-title {
+  color: #4f46e5;
+}

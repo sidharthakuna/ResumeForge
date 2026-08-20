@@ -1,0 +1,33 @@
+/* ============================================================
+   EXPERIENCE TAB — DARK THEME (OBSIDIAN STUDIO)
+   ============================================================ */
+
+.dark .experience-form-card,
+.dark .experience-item-card {
+  border-color: #1e293b;
+  background-color: #111827;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.dark .experience-item-card:hover {
+  border-color: #334155;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+.dark .experience-item-role {
+  color: #ffffff;
+}
+
+.dark .experience-item-company {
+  color: #a5b4fc;
+}
+
+.dark .experience-bullet-point {
+  color: #cbd5e1;
+}
+
+.dark .experience-header-icon {
+  border-color: rgba(6, 182, 212, 0.35);
+  background-color: rgba(6, 182, 212, 0.18);
+  color: #67e8f9;
+}

@@ -1,0 +1,311 @@
+/* Clean Professional Document Preview Styles */
+
+.export-studio-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0.25rem 0 3rem;
+}
+
+.export-top-banner {
+  background: var(--color-paper-50, #ffffff);
+  border: 1px solid var(--color-ink-200, #e2e8f0);
+  border-radius: 1.15rem;
+  padding: 1.1rem 1.35rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.04);
+}
+
+:root[class~="dark"] .export-top-banner {
+  background: rgba(15, 23, 42, 0.85);
+  border-color: rgba(51, 65, 85, 0.75);
+  box-shadow: 0 6px 24px -4px rgba(0, 0, 0, 0.4);
+}
+
+.export-paper-stage {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: 1.25rem;
+  transition: all 0.2s ease;
+}
+
+:root[class~="dark"] .export-paper-stage {
+  background: #090d16;
+  border-color: #1e293b;
+}
+
+.export-paper-shadow {
+  box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.18), 0 0 0 1px rgba(0, 0, 0, 0.05);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+:root[class~="dark"] .export-paper-shadow {
+  box-shadow: 0 20px 48px -10px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.export-spec-card {
+  background: var(--color-paper-50, #ffffff);
+  border: 1px solid var(--color-ink-200, #e2e8f0);
+  border-radius: 0.85rem;
+  padding: 0.85rem 1.15rem;
+  transition: all 0.15s ease;
+}
+
+:root[class~="dark"] .export-spec-card {
+  background: rgba(15, 23, 42, 0.65);
+  border-color: rgba(51, 65, 85, 0.65);
+}
+
+.export-spec-card:hover {
+  border-color: var(--color-ink-300, #cbd5e1);
+  transform: translateY(-1px);
+}
+
+:root[class~="dark"] .export-spec-card:hover {
+  border-color: rgba(99, 102, 241, 0.5);
+}
+
+/* Premium Floating Action Dock */
+.export-dock-container {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 1.25rem;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.03);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root[class~="dark"] .export-dock-container {
+  background: rgba(15, 23, 42, 0.88);
+  border-color: rgba(51, 65, 85, 0.85);
+  box-shadow: 0 14px 40px -6px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.export-btn-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 2.625rem;
+  padding: 0 1.125rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  border-radius: 0.85rem;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.export-btn-base:hover {
+  transform: translateY(-1.5px);
+}
+
+.export-btn-base:active {
+  transform: translateY(0.5px);
+}
+
+/* 1. Reset Button */
+.export-btn-reset {
+  background: #ffffff;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+}
+
+:root[class~="dark"] .export-btn-reset {
+  background: #1e293b;
+  color: #94a3b8;
+  border-color: #334155;
+}
+
+.export-btn-reset:hover {
+  background: #fff1f2;
+  color: #e11d48;
+  border-color: #fecdd3;
+  box-shadow: 0 4px 12px rgba(225, 29, 72, 0.12);
+}
+
+:root[class~="dark"] .export-btn-reset:hover {
+  background: rgba(136, 19, 55, 0.3);
+  color: #fb7185;
+  border-color: #9f1239;
+}
+
+/* 2. History Button */
+.export-btn-history {
+  background: #ffffff;
+  color: #334155;
+  border: 1px solid #e2e8f0;
+}
+
+:root[class~="dark"] .export-btn-history {
+  background: #1e293b;
+  color: #cbd5e1;
+  border-color: #334155;
+}
+
+.export-btn-history:hover {
+  background: #eef2ff;
+  color: #4f46e5;
+  border-color: #c7d2fe;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.12);
+}
+
+:root[class~="dark"] .export-btn-history:hover {
+  background: rgba(49, 46, 129, 0.35);
+  color: #a5b4fc;
+  border-color: #4338ca;
+}
+
+.export-btn-history.active {
+  background: #4f46e5;
+  color: #ffffff;
+  border-color: #4f46e5;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3);
+}
+
+/* 3. Save Button */
+.export-btn-saved {
+  background: #f8fafc;
+  color: #10b981;
+  border: 1px solid #d1fae5;
+}
+
+:root[class~="dark"] .export-btn-saved {
+  background: rgba(6, 78, 59, 0.25);
+  color: #34d399;
+  border-color: rgba(5, 150, 105, 0.4);
+}
+
+.export-btn-saved:hover {
+  background: #ecfdf5;
+  border-color: #a7f3d0;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.12);
+}
+
+.export-btn-unsaved {
+  background: linear-gradient(135deg, #d97706 0%, #ea580c 100%);
+  color: #ffffff;
+  border: 1px solid #b45309;
+  box-shadow: 0 4px 14px rgba(234, 88, 12, 0.35);
+  animation: pulse-border 2s infinite ease-in-out;
+}
+
+.export-btn-unsaved:hover {
+  background: linear-gradient(135deg, #b45309 0%, #c2410c 100%);
+  box-shadow: 0 6px 18px rgba(234, 88, 12, 0.45);
+}
+
+@keyframes pulse-border {
+  0%, 100% {
+    box-shadow: 0 4px 14px rgba(234, 88, 12, 0.35);
+  }
+  50% {
+    box-shadow: 0 4px 22px rgba(234, 88, 12, 0.65);
+  }
+}
+
+/* 4. Download PDF Hero CTA */
+.export-btn-download {
+  background: linear-gradient(135deg, #4f46e5 0%, #6366f1 50%, #7c3aed 100%);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 6px 20px -2px rgba(79, 70, 229, 0.45);
+}
+
+.export-btn-download:hover {
+  background: linear-gradient(135deg, #4338ca 0%, #4f46e5 50%, #6d28d9 100%);
+  box-shadow: 0 8px 25px -2px rgba(79, 70, 229, 0.55);
+}
+
+/* ========================================================
+   Header Top Action Buttons Styling
+   ======================================================== */
+.export-top-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  height: 2.375rem;
+  padding: 0 1rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.export-top-btn:hover {
+  transform: translateY(-1.5px);
+}
+
+.export-top-btn:active {
+  transform: translateY(0.5px);
+}
+
+/* Top Print Button */
+.export-top-btn-print {
+  background: #ffffff;
+  color: #334155;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+:root[class~="dark"] .export-top-btn-print {
+  background: #1e293b;
+  color: #cbd5e1;
+  border-color: #334155;
+}
+
+.export-top-btn-print:hover {
+  background: #f8fafc;
+  color: #0f172a;
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+:root[class~="dark"] .export-top-btn-print:hover {
+  background: #334155;
+  color: #ffffff;
+  border-color: #475569;
+}
+
+/* Top Edit Sections Button */
+.export-top-btn-sections {
+  background: #eef2ff;
+  color: #4338ca;
+  border: 1px solid #c7d2fe;
+  box-shadow: 0 1px 3px rgba(79, 70, 229, 0.06);
+}
+
+:root[class~="dark"] .export-top-btn-sections {
+  background: rgba(49, 46, 129, 0.35);
+  color: #a5b4fc;
+  border-color: #4338ca;
+}
+
+.export-top-btn-sections:hover {
+  background: #e0e7ff;
+  color: #3730a3;
+  border-color: #a5b4fc;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.18);
+}
+
+:root[class~="dark"] .export-top-btn-sections:hover {
+  background: rgba(67, 56, 202, 0.45);
+  color: #c7d2fe;
+  border-color: #6366f1;
+}
+
+/* Top Download Button */
+.export-top-btn-download {
+  background: linear-gradient(135deg, #4f46e5 0%, #6366f1 50%, #7c3aed 100%);
+  color: #ffffff;
+  font-weight: 700;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.35);
+}
+
+.export-top-btn-download:hover {
+  background: linear-gradient(135deg, #4338ca 0%, #4f46e5 50%, #6d28d9 100%);
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.45);
+}

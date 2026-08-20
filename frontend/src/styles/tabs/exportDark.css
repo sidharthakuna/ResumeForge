@@ -1,0 +1,25 @@
+/* ============================================================
+   EXPORT & HISTORY TAB — DARK THEME (OBSIDIAN STUDIO)
+   ============================================================ */
+
+.dark .export-card {
+  border-color: #1e293b;
+  background-color: #111827;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.dark .export-history-item {
+  border-color: #1e293b;
+  background-color: #111827;
+}
+
+.dark .export-history-item:hover {
+  border-color: #334155;
+  background-color: #161f30;
+}
+
+.dark .export-header-icon {
+  border-color: rgba(16, 185, 129, 0.35);
+  background-color: rgba(16, 185, 129, 0.18);
+  color: #6ee7b7;
+}

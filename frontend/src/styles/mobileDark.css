@@ -1,0 +1,72 @@
+/* ============================================================
+   MOBILE VIEW — DARK THEME STYLES (OBSIDIAN STUDIO PALETTE)
+   Guarantees sleek dark glass, pure white typography, and
+   smooth micro-interactions on mobile viewports.
+   ============================================================ */
+
+.dark .mobile-app-root {
+  background-color: #0b0f19;
+  color: #ffffff;
+}
+
+/* Dark Mobile Top App Bar */
+.dark .mobile-top-header {
+  border-bottom: 1px solid #1e293b;
+  background-color: rgba(11, 15, 25, 0.95);
+}
+
+.dark .mobile-header-btn {
+  color: #94a3b8;
+}
+
+.dark .mobile-header-btn:hover {
+  background-color: #161f30;
+  color: #f8fafc;
+}
+
+/* Dark Mobile Search Overlay */
+.dark .mobile-search-panel {
+  border-bottom: 1px solid #1e293b;
+  background-color: #111827;
+}
+
+.dark .mobile-search-input {
+  border: 1px solid #334155;
+  background-color: #0b0f19;
+  color: #ffffff;
+}
+
+.dark .mobile-search-input:focus {
+  border-color: #818cf8;
+  background-color: #0b0f19;
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.25);
+}
+
+/* Dark Mobile Drawer */
+.dark .mobile-drawer-sheet {
+  border-right: 1px solid #1e293b;
+  background-color: #111827;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+}
+
+.dark .mobile-drawer-top {
+  border-bottom: 1px solid #1e293b;
+}
+
+.dark .mobile-drawer-item {
+  color: #cbd5e1;
+}
+
+.dark .mobile-drawer-item:hover {
+  background-color: #161f30;
+  color: #ffffff;
+}
+
+.dark .mobile-drawer-item-active {
+  background-color: rgba(99, 102, 241, 0.18);
+  color: #c7d2fe;
+}
+
+.dark .mobile-drawer-bottom {
+  border-top: 1px solid #1e293b;
+}

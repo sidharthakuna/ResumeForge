@@ -1,0 +1,31 @@
+/* ============================================================
+   PROJECTS TAB — DARK THEME (OBSIDIAN STUDIO)
+   ============================================================ */
+
+.dark .projects-form-card,
+.dark .projects-item-card {
+  border-color: #1e293b;
+  background-color: #111827;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.dark .projects-item-card:hover {
+  border-color: #334155;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+.dark .projects-item-title {
+  color: #ffffff;
+}
+
+.dark .projects-tag-badge {
+  border-color: #334155;
+  background-color: #161f30;
+  color: #cbd5e1;
+}
+
+.dark .projects-header-icon {
+  border-color: rgba(249, 115, 22, 0.35);
+  background-color: rgba(249, 115, 22, 0.18);
+  color: #fdba74;
+}
