@@ -24,11 +24,14 @@ services:
       postgres:
         condition: service_healthy
     environment:
+      PORT: 8080
       DB_USERNAME: ${DB_USERNAME:-resumebuilder}
       DB_PASSWORD: ${DB_PASSWORD:-changeme}
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/resumebuilder
-      JWT_SECRET: ${JWT_SECRET}
+      JWT_SECRET: ${JWT_SECRET:-defaultSecretKeyForLocalDevOnlyChangeInProd123456}
       JWT_EXPIRATION_MS: ${JWT_EXPIRATION_MS:-86400000}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS:-http://localhost:5173,http://localhost:3000,http://127.0.0.1:5173}
     ports:
       - "8080:8080"
 volumes:
