@@ -58,6 +58,8 @@ export interface ResumeSummaryResponse {
 
 // ---- Auth ---------------------------------------------------------------
 
+export type OtpPurpose = 'REGISTRATION' | 'PASSWORD_RESET'
+
 export interface RegisterRequest {
   email: string
   password: string
@@ -69,12 +71,38 @@ export interface LoginRequest {
   password: string
 }
 
+export interface SendOtpRequest {
+  email: string
+  purpose: OtpPurpose
+}
+
+export interface VerifyOtpRequest {
+  email: string
+  otp: string
+  purpose: OtpPurpose
+}
+
+export interface ForgotPasswordRequest {
+  email: string
+}
+
+export interface ResetPasswordRequest {
+  email: string
+  otp: string
+  newPassword: string
+}
+
+export interface GoogleAuthRequest {
+  credential: string
+}
+
 export interface AuthResponse {
   token: string
   email: string
   fullName: string
   role: string
 }
+
 
 // ---- Resume ---------------------------------------------------------------
 

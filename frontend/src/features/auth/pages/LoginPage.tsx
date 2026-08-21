@@ -5,7 +5,9 @@ import { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 import { AlertTriangle, Lock } from 'lucide-react'
 import { LoginShell } from '@/features/auth/components/LoginShell'
+import { GoogleLoginButton } from '@/features/auth/components/GoogleLoginButton'
 import { loginSchema, type LoginFormValues } from '@/features/auth/schemas/auth.schema'
+
 import { useLogin } from '@/features/auth/hooks/useAuth'
 import { Label } from '@/components/ui/Label'
 import { Input } from '@/components/ui/Input'
@@ -128,7 +130,15 @@ export default function LoginPage() {
           <FieldError message={errors.email?.message} />
         </div>
         <div>
-          <Label htmlFor="password">Password</Label>
+          <div className="flex items-center justify-between">
+            <Label htmlFor="password">Password</Label>
+            <Link
+              to="/forgot-password"
+              className="text-xs font-semibold text-indigo-600 hover:text-indigo-700 dark:text-indigo-400 hover:underline"
+            >
+              Forgot password?
+            </Link>
+          </div>
           <Input
             id="password"
             type="password"
@@ -141,7 +151,7 @@ export default function LoginPage() {
         </div>
         <Button
           type="submit"
-          className="w-full"
+          className="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold h-11"
           size="lg"
           loading={login.isPending}
           disabled={isLockedOut}
@@ -156,23 +166,16 @@ export default function LoginPage() {
         <div className="h-px flex-1 bg-ink-100" />
       </div>
 
-      <button
-        type="button"
-        disabled
-        title="Google sign-in isn't connected yet — the backend only supports email and password."
-        className="flex h-11 w-full cursor-not-allowed items-center justify-center gap-2.5 rounded-lg border border-ink-100 bg-ink-50 text-sm font-medium text-ink-400"
-      >
-        <GoogleIcon />
-        Sign in with Google
-      </button>
+      <GoogleLoginButton text="signin_with" />
 
       <p className="mt-6 text-center text-sm text-ink-500">
         Don't have an account?{' '}
-        <Link to="/register" className="font-medium text-brass-500 underline underline-offset-2">
+        <Link to="/register" className="font-semibold text-indigo-600 dark:text-indigo-400 hover:underline underline-offset-2">
           Create one now
         </Link>
       </p>
     </LoginShell>
+
   )
 }
 

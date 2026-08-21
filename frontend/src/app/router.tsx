@@ -6,6 +6,7 @@ import { RequireAuth } from '@/app/RequireAuth'
 
 import LoginPage from '@/features/auth/pages/LoginPage'
 import RegisterPage from '@/features/auth/pages/RegisterPage'
+import ForgotPasswordPage from '@/features/auth/pages/ForgotPasswordPage'
 import DashboardPage from '@/features/dashboard/pages/DashboardPage'
 import MyResumesPage from '@/features/dashboard/pages/MyResumesPage'
 import SettingsPage from '@/features/settings/pages/SettingsPage'
@@ -38,8 +39,10 @@ export const router = createBrowserRouter([
     children: [
       { path: '/login', element: <LoginPage /> },
       { path: '/register', element: <RegisterPage /> },
+      { path: '/forgot-password', element: <ForgotPasswordPage /> },
     ],
   },
+
   {
     element: (
       <RequireAuth>

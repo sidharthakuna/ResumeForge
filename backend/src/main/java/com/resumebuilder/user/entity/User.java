@@ -1,6 +1,7 @@
 package com.resumebuilder.user.entity;
 
 import com.resumebuilder.common.entity.BaseEntity;
+import com.resumebuilder.user.enums.AuthProvider;
 import com.resumebuilder.user.enums.Role;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,7 +18,7 @@ public class User extends BaseEntity {
     @Column(nullable = false, unique = true, length = 255)
     private String email;
 
-    @Column(nullable = false, length = 72)
+    @Column(nullable = true, length = 72)
     private String password;
 
     @Column(nullable = false, length = 100)
@@ -26,6 +27,13 @@ public class User extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     private Role role;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 20)
+    private AuthProvider authProvider = AuthProvider.LOCAL;
+
+    @Column(length = 255)
+    private String googleSubId;
 
     @Column(nullable = false)
     private boolean emailVerified = false;
@@ -42,6 +50,10 @@ public class User extends BaseEntity {
     public void setFullName(String fullName) { this.fullName = fullName; }
     public Role getRole() { return role; }
     public void setRole(Role role) { this.role = role; }
+    public AuthProvider getAuthProvider() { return authProvider; }
+    public void setAuthProvider(AuthProvider authProvider) { this.authProvider = authProvider; }
+    public String getGoogleSubId() { return googleSubId; }
+    public void setGoogleSubId(String googleSubId) { this.googleSubId = googleSubId; }
     public boolean isEmailVerified() { return emailVerified; }
     public void setEmailVerified(boolean emailVerified) { this.emailVerified = emailVerified; }
     public String getProfilePicturePath() { return profilePicturePath; }
