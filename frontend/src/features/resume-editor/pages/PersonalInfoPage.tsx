@@ -16,6 +16,8 @@ import { Input } from '@/components/ui/Input'
 import { FieldError } from '@/components/ui/FieldError'
 import { Button } from '@/components/ui/Button'
 import { Card, CardBody } from '@/components/ui/Card'
+import { useEditorUiStore } from '@/features/resume-editor/store/editor-ui.store'
+import { getTemplateById, templateSupportsPhoto } from '@/features/templates/renderers/registry'
 
 function formatUrl(val?: string | null): string | null {
   if (!val || !val.trim()) return null
@@ -29,7 +31,12 @@ export default function PersonalInfoPage() {
   const addMutation = useAddPersonalInfo(resumeId)
   const updateMutation = useUpdatePersonalInfo(resumeId)
   const isSaving = addMutation.isPending || updateMutation.isPending
-  const nextPath = `/resumes/${resumeId}/edit/photo`
+
+  const selectedTemplateId = useEditorUiStore((s) => s.getSelectedTemplate(resumeId))
+  const template = getTemplateById(selectedTemplateId)
+  const supportsPhoto = templateSupportsPhoto(template)
+  const nextPath = supportsPhoto ? `/resumes/${resumeId}/edit/photo` : `/resumes/${resumeId}/edit/education`
+  const nextLabel = supportsPhoto ? 'Photo' : 'Education'
 
   const {
     register,
@@ -107,7 +114,7 @@ export default function PersonalInfoPage() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-6 sm:px-6 sm:py-8">
+    <div className="mx-auto max-w-3xl px-3.5 py-4 sm:px-6 sm:py-8">
       <SectionHeader
         title="Personal information"
         description="This appears at the top of every template — keep it accurate."
@@ -116,24 +123,24 @@ export default function PersonalInfoPage() {
       />
 
       <Card>
-        <CardBody>
-          <form className="space-y-4" onSubmit={handleSubmit(onSubmit, onInvalid)} noValidate>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <CardBody className="p-3.5 sm:p-6">
+          <form className="space-y-3.5 sm:space-y-4" onSubmit={handleSubmit(onSubmit, onInvalid)} noValidate>
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               <div>
-                <Label htmlFor="fullName">Full name</Label>
+                <Label htmlFor="fullName">Full name *</Label>
                 <Input id="fullName" placeholder="Sidhartha Kuna" invalid={!!errors.fullName} {...register('fullName')} />
                 <FieldError message={errors.fullName?.message} />
               </div>
               <div>
                 <Label htmlFor="jobTitle">Job Title / Tagline</Label>
-                <Input id="jobTitle" placeholder="Java Backend Developer | B.Tech CSE Student" invalid={!!errors.jobTitle} {...register('jobTitle')} />
+                <Input id="jobTitle" placeholder="Java Backend Developer | B.Tech CSE" invalid={!!errors.jobTitle} {...register('jobTitle')} />
                 <FieldError message={errors.jobTitle?.message} />
               </div>
             </div>
 
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               <div>
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email">Email *</Label>
                 <Input id="email" type="email" placeholder="sidharthakuna@gmail.com" invalid={!!errors.email} {...register('email')} />
                 <FieldError message={errors.email?.message} />
               </div>
@@ -150,12 +157,12 @@ export default function PersonalInfoPage() {
               <FieldError message={errors.location?.message} />
             </div>
 
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
               <div>
                 <Label htmlFor="githubUrl">GitHub URL</Label>
                 <Input
                   id="githubUrl"
-                  placeholder="https://github.com/sidharthakuna"
+                  placeholder="https://github.com/..."
                   invalid={!!errors.githubUrl}
                   {...register('githubUrl')}
                 />
@@ -165,7 +172,7 @@ export default function PersonalInfoPage() {
                 <Label htmlFor="linkedinUrl">LinkedIn URL</Label>
                 <Input
                   id="linkedinUrl"
-                  placeholder="https://linkedin.com/in/sidharthakuna"
+                  placeholder="https://linkedin.com/in/..."
                   invalid={!!errors.linkedinUrl}
                   {...register('linkedinUrl')}
                 />
@@ -175,7 +182,7 @@ export default function PersonalInfoPage() {
                 <Label htmlFor="portfolioUrl">Portfolio URL</Label>
                 <Input
                   id="portfolioUrl"
-                  placeholder="https://sidharthakuna.github.io/Portfolio"
+                  placeholder="https://yourportfolio.com"
                   invalid={!!errors.portfolioUrl}
                   {...register('portfolioUrl')}
                 />
@@ -183,19 +190,19 @@ export default function PersonalInfoPage() {
               </div>
             </div>
 
-            <div className="flex items-center justify-between gap-3 pt-4 border-t border-ink-100">
+            <div className="flex items-center justify-between gap-2.5 pt-3.5 border-t border-ink-100">
               <Button
                 type="button"
                 variant="secondary"
                 onClick={() => navigate(nextPath)}
-                className="gap-1.5 text-xs text-ink-600 hover:text-ink-900"
+                className="gap-1 text-xs text-ink-600 hover:text-ink-900 h-9 px-3"
               >
-                Next: Photo <ArrowRight className="h-3.5 w-3.5" />
+                Skip to {nextLabel} <ArrowRight className="h-3 w-3" />
               </Button>
               <Button
                 type="submit"
                 loading={isSaving}
-                className="bg-indigo-600 text-white hover:bg-indigo-500 shadow-xs font-semibold rounded-xl"
+                className="bg-indigo-600 text-white hover:bg-indigo-500 shadow-xs font-semibold rounded-xl text-xs sm:text-sm h-9 px-4"
               >
                 Save &amp; Continue
               </Button>
@@ -206,3 +213,4 @@ export default function PersonalInfoPage() {
     </div>
   )
 }
+

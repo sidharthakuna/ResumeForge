@@ -93,39 +93,39 @@ export default function MyResumesPage() {
     <div className="dashboard-container space-y-8">
       {/* Header Banner */}
       <div className="dashboard-hero-card">
-        <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+        <div className="flex flex-col gap-4 sm:gap-5 lg:flex-row lg:items-center lg:justify-between">
           <div>
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-600 text-white shadow-xs">
-                <FolderOpen className="h-5 w-5 stroke-[2.2]" />
+            <div className="flex items-center gap-2.5 sm:gap-3">
+              <div className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-indigo-600 text-white shadow-xs shrink-0">
+                <FolderOpen className="h-4.5 w-4.5 sm:h-5 sm:w-5 stroke-[2.2]" />
               </div>
-              <div>
-                <h1 className="text-xl font-bold text-ink-900 sm:text-2xl">My Resumes</h1>
+              <div className="min-w-0">
+                <h1 className="text-lg font-bold text-ink-900 sm:text-2xl truncate">My Resumes</h1>
                 <p className="text-xs text-ink-500 sm:text-sm">
-                  Manage, organize, and tailor all your professional resumes.
+                  Manage, organize, and tailor your resumes.
                 </p>
               </div>
             </div>
 
             {/* Quick Metrics Badges */}
-            <div className="mt-4 flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 rounded-lg border border-indigo-200/80 bg-indigo-50/80 px-2.5 py-1 text-xs font-semibold text-indigo-700 dark:border-indigo-500/20 dark:bg-indigo-500/10 dark:text-indigo-400">
-                <FileText className="h-3.5 w-3.5" /> {totalResumes} {totalResumes === 1 ? 'Resume' : 'Resumes'}
+            <div className="mt-3 sm:mt-4 flex flex-wrap items-center gap-1.5 sm:gap-2">
+              <span className="inline-flex items-center gap-1 rounded-lg border border-indigo-200/80 bg-indigo-50/80 px-2 py-0.5 text-[11px] sm:text-xs font-semibold text-indigo-700 dark:border-indigo-500/20 dark:bg-indigo-500/10 dark:text-indigo-400">
+                <FileText className="h-3 w-3" /> {totalResumes} {totalResumes === 1 ? 'Resume' : 'Resumes'}
               </span>
-              <span className="inline-flex items-center gap-1.5 rounded-lg border border-emerald-200/80 bg-emerald-50/80 px-2.5 py-1 text-xs font-semibold text-emerald-700 dark:border-emerald-500/20 dark:bg-emerald-500/10 dark:text-emerald-400">
-                <CheckCircle2 className="h-3.5 w-3.5" /> {completedCount} Ready to Export
+              <span className="inline-flex items-center gap-1 rounded-lg border border-emerald-200/80 bg-emerald-50/80 px-2 py-0.5 text-[11px] sm:text-xs font-semibold text-emerald-700 dark:border-emerald-500/20 dark:bg-emerald-500/10 dark:text-emerald-400">
+                <CheckCircle2 className="h-3 w-3" /> {completedCount} Ready
               </span>
-              <span className="inline-flex items-center gap-1.5 rounded-lg border border-cyan-200/80 bg-cyan-50/80 px-2.5 py-1 text-xs font-semibold text-cyan-700 dark:border-cyan-500/20 dark:bg-cyan-500/10 dark:text-cyan-400">
-                <Download className="h-3.5 w-3.5" /> {totalDownloads} PDF Downloads
+              <span className="inline-flex items-center gap-1 rounded-lg border border-cyan-200/80 bg-cyan-50/80 px-2 py-0.5 text-[11px] sm:text-xs font-semibold text-cyan-700 dark:border-cyan-500/20 dark:bg-cyan-500/10 dark:text-cyan-400">
+                <Download className="h-3 w-3" /> {totalDownloads} Downloads
               </span>
             </div>
           </div>
 
-          <div className="flex items-center gap-3 shrink-0">
+          <div className="flex items-center gap-2 shrink-0 pt-1 lg:pt-0">
             <Button
               onClick={handleCreate}
               loading={createResume.isPending}
-              className="gap-2 bg-indigo-600 text-white hover:bg-indigo-500 shadow-xs font-semibold rounded-xl text-xs sm:text-sm px-4 py-2.5"
+              className="w-full sm:w-auto gap-1.5 bg-indigo-600 text-white hover:bg-indigo-500 shadow-xs font-semibold rounded-xl text-xs sm:text-sm px-3.5 py-2"
             >
               <Plus className="h-4 w-4 stroke-[2.5]" />
               Create New Resume
@@ -135,26 +135,26 @@ export default function MyResumesPage() {
       </div>
 
       {/* Filter & Search Toolbar */}
-      <div className="flex flex-col gap-3 rounded-2xl border border-ink-200 bg-paper-50 p-4 shadow-2xs sm:flex-row sm:items-center sm:justify-between dark:border-ink-200 dark:bg-paper-50/80">
+      <div className="flex flex-col gap-2.5 rounded-2xl border border-ink-200 bg-paper-50 p-3 sm:p-4 shadow-2xs sm:flex-row sm:items-center sm:justify-between dark:border-ink-200 dark:bg-paper-50/80">
         {/* Search Input */}
-        <div className="relative flex-1 max-w-md">
-          <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-400" />
+        <div className="relative flex-1">
+          <Search className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-ink-400" />
           <input
             type="text"
             placeholder="Search by title or name…"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full rounded-xl border border-ink-200/80 bg-paper-100/60 py-2 pl-9 pr-4 text-xs font-medium text-ink-900 placeholder:text-ink-400 focus:border-indigo-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 dark:border-ink-200 dark:bg-paper-100/30"
+            className="w-full rounded-xl border border-ink-200/80 bg-paper-100/60 py-1.5 pl-8 pr-3 text-xs font-medium text-ink-900 placeholder:text-ink-400 focus:border-indigo-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 dark:border-ink-200 dark:bg-paper-100/30"
           />
         </div>
 
         {/* Filter Controls */}
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-center justify-between sm:justify-start gap-2">
           {/* Status Filter */}
-          <div className="flex items-center gap-1 rounded-xl bg-ink-100/50 p-1 dark:bg-ink-200/40">
+          <div className="flex items-center gap-0.5 rounded-xl bg-ink-100/50 p-0.5 dark:bg-ink-200/40">
             <button
               onClick={() => setStatusFilter('all')}
-              className={`rounded-lg px-2.5 py-1 text-xs font-semibold transition-colors ${
+              className={`rounded-lg px-2 py-1 text-[11px] sm:text-xs font-semibold transition-colors ${
                 statusFilter === 'all'
                   ? 'bg-white text-indigo-700 shadow-2xs dark:bg-paper-50 dark:text-indigo-400'
                   : 'text-ink-600 hover:text-ink-900'
@@ -164,17 +164,17 @@ export default function MyResumesPage() {
             </button>
             <button
               onClick={() => setStatusFilter('completed')}
-              className={`rounded-lg px-2.5 py-1 text-xs font-semibold transition-colors ${
+              className={`rounded-lg px-2 py-1 text-[11px] sm:text-xs font-semibold transition-colors ${
                 statusFilter === 'completed'
                   ? 'bg-white text-emerald-700 shadow-2xs dark:bg-paper-50 dark:text-emerald-400'
                   : 'text-ink-600 hover:text-ink-900'
               }`}
             >
-              Completed ({completedCount})
+              Ready ({completedCount})
             </button>
             <button
               onClick={() => setStatusFilter('draft')}
-              className={`rounded-lg px-2.5 py-1 text-xs font-semibold transition-colors ${
+              className={`rounded-lg px-2 py-1 text-[11px] sm:text-xs font-semibold transition-colors ${
                 statusFilter === 'draft'
                   ? 'bg-white text-amber-700 shadow-2xs dark:bg-paper-50 dark:text-amber-400'
                   : 'text-ink-600 hover:text-ink-900'
@@ -185,15 +185,15 @@ export default function MyResumesPage() {
           </div>
 
           {/* Sort Dropdown */}
-          <div className="flex items-center gap-1.5 rounded-xl border border-ink-200/80 bg-paper-100/60 px-3 py-1.5 text-xs font-semibold text-ink-700 dark:border-ink-200 dark:bg-paper-100/30">
-            <SlidersHorizontal className="h-3.5 w-3.5 text-ink-400" />
+          <div className="flex items-center gap-1 rounded-xl border border-ink-200/80 bg-paper-100/60 px-2.5 py-1 text-xs font-semibold text-ink-700 dark:border-ink-200 dark:bg-paper-100/30">
+            <SlidersHorizontal className="h-3 w-3 text-ink-400" />
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as any)}
-              className="bg-transparent text-xs font-semibold text-ink-700 focus:outline-none dark:text-ink-300"
+              className="bg-transparent text-[11px] sm:text-xs font-semibold text-ink-700 focus:outline-none dark:text-ink-300"
             >
-              <option value="recent">Recently Updated</option>
-              <option value="oldest">Oldest First</option>
+              <option value="recent">Recent</option>
+              <option value="oldest">Oldest</option>
               <option value="title">Title (A-Z)</option>
             </select>
           </div>
@@ -203,9 +203,9 @@ export default function MyResumesPage() {
       {/* Resumes Collection Grid */}
       <section>
         {totalResumes === 0 ? (
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-4 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             <CreateResumeTile onClick={handleCreate} loading={createResume.isPending} />
-            <div className="sm:col-span-1 lg:col-span-2">
+            <div className="sm:col-span-1 lg:col-span-2 xl:col-span-3">
               <EmptyState
                 icon={FileText}
                 title="No resumes created yet"
@@ -232,7 +232,7 @@ export default function MyResumesPage() {
             </Button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-4 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             <CreateResumeTile onClick={handleCreate} loading={createResume.isPending} />
             {filteredResumes.map((r) => (
               <ResumeCard
@@ -245,6 +245,7 @@ export default function MyResumesPage() {
             ))}
           </div>
         )}
+
       </section>
 
       {/* Delete Confirmation Modal */}

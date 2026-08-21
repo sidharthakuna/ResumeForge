@@ -44,7 +44,11 @@ public class PdfRenderer {
             registerFont(builder, "/fonts/LiberationSans-Italic.ttf", 400, FontStyle.ITALIC);
             registerFont(builder, "/fonts/LiberationSans-BoldItalic.ttf", 700, FontStyle.ITALIC);
 
-            builder.withHtmlContent(html, "/");
+            org.jsoup.nodes.Document jsoupDoc = org.jsoup.Jsoup.parse(html, "UTF-8");
+            jsoupDoc.outputSettings().syntax(org.jsoup.nodes.Document.OutputSettings.Syntax.xml);
+            org.w3c.dom.Document w3cDoc = new org.jsoup.helper.W3CDom().fromJsoup(jsoupDoc);
+
+            builder.withW3cDocument(w3cDoc, "/");
             builder.toStream(outputStream);
             builder.run();
             return outputStream.toByteArray();

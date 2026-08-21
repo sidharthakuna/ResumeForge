@@ -38,11 +38,11 @@ export default function TemplatesGalleryPage() {
   }
 
   return (
-    <div className="px-6 py-10 lg:px-8">
+    <div className="px-3.5 py-4 sm:px-6 sm:py-10 lg:px-8 pb-24 sm:pb-10">
       <div className="mx-auto max-w-[1400px]">
-        <div className="flex flex-col gap-1 pb-6">
-          <h1 className="font-display text-3xl font-bold tracking-tight text-ink-900">Choose Your Resume Template</h1>
-          <p className="max-w-2xl text-[15px] text-ink-500">
+        <div className="flex flex-col gap-1 pb-4 sm:pb-6">
+          <h1 className="font-display text-xl sm:text-3xl font-bold tracking-tight text-ink-900">Choose Your Resume Template</h1>
+          <p className="max-w-2xl text-xs sm:text-[15px] text-ink-500">
             Select from our collection of professionally designed, ATS-optimized templates to start building your
             next career move.
           </p>
@@ -56,9 +56,10 @@ export default function TemplatesGalleryPage() {
         />
 
         {createResume.isPending && (
-          <p className="pt-4 text-center text-sm text-ink-500">Creating your resume…</p>
+          <p className="pt-4 text-center text-xs sm:text-sm text-ink-500">Creating your resume…</p>
         )}
       </div>
     </div>
   )
 }
+

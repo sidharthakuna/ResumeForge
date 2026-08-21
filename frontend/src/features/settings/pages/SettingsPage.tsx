@@ -93,22 +93,24 @@ export default function SettingsPage() {
     .toUpperCase() || '?'
 
   return (
-    <div className="px-6 py-8 lg:px-8">
+    <div className="px-3.5 py-4 sm:px-6 sm:py-8 lg:px-8 pb-24 sm:pb-8">
       <SectionHeader title="Settings" description="Manage your account and local resume list." />
 
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-[240px_1fr]">
-        <nav className="space-y-1">
+      <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-[240px_1fr]">
+        <nav className="flex flex-row overflow-x-auto gap-1.5 pb-1 lg:pb-0 lg:flex-col lg:space-y-1 scrollbar-none">
           {TABS.map((t) => (
             <button
               key={t.key}
               onClick={() => setTab(t.key)}
               className={clsx(
-                'flex w-full items-center gap-2.5 rounded-lg px-3.5 py-2.5 text-left text-sm transition-colors',
-                tab === t.key ? 'bg-brass-100 font-medium text-brass-600' : 'text-ink-600 hover:bg-ink-50',
+                'flex shrink-0 items-center gap-2 rounded-xl px-3.5 py-2.5 text-left text-xs sm:text-sm font-semibold transition-colors cursor-pointer',
+                tab === t.key
+                  ? 'bg-indigo-50 border border-indigo-100 text-indigo-700 font-bold dark:bg-indigo-500/15 dark:text-indigo-400 dark:border-transparent shadow-2xs'
+                  : 'text-ink-600 hover:bg-ink-50 dark:text-ink-300 dark:hover:bg-slate-800/60',
               )}
             >
               <t.icon className="h-4 w-4 shrink-0" strokeWidth={1.8} />
-              {t.label}
+              <span>{t.label}</span>
             </button>
           ))}
         </nav>
@@ -117,8 +119,9 @@ export default function SettingsPage() {
           {tab === 'account' && (
             <Card>
               <CardHeader>
-                <p className="text-sm font-medium text-ink-800">Profile Settings</p>
+                <p className="text-sm font-bold text-ink-800">Profile Settings</p>
               </CardHeader>
+
               <CardBody className="space-y-6">
                 {/* Avatar upload row */}
                 <div className="flex items-start gap-4">
@@ -165,7 +168,7 @@ export default function SettingsPage() {
                           <button
                             type="submit"
                             disabled={!isNameChanged || updateProfileMutation.isPending}
-                            className="flex items-center gap-1.5 rounded-lg bg-brass-500 px-3.5 py-1.5 text-xs font-semibold text-white shadow-sm hover:bg-brass-400 active:bg-brass-600 disabled:opacity-50 transition-colors"
+                            className="flex items-center gap-1.5 rounded-lg bg-indigo-600 px-3.5 py-1.5 text-xs font-semibold text-white shadow-sm hover:bg-indigo-500 active:bg-indigo-700 disabled:opacity-50 transition-colors"
                           >
                             {updateProfileMutation.isPending ? (
                               <Loader2 className="h-3.5 w-3.5 animate-spin" />
@@ -188,6 +191,7 @@ export default function SettingsPage() {
                         </div>
                       )}
                     </div>
+
                     <div>
                       <Label htmlFor="email-address-input" className="mb-1.5">Email address</Label>
                       <Input id="email-address-input" value={displayEmail} disabled />

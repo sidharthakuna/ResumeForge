@@ -79,54 +79,54 @@ export default function DashboardPage() {
     <div className="dashboard-container space-y-8" id="your-resumes">
       {/* 1. Header Hero Card */}
       <div className="dashboard-hero-card">
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-          <div className="flex items-start gap-4">
+        <div className="flex flex-col gap-4 sm:gap-6 lg:flex-row lg:items-center lg:justify-between">
+          <div className="flex items-start gap-3 sm:gap-4">
             <div className="hidden sm:flex dashboard-hero-icon">
               <TimeOfDayIcon />
             </div>
-            <div>
-              <div className="flex flex-wrap items-center gap-2.5">
-                <h1 className="dashboard-greeting-title">
+            <div className="min-w-0">
+              <div className="flex flex-wrap items-center gap-2">
+                <h1 className="dashboard-greeting-title text-lg sm:text-2xl font-bold text-ink-900">
                   Good {timeOfDayGreeting()}, {user?.fullName?.split(' ')[0] ?? 'there'}
                 </h1>
                 <span className="inline-flex sm:hidden">
                   <TimeOfDayIcon />
                 </span>
               </div>
-              <p className="dashboard-greeting-sub">
+              <p className="dashboard-greeting-sub text-xs sm:text-sm text-ink-600 dark:text-ink-400 mt-0.5 sm:mt-1">
                 Create, tailor with AI, and export ATS-optimized resumes.
               </p>
 
               {/* Status Badges */}
-              <div className="mt-3.5 flex flex-wrap items-center gap-2">
-                <span className="inline-flex items-center gap-1.5 rounded-lg border border-indigo-200/80 bg-indigo-50/80 px-2.5 py-1 text-xs font-semibold text-indigo-700 dark:border-indigo-500/20 dark:bg-indigo-500/10 dark:text-indigo-400">
-                  <Sparkles className="h-3.5 w-3.5" /> AI Tailoring Enabled
+              <div className="mt-2.5 sm:mt-3.5 flex flex-wrap items-center gap-1.5 sm:gap-2">
+                <span className="inline-flex items-center gap-1 rounded-lg border border-indigo-200/80 bg-indigo-50/80 px-2 py-0.5 text-[11px] sm:text-xs font-semibold text-indigo-700 dark:border-indigo-500/20 dark:bg-indigo-500/10 dark:text-indigo-400">
+                  <Sparkles className="h-3 w-3" /> AI Tailoring
                 </span>
-                <span className="inline-flex items-center gap-1.5 rounded-lg border border-emerald-200/80 bg-emerald-50/80 px-2.5 py-1 text-xs font-semibold text-emerald-700 dark:border-emerald-500/20 dark:bg-emerald-500/10 dark:text-emerald-400">
-                  <CheckCircle2 className="h-3.5 w-3.5" /> ATS Ready
+                <span className="inline-flex items-center gap-1 rounded-lg border border-emerald-200/80 bg-emerald-50/80 px-2 py-0.5 text-[11px] sm:text-xs font-semibold text-emerald-700 dark:border-emerald-500/20 dark:bg-emerald-500/10 dark:text-emerald-400">
+                  <CheckCircle2 className="h-3 w-3" /> ATS Ready
                 </span>
-                <span className="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 bg-slate-50 px-2.5 py-1 text-xs font-semibold text-ink-700 dark:border-ink-200 dark:bg-ink-100/50">
-                  <FileText className="h-3.5 w-3.5" /> {totalResumes} {totalResumes === 1 ? 'Resume' : 'Resumes'}
+                <span className="inline-flex items-center gap-1 rounded-lg border border-slate-300 bg-slate-50 px-2 py-0.5 text-[11px] sm:text-xs font-semibold text-ink-700 dark:border-ink-200 dark:bg-ink-100/50">
+                  <FileText className="h-3 w-3" /> {totalResumes} {totalResumes === 1 ? 'Resume' : 'Resumes'}
                 </span>
               </div>
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2.5 shrink-0 pt-2 lg:pt-0">
+          <div className="flex items-center gap-2 shrink-0 pt-1 lg:pt-0">
             <Button
               variant="outline"
               onClick={() => navigate('/ai')}
-              className="gap-2 rounded-xl text-xs sm:text-sm font-semibold border-slate-300 dark:border-slate-700"
+              className="flex-1 sm:flex-none gap-1.5 rounded-xl text-xs font-semibold border-slate-300 dark:border-slate-700 h-9"
             >
-              <Bot className="h-4 w-4 text-purple-600 dark:text-purple-400" />
+              <Bot className="h-3.5 w-3.5 text-purple-600 dark:text-purple-400" />
               AI Assistant
             </Button>
             <Button
               onClick={handleCreate}
               loading={createResume.isPending}
-              className="gap-2 bg-indigo-600 text-white hover:bg-indigo-500 shadow-xs font-semibold rounded-xl text-xs sm:text-sm"
+              className="flex-1 sm:flex-none gap-1.5 bg-indigo-600 text-white hover:bg-indigo-500 shadow-xs font-semibold rounded-xl text-xs h-9"
             >
-              <Plus className="h-4 w-4 stroke-[2.5]" />
+              <Plus className="h-3.5 w-3.5 stroke-[2.5]" />
               New resume
             </Button>
           </div>
@@ -134,62 +134,62 @@ export default function DashboardPage() {
       </div>
 
       {/* 2. Real Metrics Row (Backed by Spring Boot Backend Data) */}
-      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-2.5 sm:gap-4 lg:grid-cols-4">
         {/* Metric 1: Total Resumes */}
-        <div className="dashboard-metric-card">
+        <div className="dashboard-metric-card p-3 sm:p-4">
           <div className="flex items-center justify-between">
-            <span className="dashboard-metric-label">Total Resumes</span>
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl dashboard-icon-indigo">
-              <FileText className="h-4 w-4" strokeWidth={2} />
+            <span className="dashboard-metric-label text-[10px] sm:text-xs">Total Resumes</span>
+            <div className="flex h-7.5 w-7.5 sm:h-9 sm:w-9 items-center justify-center rounded-lg sm:rounded-xl dashboard-icon-indigo">
+              <FileText className="h-3.5 w-3.5 sm:h-4 sm:w-4" strokeWidth={2} />
             </div>
           </div>
-          <div className="mt-3">
-            <p className="dashboard-metric-value">{totalResumes}</p>
-            <p className="dashboard-metric-subtext">Active documents in cloud</p>
+          <div className="mt-2 sm:mt-3">
+            <p className="dashboard-metric-value text-xl sm:text-2xl font-bold">{totalResumes}</p>
+            <p className="dashboard-metric-subtext text-[10px] sm:text-xs">Active documents</p>
           </div>
         </div>
 
         {/* Metric 2: Ready to Export */}
-        <div className="dashboard-metric-card">
+        <div className="dashboard-metric-card p-3 sm:p-4">
           <div className="flex items-center justify-between">
-            <span className="dashboard-metric-label">Ready to Export</span>
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl dashboard-icon-emerald">
-              <CheckCircle2 className="h-4 w-4" strokeWidth={2} />
+            <span className="dashboard-metric-label text-[10px] sm:text-xs">Ready to Export</span>
+            <div className="flex h-7.5 w-7.5 sm:h-9 sm:w-9 items-center justify-center rounded-lg sm:rounded-xl dashboard-icon-emerald">
+              <CheckCircle2 className="h-3.5 w-3.5 sm:h-4 sm:w-4" strokeWidth={2} />
             </div>
           </div>
-          <div className="mt-3">
-            <p className="dashboard-metric-value">{completedCount}</p>
-            <p className="dashboard-metric-subtext">Completed profiles</p>
+          <div className="mt-2 sm:mt-3">
+            <p className="dashboard-metric-value text-xl sm:text-2xl font-bold">{completedCount}</p>
+            <p className="dashboard-metric-subtext text-[10px] sm:text-xs">Completed profiles</p>
           </div>
         </div>
 
         {/* Metric 3: PDF Downloads */}
-        <div className="dashboard-metric-card">
+        <div className="dashboard-metric-card p-3 sm:p-4">
           <div className="flex items-center justify-between">
-            <span className="dashboard-metric-label">PDF Downloads</span>
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl dashboard-icon-cyan">
-              <Download className="h-4 w-4" strokeWidth={2} />
+            <span className="dashboard-metric-label text-[10px] sm:text-xs">PDF Downloads</span>
+            <div className="flex h-7.5 w-7.5 sm:h-9 sm:w-9 items-center justify-center rounded-lg sm:rounded-xl dashboard-icon-cyan">
+              <Download className="h-3.5 w-3.5 sm:h-4 sm:w-4" strokeWidth={2} />
             </div>
           </div>
-          <div className="mt-3">
-            <p className="dashboard-metric-value">{totalDownloads}</p>
-            <p className="dashboard-metric-subtext">Generated copies</p>
+          <div className="mt-2 sm:mt-3">
+            <p className="dashboard-metric-value text-xl sm:text-2xl font-bold">{totalDownloads}</p>
+            <p className="dashboard-metric-subtext text-[10px] sm:text-xs">Generated copies</p>
           </div>
         </div>
 
         {/* Metric 4: Last Activity */}
-        <div className="dashboard-metric-card">
+        <div className="dashboard-metric-card p-3 sm:p-4">
           <div className="flex items-center justify-between">
-            <span className="dashboard-metric-label">Last Activity</span>
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl dashboard-icon-purple">
-              <Clock className="h-4 w-4" strokeWidth={2} />
+            <span className="dashboard-metric-label text-[10px] sm:text-xs">Last Activity</span>
+            <div className="flex h-7.5 w-7.5 sm:h-9 sm:w-9 items-center justify-center rounded-lg sm:rounded-xl dashboard-icon-purple">
+              <Clock className="h-3.5 w-3.5 sm:h-4 sm:w-4" strokeWidth={2} />
             </div>
           </div>
-          <div className="mt-3">
-            <p className="dashboard-metric-value text-2xl font-bold">
+          <div className="mt-2 sm:mt-3">
+            <p className="dashboard-metric-value text-xl sm:text-2xl font-bold">
               {mostRecent ? formatLastEdited(mostRecent.addedAt) : 'None'}
             </p>
-            <p className="dashboard-metric-subtext">Most recent update</p>
+            <p className="dashboard-metric-subtext text-[10px] sm:text-xs">Most recent update</p>
           </div>
         </div>
       </div>
@@ -324,9 +324,9 @@ export default function DashboardPage() {
         </div>
 
         {totalResumes === 0 ? (
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-4 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             <CreateResumeTile onClick={handleCreate} loading={createResume.isPending} />
-            <div className="sm:col-span-1 lg:col-span-2">
+            <div className="sm:col-span-1 lg:col-span-2 xl:col-span-3">
               <EmptyState
                 icon={FileText}
                 title="No resumes created yet"
@@ -335,9 +335,9 @@ export default function DashboardPage() {
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-4 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             <CreateResumeTile onClick={handleCreate} loading={createResume.isPending} />
-            {resumes!.slice(0, 5).map((r) => (
+            {resumes!.slice(0, 7).map((r) => (
               <ResumeCard
                 key={r.full.resume.id}
                 full={r.full}
@@ -348,6 +348,7 @@ export default function DashboardPage() {
             ))}
           </div>
         )}
+
       </section>
 
       {/* 5. Supported Templates Gallery Showcase */}

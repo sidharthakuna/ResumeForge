@@ -61,8 +61,8 @@ export function AiSubNav({ currentResumeId }: AiSubNavProps) {
   ]
 
   return (
-    <div className="mb-6 flex w-full items-center justify-between overflow-x-auto rounded-2xl border border-ink-100 bg-paper-50/80 p-1.5 shadow-2xs backdrop-blur-md dark:border-ink-200 dark:bg-paper-50/70 scrollbar-none">
-      <div className="flex items-center gap-1.5">
+    <div className="mb-4 sm:mb-6 flex w-full items-center justify-between overflow-x-auto rounded-2xl border border-ink-100 bg-paper-50/80 p-1 shadow-2xs backdrop-blur-md dark:border-ink-200 dark:bg-paper-50/70 scrollbar-none">
+      <div className="flex items-center gap-1 min-w-max">
         {navItems.map((item) => {
           const Icon = item.icon
           const isActive = item.exact
@@ -74,17 +74,17 @@ export function AiSubNav({ currentResumeId }: AiSubNavProps) {
               key={item.path}
               to={item.to}
               className={clsx(
-                'flex items-center gap-2 rounded-xl px-3.5 py-2 text-xs font-bold transition-all whitespace-nowrap',
+                'flex items-center gap-1.5 rounded-xl px-2.5 sm:px-3.5 py-1.5 sm:py-2 text-xs font-bold transition-all whitespace-nowrap',
                 isActive
                   ? 'bg-white text-ink-900 shadow-xs border border-ink-100 dark:bg-slate-900 dark:text-white dark:border-slate-800'
                   : 'text-ink-500 hover:bg-ink-100/50 hover:text-ink-900 dark:text-ink-400 dark:hover:bg-ink-100/20 dark:hover:text-white',
               )}
             >
-              <Icon className={clsx('h-4 w-4 shrink-0', item.color)} />
+              <Icon className={clsx('h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0', item.color)} />
               <span>{item.label}</span>
               {item.badge && (
                 <span className={clsx(
-                  'rounded-md px-1.5 py-0.2 text-[9px] font-extrabold uppercase',
+                  'hidden sm:inline rounded-md px-1.5 py-0.2 text-[9px] font-extrabold uppercase',
                   isActive
                     ? 'bg-ink-100 dark:bg-ink-200 text-ink-700 dark:text-ink-200'
                     : 'bg-ink-100/60 dark:bg-ink-200/40 text-ink-500',
@@ -99,8 +99,9 @@ export function AiSubNav({ currentResumeId }: AiSubNavProps) {
 
       <div className="hidden lg:flex items-center gap-1.5 px-3 text-[11px] font-semibold text-purple-600 dark:text-purple-400">
         <Sparkles className="h-3.5 w-3.5" />
-        <span>Gemini 2.5 AI Powered</span>
+        <span>Gemini AI</span>
       </div>
     </div>
   )
 }
+

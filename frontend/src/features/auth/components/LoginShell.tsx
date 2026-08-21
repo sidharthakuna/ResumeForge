@@ -11,7 +11,7 @@ import { Logo } from '@/components/layout/Logo'
  */
 export function LoginShell({ children }: { children: ReactNode }) {
   return (
-    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-paper-100 px-6 py-12">
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-paper-100 px-4 py-8 sm:px-6 sm:py-12">
       <div
         className="pointer-events-none absolute -left-24 -bottom-32 h-96 w-96 rounded-full bg-gradient-to-tr from-cyan-100 to-brass-50 opacity-70 blur-2xl"
         aria-hidden
@@ -26,15 +26,15 @@ export function LoginShell({ children }: { children: ReactNode }) {
       />
 
       <div className="relative w-full max-w-md">
-        <div className="mb-7 flex flex-col items-center text-center">
-          <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-paper-50 shadow-md">
+        <div className="mb-5 sm:mb-7 flex flex-col items-center text-center">
+          <div className="mb-3 sm:mb-4 flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-2xl bg-paper-50 shadow-md">
             <Logo size="md" wordmark={false} />
           </div>
-          <h1 className="font-display text-[26px] font-bold tracking-tight text-ink-900">Welcome Back</h1>
-          <p className="mt-1 text-sm text-ink-500">Log in to continue to your dashboard.</p>
+          <h1 className="font-display text-xl sm:text-[26px] font-bold tracking-tight text-ink-900">Welcome Back</h1>
+          <p className="mt-0.5 sm:mt-1 text-xs sm:text-sm text-ink-500">Log in to continue to your dashboard.</p>
         </div>
 
-        <div className="relative overflow-hidden rounded-2xl border border-ink-100 bg-paper-50 p-7 shadow-xl">
+        <div className="relative overflow-hidden rounded-2xl border border-ink-100 bg-paper-50 p-5 sm:p-7 shadow-xl">
           <div className="absolute inset-x-0 top-0 h-1 bg-indigo-600" />
           {children}
         </div>
@@ -42,3 +42,4 @@ export function LoginShell({ children }: { children: ReactNode }) {
     </div>
   )
 }
+

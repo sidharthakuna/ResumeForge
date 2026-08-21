@@ -152,9 +152,9 @@ function render(full: FullResumeResponse): string {
     <h1>${esc(name)}</h1>
     ${jobTitle ? `<div class="tagline">${esc(jobTitle)}</div>` : ''}
     <div class="contact-line">
-      ${location ? `<span>📍 ${esc(location)}</span>` : ''}
-      ${email ? `<span>✉ ${esc(email)}</span>` : ''}
-      ${phone ? `<span>📞 ${esc(phone)}</span>` : ''}
+      ${location ? `<span>${esc(location)}</span>` : ''}
+      ${email ? `<span>${esc(email)}</span>` : ''}
+      ${phone ? `<span>${esc(phone)}</span>` : ''}
     </div>
     ${
       github || portfolio || linkedin

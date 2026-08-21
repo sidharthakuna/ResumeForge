@@ -42,7 +42,7 @@ export default function LanguagesPage() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-6 sm:px-6 sm:py-8">
+    <div className="mx-auto max-w-3xl px-3.5 py-4 sm:px-6 sm:py-8">
       <SectionHeader
         title="Languages"
         description="Languages you speak and your proficiency in each."
@@ -60,8 +60,8 @@ export default function LanguagesPage() {
         onDelete={(id) => removeMutation.mutate(id)}
         itemLabelForDelete={(item) => item.languageName}
         renderItem={(item) => (
-          <div className="flex items-center gap-2.5">
-            <p className="font-medium text-ink-900">{item.languageName}</p>
+          <div className="flex items-center gap-2">
+            <p className="font-semibold text-xs sm:text-sm text-ink-900 truncate">{item.languageName}</p>
             <Badge tone="neutral">{proficiencyLabels[item.proficiencyLevel]}</Badge>
           </div>
         )}
@@ -75,9 +75,9 @@ export default function LanguagesPage() {
         )}
       />
 
-      <div className="mt-6 flex justify-end">
-        <Button onClick={() => navigate(nextPath)} variant="secondary" className="gap-2">
-          Next: Summary <ArrowRight className="h-4 w-4" />
+      <div className="mt-5 sm:mt-6 flex justify-end">
+        <Button onClick={() => navigate(nextPath)} variant="secondary" className="gap-1.5 text-xs sm:text-sm h-9">
+          Next: Summary <ArrowRight className="h-3.5 w-3.5" />
         </Button>
       </div>
     </div>
@@ -120,30 +120,34 @@ function LanguageForm({
   const isSaving = addMutation.isPending || updateMutation.isPending
 
   return (
-    <form className="space-y-4" onSubmit={handleSubmit(onSubmit)} noValidate>
-      <div>
-        <Label htmlFor="languageName">Language</Label>
-        <Input id="languageName" invalid={!!errors.languageName} {...register('languageName')} />
-        <FieldError message={errors.languageName?.message} />
+    <form className="space-y-3.5 sm:space-y-4" onSubmit={handleSubmit(onSubmit)} noValidate>
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+        <div>
+          <Label htmlFor="languageName">Language *</Label>
+          <Input id="languageName" invalid={!!errors.languageName} {...register('languageName')} placeholder="e.g. English, Telugu, Spanish" />
+          <FieldError message={errors.languageName?.message} />
+        </div>
+        <div>
+          <Label htmlFor="proficiencyLevel">Proficiency Level</Label>
+          <Select id="proficiencyLevel" {...register('proficiencyLevel')}>
+            {proficiencyLevels.map((level) => (
+              <option key={level} value={level}>
+                {proficiencyLabels[level]}
+              </option>
+            ))}
+          </Select>
+        </div>
       </div>
-      <div>
-        <Label htmlFor="proficiencyLevel">Proficiency</Label>
-        <Select id="proficiencyLevel" {...register('proficiencyLevel')}>
-          {proficiencyLevels.map((level) => (
-            <option key={level} value={level}>
-              {proficiencyLabels[level]}
-            </option>
-          ))}
-        </Select>
-      </div>
+
       <div className="flex justify-end gap-2 pt-2">
-        <Button type="button" variant="outline" onClick={onDone}>
+        <Button type="button" variant="outline" onClick={onDone} className="text-xs h-9">
           Cancel
         </Button>
-        <Button type="submit" loading={isSaving}>
+        <Button type="submit" loading={isSaving} className="bg-indigo-600 text-white hover:bg-indigo-500 text-xs sm:text-sm h-9">
           {editing ? 'Save changes' : 'Add language'}
         </Button>
       </div>
     </form>
   )
 }
+

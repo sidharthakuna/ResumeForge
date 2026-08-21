@@ -1,4 +1,4 @@
-import { CheckCircle2, AlertTriangle, XCircle } from 'lucide-react'
+import { CheckCircle2, AlertTriangle, XCircle, Check, X, Minus } from 'lucide-react'
 import type { SkillMatchItem } from '@/types/api'
 
 interface JobMatchBadgeListProps {
@@ -47,9 +47,10 @@ export function JobMatchBadgeList({
             {allMatched.map((skill) => (
               <span
                 key={skill}
-                className="ai-badge-match"
+                className="ai-badge-match gap-1"
               >
-                ✓ {skill}
+                <Check className="h-3 w-3 stroke-[2.5]" />
+                <span>{skill}</span>
               </span>
             ))}
           </div>
@@ -65,9 +66,10 @@ export function JobMatchBadgeList({
             {allPartial.map((skill) => (
               <span
                 key={skill}
-                className="ai-badge-partial"
+                className="ai-badge-partial gap-1"
               >
-                ~ {skill}
+                <Minus className="h-3 w-3 stroke-[2.5]" />
+                <span>{skill}</span>
               </span>
             ))}
           </div>
@@ -83,10 +85,11 @@ export function JobMatchBadgeList({
             {allMissing.map((skill) => (
               <span
                 key={skill}
-                className="ai-badge-missing"
+                className="ai-badge-missing gap-1"
                 title="Requested in Job Description, not currently in candidate resume"
               >
-                • {skill}
+                <X className="h-3 w-3 opacity-60" />
+                <span>{skill}</span>
               </span>
             ))}
           </div>
@@ -95,3 +98,4 @@ export function JobMatchBadgeList({
     </div>
   )
 }
+

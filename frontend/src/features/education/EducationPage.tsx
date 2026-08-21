@@ -45,7 +45,7 @@ export default function EducationPage() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-6 sm:px-6 sm:py-8">
+    <div className="mx-auto max-w-3xl px-3.5 py-4 sm:px-6 sm:py-8">
       <SectionHeader
         title="Education"
         description="Add your degrees and academic qualifications — most recent first."
@@ -63,14 +63,14 @@ export default function EducationPage() {
         onDelete={(id) => removeMutation.mutate(id)}
         itemLabelForDelete={(item) => `${item.degree} — ${item.institution}`}
         renderItem={(item) => (
-          <div>
-            <p className="font-medium text-ink-900">{item.degree}</p>
-            <p className="text-sm text-ink-600">
+          <div className="min-w-0">
+            <p className="font-semibold text-xs sm:text-sm text-ink-900 truncate">{item.degree}</p>
+            <p className="text-[11px] sm:text-xs text-ink-600 truncate">
               {item.institution}
               {item.fieldOfStudy && ` · ${item.fieldOfStudy}`}
               {item.grade && ` · ${item.grade}`}
             </p>
-            <p className="mt-0.5 font-mono text-xs text-ink-400">{fmtRange(item.startDate, item.endDate)}</p>
+            <p className="mt-0.5 font-mono text-[10px] sm:text-xs text-ink-400">{fmtRange(item.startDate, item.endDate)}</p>
           </div>
         )}
         renderForm={({ editing, onDone }) => (
@@ -84,9 +84,9 @@ export default function EducationPage() {
         )}
       />
 
-      <div className="mt-6 flex justify-end">
-        <Button onClick={() => navigate(nextPath)} variant="secondary" className="gap-2">
-          Next: Experience <ArrowRight className="h-4 w-4" />
+      <div className="mt-5 sm:mt-6 flex justify-end">
+        <Button onClick={() => navigate(nextPath)} variant="secondary" className="gap-1.5 text-xs sm:text-sm h-9">
+          Next: Experience <ArrowRight className="h-3.5 w-3.5" />
         </Button>
       </div>
     </div>
@@ -145,18 +145,21 @@ function EducationForm({
   const isSaving = addMutation.isPending || updateMutation.isPending
 
   return (
-    <form className="space-y-4" onSubmit={handleSubmit(onSubmit)} noValidate>
-      <div>
-        <Label htmlFor="degree">Degree</Label>
-        <Input id="degree" placeholder="B.Tech in Computer Science and Engineering" invalid={!!errors.degree} {...register('degree')} />
-        <FieldError message={errors.degree?.message} />
+    <form className="space-y-3.5 sm:space-y-4" onSubmit={handleSubmit(onSubmit)} noValidate>
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+        <div>
+          <Label htmlFor="degree">Degree *</Label>
+          <Input id="degree" placeholder="B.Tech in Computer Science and Engineering" invalid={!!errors.degree} {...register('degree')} />
+          <FieldError message={errors.degree?.message} />
+        </div>
+        <div>
+          <Label htmlFor="institution">Institution *</Label>
+          <Input id="institution" placeholder="Raghu Engineering College, Andhra Pradesh" invalid={!!errors.institution} {...register('institution')} />
+          <FieldError message={errors.institution?.message} />
+        </div>
       </div>
-      <div>
-        <Label htmlFor="institution">Institution</Label>
-        <Input id="institution" placeholder="Raghu Engineering College, Andhra Pradesh, India" invalid={!!errors.institution} {...register('institution')} />
-        <FieldError message={errors.institution?.message} />
-      </div>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <div>
           <Label htmlFor="fieldOfStudy">Field of study (optional)</Label>
           <Input id="fieldOfStudy" placeholder="Computer Science" {...register('fieldOfStudy')} />
@@ -166,7 +169,7 @@ function EducationForm({
           <Input id="grade" placeholder="CGPA: 8.8/10 or 91.6%" {...register('grade')} />
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <div>
           <Label htmlFor="startDate">Start date (optional)</Label>
           <Input id="startDate" type="date" invalid={!!errors.startDate} {...register('startDate')} />
@@ -178,13 +181,14 @@ function EducationForm({
         </div>
       </div>
       <div className="flex justify-end gap-2 pt-2">
-        <Button type="button" variant="outline" onClick={onDone}>
+        <Button type="button" variant="outline" onClick={onDone} className="text-xs h-9">
           Cancel
         </Button>
-        <Button type="submit" loading={isSaving}>
+        <Button type="submit" loading={isSaving} className="bg-indigo-600 text-white hover:bg-indigo-500 text-xs sm:text-sm h-9">
           {editing ? 'Save changes' : 'Add education'}
         </Button>
       </div>
     </form>
   )
 }
+

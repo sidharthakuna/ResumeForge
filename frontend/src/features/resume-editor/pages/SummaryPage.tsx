@@ -87,17 +87,17 @@ export default function SummaryPage() {
   const isTailoredMode = Boolean(aiJobDescription.trim())
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-6 sm:px-6 sm:py-8">
+    <div className="mx-auto max-w-3xl px-3.5 py-4 sm:px-6 sm:py-8">
       <SectionHeader
-        title="Summary"
+        title="Summary & Title"
         description="A short professional summary and resume title. Both can be AI-generated and tailored."
         icon={Sparkles}
         colorTone="indigo"
       />
 
-      <div className="space-y-5">
+      <div className="space-y-4 sm:space-y-5">
         <Card>
-          <CardBody className="space-y-4">
+          <CardBody className="p-3.5 sm:p-5 space-y-3">
             <div>
               <Label htmlFor="title">Resume title</Label>
               <Input
@@ -105,8 +105,9 @@ export default function SummaryPage() {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="e.g. Software Engineer Resume"
+                className="text-xs sm:text-sm h-9"
               />
-              <p className="mt-1 text-xs text-ink-400">
+              <p className="mt-1 text-[11px] sm:text-xs text-ink-400">
                 For your own reference — this doesn't appear on the exported document.
               </p>
             </div>
@@ -114,39 +115,42 @@ export default function SummaryPage() {
         </Card>
 
         <Card>
-          <CardHeader>
-            <div className="flex items-center gap-2">
-              <p className="text-sm font-semibold text-ink-800">Professional summary</p>
-              {isTailoredMode ? (
-                <Badge tone="purple" className="text-[10px] font-bold uppercase gap-1">
-                  <Target className="h-3 w-3" /> Job-Tailored Mode
-                </Badge>
-              ) : (
-                <Badge tone="indigo" className="text-[10px] font-bold uppercase">
-                  General Mode
-                </Badge>
-              )}
+          <CardHeader className="p-3 sm:p-4">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <div className="flex items-center gap-2">
+                <p className="text-xs sm:text-sm font-semibold text-ink-800">Professional summary</p>
+                {isTailoredMode ? (
+                  <Badge tone="purple" className="text-[9px] sm:text-[10px] font-bold uppercase gap-1">
+                    <Target className="h-3 w-3" /> Job-Tailored
+                  </Badge>
+                ) : (
+                  <Badge tone="indigo" className="text-[9px] sm:text-[10px] font-bold uppercase">
+                    General
+                  </Badge>
+                )}
+              </div>
+              <Badge tone="indigo">
+                <Sparkles className="h-3 w-3 text-indigo-500" /> AI available
+              </Badge>
             </div>
-            <Badge tone="indigo">
-              <Sparkles className="h-3 w-3 text-indigo-500" /> AI available
-            </Badge>
           </CardHeader>
-          <CardBody className="space-y-4">
+          <CardBody className="p-3.5 sm:p-5 space-y-3.5">
             <Textarea
-              rows={5}
+              rows={4}
               value={summary}
               onChange={(e) => setSummary(e.target.value)}
               placeholder="A 2-3 sentence summary of your experience and strengths…"
+              className="text-xs sm:text-sm leading-relaxed"
             />
 
             {/* AI Generator Panel */}
-            <div className="rounded-[var(--radius-control)] border border-purple-500/20 bg-purple-500/5 p-4 space-y-3">
-              <div className="flex items-center justify-between">
+            <div className="rounded-[var(--radius-control)] border border-purple-500/20 bg-purple-500/5 p-3 sm:p-4 space-y-2.5 sm:space-y-3">
+              <div className="flex flex-wrap items-center justify-between gap-1">
                 <p className="text-xs font-semibold text-purple-700 dark:text-purple-300">
                   Generate Tailored Summary with AI
                 </p>
-                <span className="text-[11px] text-ink-400">
-                  {isTailoredMode ? 'Tailored to Recruiter JD' : 'Synthesizes verified resume data'}
+                <span className="text-[10px] sm:text-[11px] text-ink-400">
+                  {isTailoredMode ? 'Tailored to Recruiter JD' : 'Synthesizes verified data'}
                 </span>
               </div>
 
@@ -160,6 +164,7 @@ export default function SummaryPage() {
                     placeholder="e.g. Java Backend Engineer"
                     value={aiJobTitle}
                     onChange={(e) => setAiJobTitle(e.target.value)}
+                    className="text-xs h-9"
                   />
                 </div>
                 <div className="sm:self-end">
@@ -167,7 +172,7 @@ export default function SummaryPage() {
                     size="sm"
                     onClick={handleGeneratePreview}
                     loading={previewSummaryMutation.isPending}
-                    className="w-full bg-indigo-600 text-white hover:bg-indigo-500 shadow-xs font-semibold gap-1.5 rounded-lg"
+                    className="w-full bg-indigo-600 text-white hover:bg-indigo-500 shadow-xs font-semibold gap-1.5 rounded-lg text-xs h-9"
                   >
                     <Wand2 className="h-3.5 w-3.5" /> Generate &amp; Preview
                   </Button>
@@ -180,8 +185,8 @@ export default function SummaryPage() {
                 </Label>
                 <Textarea
                   id="aiJobDescription"
-                  className="mt-1"
-                  rows={3}
+                  className="mt-1 text-xs"
+                  rows={2}
                   placeholder="Paste job description here to tailor summary phrasing and align with required competencies..."
                   value={aiJobDescription}
                   onChange={(e) => setAiJobDescription(e.target.value)}
@@ -209,32 +214,36 @@ export default function SummaryPage() {
         </Card>
 
         <Card>
-          <CardHeader>
-            <p className="text-sm font-semibold text-ink-800">Declaration</p>
-            <Badge tone="indigo">
-              <FileText className="h-3 w-3 text-indigo-500" /> Formal Statement
-            </Badge>
+          <CardHeader className="p-3 sm:p-4">
+            <div className="flex items-center justify-between">
+              <p className="text-xs sm:text-sm font-semibold text-ink-800">Declaration</p>
+              <Badge tone="indigo">
+                <FileText className="h-3 w-3 text-indigo-500" /> Formal Statement
+              </Badge>
+            </div>
           </CardHeader>
-          <CardBody className="space-y-4">
+          <CardBody className="p-3.5 sm:p-5 space-y-3.5">
             <Textarea
               rows={3}
               value={declaration}
               onChange={(e) => setDeclaration(e.target.value)}
               placeholder="A formal declaration statement, common on some regional resume formats…"
+              className="text-xs sm:text-sm leading-relaxed"
             />
-            <div className="rounded-[var(--radius-control)] border border-indigo-500/20 bg-indigo-500/5 p-3.5">
-              <p className="mb-2.5 text-xs font-semibold text-indigo-600 dark:text-indigo-400">Generate Declaration</p>
-              <div className="flex gap-2.5">
+            <div className="rounded-[var(--radius-control)] border border-indigo-500/20 bg-indigo-500/5 p-3">
+              <p className="mb-2 text-xs font-semibold text-indigo-600 dark:text-indigo-400">Generate Declaration</p>
+              <div className="flex gap-2">
                 <Input
-                  placeholder="City (for the declaration line)"
+                  placeholder="City (e.g. Visakhapatnam)"
                   value={aiCity}
                   onChange={(e) => setAiCity(e.target.value)}
+                  className="text-xs h-9"
                 />
                 <Button
                   size="sm"
                   onClick={handleGenerateDeclaration}
                   loading={generateDeclaration.isPending}
-                  className="shrink-0 bg-indigo-600 text-white hover:bg-indigo-500 shadow-xs font-semibold rounded-lg"
+                  className="shrink-0 bg-indigo-600 text-white hover:bg-indigo-500 shadow-xs font-semibold rounded-lg text-xs h-9 px-3"
                 >
                   <Sparkles className="h-3.5 w-3.5" /> Generate
                 </Button>
@@ -243,19 +252,19 @@ export default function SummaryPage() {
           </CardBody>
         </Card>
 
-        <div className="flex items-center justify-between gap-3 pt-2">
+        <div className="flex items-center justify-between gap-2.5 pt-2">
           <Button
             type="button"
             variant="secondary"
             onClick={() => navigate(`/resumes/${resumeId}/templates`)}
-            className="gap-1.5 text-xs text-ink-600 hover:text-ink-900"
+            className="gap-1 text-xs text-ink-600 hover:text-ink-900 h-9 px-3"
           >
-            Next: Choose Template <ArrowRight className="h-3.5 w-3.5" />
+            Templates <ArrowRight className="h-3 w-3" />
           </Button>
           <Button
             onClick={saveAll}
             loading={updateResume.isPending}
-            className="bg-indigo-600 text-white hover:bg-indigo-500 shadow-xs font-semibold rounded-xl"
+            className="bg-indigo-600 text-white hover:bg-indigo-500 shadow-xs font-semibold rounded-xl text-xs sm:text-sm h-9 px-4"
           >
             Save &amp; Continue
           </Button>
@@ -264,3 +273,4 @@ export default function SummaryPage() {
     </div>
   )
 }
+

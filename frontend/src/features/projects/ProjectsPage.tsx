@@ -38,7 +38,7 @@ export default function ProjectsPage() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-6 sm:px-6 sm:py-8">
+    <div className="mx-auto max-w-3xl px-3.5 py-4 sm:px-6 sm:py-8">
       <SectionHeader
         title="Projects"
         description="Personal, academic, or open-source projects worth showing."
@@ -56,16 +56,20 @@ export default function ProjectsPage() {
         onDelete={(id) => removeMutation.mutate(id)}
         itemLabelForDelete={(item) => item.title}
         renderItem={(item) => (
-          <div>
-            <p className="font-medium text-ink-900">{item.title}</p>
-            {item.description && <p className="mt-1 text-sm text-ink-600 whitespace-pre-line">{item.description}</p>}
-            <div className="mt-2 flex gap-3">
+          <div className="min-w-0">
+            <p className="font-semibold text-xs sm:text-sm text-ink-900 truncate">{item.title}</p>
+            {item.description && (
+              <p className="mt-1 text-xs text-ink-600 line-clamp-3 sm:line-clamp-none whitespace-pre-line leading-relaxed">
+                {item.description}
+              </p>
+            )}
+            <div className="mt-2 flex flex-wrap items-center gap-3">
               {item.githubUrl && (
                 <a
                   href={item.githubUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center gap-1 text-xs text-ink-500 hover:text-ink-800"
+                  className="flex items-center gap-1 text-[11px] sm:text-xs text-indigo-600 dark:text-indigo-400 hover:underline"
                   onClick={(e) => e.stopPropagation()}
                 >
                   <GitBranch className="h-3 w-3" /> Code
@@ -76,10 +80,10 @@ export default function ProjectsPage() {
                   href={item.demoUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center gap-1 text-xs text-ink-500 hover:text-ink-800"
+                  className="flex items-center gap-1 text-[11px] sm:text-xs text-cyan-600 dark:text-cyan-400 hover:underline"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  <ExternalLink className="h-3 w-3" /> Demo
+                  <ExternalLink className="h-3 w-3" /> Live Demo
                 </a>
               )}
             </div>
@@ -96,9 +100,9 @@ export default function ProjectsPage() {
         )}
       />
 
-      <div className="mt-6 flex justify-end">
-        <Button onClick={() => navigate(nextPath)} variant="secondary" className="gap-2">
-          Next: Skills <ArrowRight className="h-4 w-4" />
+      <div className="mt-5 sm:mt-6 flex justify-end">
+        <Button onClick={() => navigate(nextPath)} variant="secondary" className="gap-1.5 text-xs sm:text-sm h-9">
+          Next: Skills <ArrowRight className="h-3.5 w-3.5" />
         </Button>
       </div>
     </div>
@@ -176,10 +180,10 @@ function ProjectForm({
 
   return (
     <>
-      <form className="space-y-4" onSubmit={handleSubmit(onSubmit)} noValidate>
+      <form className="space-y-3.5 sm:space-y-4" onSubmit={handleSubmit(onSubmit)} noValidate>
         <div>
-          <Label htmlFor="title">Title</Label>
-          <Input id="title" invalid={!!errors.title} {...register('title')} />
+          <Label htmlFor="title">Project Title *</Label>
+          <Input id="title" invalid={!!errors.title} {...register('title')} placeholder="e.g. ResumeForge AI Assistant" />
           <FieldError message={errors.title?.message} />
         </div>
         <div>
@@ -190,15 +194,15 @@ function ProjectForm({
               variant="outline"
               size="sm"
               onClick={() => setIsAiModalOpen(true)}
-              className="gap-1.5 text-xs text-purple-600 border-purple-200 hover:bg-purple-50 dark:border-purple-800 dark:text-purple-400 dark:hover:bg-purple-950/50"
+              className="gap-1 text-xs text-purple-600 border-purple-200 hover:bg-purple-50 dark:border-purple-800 dark:text-purple-400 dark:hover:bg-purple-950/50 h-7 px-2"
             >
-              <Sparkles className="h-3.5 w-3.5 text-purple-600 dark:text-purple-400" />
-              Write with AI / README
+              <Sparkles className="h-3 w-3 text-purple-600 dark:text-purple-400" />
+              Write with AI
             </Button>
           </div>
-          <Textarea id="description" rows={4} {...register('description')} placeholder="• Developed scalable backend APIs with Java and PostgreSQL..." />
+          <Textarea id="description" rows={4} {...register('description')} placeholder="• Built scalable backend APIs with Java and PostgreSQL..." />
         </div>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           <div>
             <Label htmlFor="githubUrl">GitHub URL (optional)</Label>
             <Input id="githubUrl" placeholder="https://github.com/…" invalid={!!errors.githubUrl} {...register('githubUrl')} />
@@ -210,11 +214,11 @@ function ProjectForm({
             <FieldError message={errors.demoUrl?.message} />
           </div>
         </div>
-        <label className="flex items-center gap-2 text-sm text-ink-700">
+        <label className="flex items-center gap-2 text-xs sm:text-sm text-ink-700 font-medium">
           <input type="checkbox" className="h-4 w-4 rounded border-ink-300" {...register('currentlyBuilding')} />
           Still building this
         </label>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           <div>
             <Label htmlFor="startDate">Start date (optional)</Label>
             <Input id="startDate" type="date" {...register('startDate')} />
@@ -225,10 +229,10 @@ function ProjectForm({
           </div>
         </div>
         <div className="flex justify-end gap-2 pt-2">
-          <Button type="button" variant="outline" onClick={onDone}>
+          <Button type="button" variant="outline" onClick={onDone} className="text-xs h-9">
             Cancel
           </Button>
-          <Button type="submit" loading={isSaving}>
+          <Button type="submit" loading={isSaving} className="bg-indigo-600 text-white hover:bg-indigo-500 text-xs sm:text-sm h-9">
             {editing ? 'Save changes' : 'Add project'}
           </Button>
         </div>
@@ -248,3 +252,4 @@ function ProjectForm({
     </>
   )
 }
+

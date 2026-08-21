@@ -48,7 +48,7 @@ export default function ExperiencePage() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-6 sm:px-6 sm:py-8">
+    <div className="mx-auto max-w-3xl px-3.5 py-4 sm:px-6 sm:py-8">
       <SectionHeader
         title="Experience"
         description="Your work history, most recent first."
@@ -66,13 +66,17 @@ export default function ExperiencePage() {
         onDelete={(id) => removeMutation.mutate(id)}
         itemLabelForDelete={(item) => `${item.jobTitle} at ${item.company}`}
         renderItem={(item) => (
-          <div>
-            <p className="font-medium text-ink-900">{item.jobTitle}</p>
-            <p className="text-sm text-ink-600">{item.company}</p>
-            <p className="mt-0.5 font-mono text-xs text-ink-400">
+          <div className="min-w-0">
+            <p className="font-semibold text-xs sm:text-sm text-ink-900 truncate">{item.jobTitle}</p>
+            <p className="text-[11px] sm:text-xs text-ink-600 truncate">{item.company}</p>
+            <p className="mt-0.5 font-mono text-[10px] sm:text-xs text-ink-400">
               {fmtRange(item.startDate, item.endDate, item.currentlyWorking)}
             </p>
-            {item.description && <p className="mt-2 text-sm text-ink-600 whitespace-pre-line">{item.description}</p>}
+            {item.description && (
+              <p className="mt-1.5 text-xs text-ink-600 line-clamp-3 sm:line-clamp-none whitespace-pre-line leading-relaxed">
+                {item.description}
+              </p>
+            )}
           </div>
         )}
         renderForm={({ editing, onDone }) => (
@@ -86,9 +90,9 @@ export default function ExperiencePage() {
         )}
       />
 
-      <div className="mt-6 flex justify-end">
-        <Button onClick={() => navigate(nextPath)} variant="secondary" className="gap-2">
-          Next: Projects <ArrowRight className="h-4 w-4" />
+      <div className="mt-5 sm:mt-6 flex justify-end">
+        <Button onClick={() => navigate(nextPath)} variant="secondary" className="gap-1.5 text-xs sm:text-sm h-9">
+          Next: Projects <ArrowRight className="h-3.5 w-3.5" />
         </Button>
       </div>
     </div>
@@ -157,17 +161,20 @@ function ExperienceForm({
 
   return (
     <>
-      <form className="space-y-4" onSubmit={handleSubmit(onSubmit)} noValidate>
-        <div>
-          <Label htmlFor="jobTitle">Job title</Label>
-          <Input id="jobTitle" invalid={!!errors.jobTitle} {...register('jobTitle')} placeholder="e.g. Backend Developer" />
-          <FieldError message={errors.jobTitle?.message} />
+      <form className="space-y-3.5 sm:space-y-4" onSubmit={handleSubmit(onSubmit)} noValidate>
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <div>
+            <Label htmlFor="jobTitle">Job title *</Label>
+            <Input id="jobTitle" invalid={!!errors.jobTitle} {...register('jobTitle')} placeholder="e.g. Backend Developer" />
+            <FieldError message={errors.jobTitle?.message} />
+          </div>
+          <div>
+            <Label htmlFor="company">Company *</Label>
+            <Input id="company" invalid={!!errors.company} {...register('company')} placeholder="e.g. Acme Tech" />
+            <FieldError message={errors.company?.message} />
+          </div>
         </div>
-        <div>
-          <Label htmlFor="company">Company</Label>
-          <Input id="company" invalid={!!errors.company} {...register('company')} placeholder="e.g. Acme Tech" />
-          <FieldError message={errors.company?.message} />
-        </div>
+
         <div>
           <div className="flex items-center justify-between mb-1">
             <Label htmlFor="description">Description (optional)</Label>
@@ -176,19 +183,19 @@ function ExperienceForm({
               variant="outline"
               size="sm"
               onClick={() => setIsAiModalOpen(true)}
-              className="gap-1.5 text-xs text-purple-600 border-purple-200 hover:bg-purple-50 dark:border-purple-800 dark:text-purple-400 dark:hover:bg-purple-950/50"
+              className="gap-1 text-xs text-purple-600 border-purple-200 hover:bg-purple-50 dark:border-purple-800 dark:text-purple-400 dark:hover:bg-purple-950/50 h-7 px-2"
             >
-              <Sparkles className="h-3.5 w-3.5 text-purple-600 dark:text-purple-400" />
+              <Sparkles className="h-3 w-3 text-purple-600 dark:text-purple-400" />
               Improve with AI
             </Button>
           </div>
           <Textarea id="description" rows={4} {...register('description')} placeholder="• Developed scalable REST APIs using Java and Spring Boot..." />
         </div>
-        <label className="flex items-center gap-2 text-sm text-ink-700">
+        <label className="flex items-center gap-2 text-xs sm:text-sm text-ink-700 font-medium">
           <input type="checkbox" className="h-4 w-4 rounded border-ink-300" {...register('currentlyWorking')} />
           I currently work here
         </label>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           <div>
             <Label htmlFor="startDate">Start date (optional)</Label>
             <Input id="startDate" type="date" invalid={!!errors.startDate} {...register('startDate')} />
@@ -200,10 +207,10 @@ function ExperienceForm({
           </div>
         </div>
         <div className="flex justify-end gap-2 pt-2">
-          <Button type="button" variant="outline" onClick={onDone}>
+          <Button type="button" variant="outline" onClick={onDone} className="text-xs h-9">
             Cancel
           </Button>
-          <Button type="submit" loading={isSaving}>
+          <Button type="submit" loading={isSaving} className="bg-indigo-600 text-white hover:bg-indigo-500 text-xs sm:text-sm h-9">
             {editing ? 'Save changes' : 'Add experience'}
           </Button>
         </div>
@@ -224,3 +231,4 @@ function ExperienceForm({
     </>
   )
 }
+

@@ -13,6 +13,7 @@ import { directorTemplate } from './modern'
 import { essentialTemplate } from './minimal'
 import { visionaryTemplate } from './visionary'
 import type { TemplateDefinition, TemplateCategory } from './types'
+export { templateSupportsPhoto } from './types'
 
 export interface CategoryGroup {
   key: TemplateCategory
@@ -84,6 +85,7 @@ export const templateRegistry: TemplateDefinition[] = [
     badge: 'Photo & Emerald',
     layout: 'sidebar',
     focus: 'creative',
+    supportsPhoto: true,
   },
   {
     ...modernSplitTemplate,
@@ -105,6 +107,7 @@ export const templateRegistry: TemplateDefinition[] = [
     badge: 'Photo & Blue Sidebar',
     layout: 'sidebar',
     focus: 'ats',
+    supportsPhoto: true,
   },
   {
     ...standardTemplate,
@@ -133,6 +136,7 @@ export const templateRegistry: TemplateDefinition[] = [
     badge: 'Photo & Cyan Sidebar',
     layout: 'sidebar',
     focus: 'creative',
+    supportsPhoto: true,
   },
 ]
 

@@ -27,16 +27,16 @@ export function SectionHeader({
   }
 
   return (
-    <div className="mb-6 flex flex-wrap items-start justify-between gap-3">
-      <div className="flex items-center gap-3">
+    <div className="mb-4 sm:mb-6 flex flex-wrap items-start justify-between gap-2.5">
+      <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
         {Icon && (
-          <div className={clsx('flex h-10 w-10 shrink-0 items-center justify-center rounded-xl', badgeStyles[colorTone])}>
-            <Icon className="h-5 w-5" strokeWidth={1.9} />
+          <div className={clsx('flex h-8 w-8 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-lg sm:rounded-xl', badgeStyles[colorTone])}>
+            <Icon className="h-4 w-4 sm:h-5 sm:w-5" strokeWidth={1.9} />
           </div>
         )}
-        <div>
-          <h1 className="font-display text-xl font-bold text-ink-900">{title}</h1>
-          {description && <p className="mt-1 text-sm text-ink-600 dark:text-ink-400 font-medium">{description}</p>}
+        <div className="min-w-0">
+          <h1 className="font-display text-lg sm:text-xl font-bold text-ink-900 truncate">{title}</h1>
+          {description && <p className="mt-0.5 text-xs sm:text-sm text-ink-600 dark:text-ink-400 font-medium leading-relaxed">{description}</p>}
         </div>
       </div>
       {action}

@@ -106,15 +106,15 @@ export function DraggableSectionList<T extends { id: string }>({
               onDragEnd={handleDragEnd}
               className={clsx(
                 'group transition-all duration-200 select-none relative',
-                isDragging && 'opacity-30 scale-[0.98] border-2 border-dashed border-brass-500 bg-brass-500/5',
-                isOver && 'border-2 border-dashed border-brass-500 ring-4 ring-brass-500/20 bg-brass-500/10 shadow-lg',
+                isDragging && 'opacity-30 scale-[0.98] border-2 border-dashed border-indigo-500 bg-indigo-500/5',
+                isOver && 'border-2 border-dashed border-indigo-500 ring-4 ring-indigo-500/20 bg-indigo-500/10 shadow-lg',
                 onReorder && items.length > 1 && 'hover:border-ink-300'
               )}
             >
-              <div className="flex items-start justify-between gap-3 p-4">
+              <div className="flex items-start justify-between gap-2.5 p-3 sm:p-4">
                 {/* Drag Handle & Position Badge */}
                 {onReorder && (
-                  <div className="flex shrink-0 items-center gap-1.5 self-center -ml-1 pr-1">
+                  <div className="flex shrink-0 items-center gap-1.5 self-center -ml-0.5 pr-0.5">
                     <div
                       className={clsx(
                         'flex items-center justify-center text-ink-300 group-hover:text-ink-600 transition-colors p-1 rounded hover:bg-ink-100 dark:hover:bg-ink-200',
@@ -122,7 +122,7 @@ export function DraggableSectionList<T extends { id: string }>({
                       )}
                       title={items.length > 1 ? 'Drag to reorder' : `Position ${idx + 1}`}
                     >
-                      <GripVertical className="h-5 w-5" />
+                      <GripVertical className="h-4 w-4 sm:h-5 sm:w-5" />
                     </div>
                     <span className="flex h-5 w-5 items-center justify-center rounded-full bg-ink-100 dark:bg-ink-200 text-[10px] font-mono font-bold text-ink-500">
                       {idx + 1}
@@ -131,12 +131,12 @@ export function DraggableSectionList<T extends { id: string }>({
                 )}
 
                 {/* Custom Content Slot */}
-                <div className="min-w-0 flex-1">{renderItem(item, idx)}</div>
+                <div className="min-w-0 flex-1 overflow-hidden break-words">{renderItem(item, idx)}</div>
 
                 {/* Actions: Reorder arrows, Edit, Delete */}
-                <div className="flex shrink-0 items-center gap-1 opacity-90 sm:opacity-0 transition-opacity group-hover:opacity-100 focus-within:opacity-100">
+                <div className="flex shrink-0 items-center gap-0.5 sm:gap-1 opacity-100 transition-opacity">
                   {onReorder && items.length > 1 && (
-                    <>
+                    <div className="hidden sm:flex items-center gap-0.5">
                       <Button
                         variant="ghost"
                         size="icon"
@@ -144,7 +144,7 @@ export function DraggableSectionList<T extends { id: string }>({
                         onClick={() => handleMoveUp(idx)}
                         aria-label="Move up"
                         title="Move up"
-                        className="h-8 w-8 text-ink-500 hover:text-ink-900 disabled:opacity-20"
+                        className="h-7 w-7 sm:h-8 sm:w-8 text-ink-500 hover:text-ink-900 disabled:opacity-20"
                       >
                         <ChevronUp className="h-4 w-4" />
                       </Button>
@@ -155,11 +155,11 @@ export function DraggableSectionList<T extends { id: string }>({
                         onClick={() => handleMoveDown(idx)}
                         aria-label="Move down"
                         title="Move down"
-                        className="h-8 w-8 text-ink-500 hover:text-ink-900 disabled:opacity-20"
+                        className="h-7 w-7 sm:h-8 sm:w-8 text-ink-500 hover:text-ink-900 disabled:opacity-20"
                       >
                         <ChevronDown className="h-4 w-4" />
                       </Button>
-                    </>
+                    </div>
                   )}
                   {onEdit && (
                     <Button
@@ -167,7 +167,7 @@ export function DraggableSectionList<T extends { id: string }>({
                       size="icon"
                       onClick={() => onEdit(item)}
                       aria-label="Edit"
-                      className="h-8 w-8 text-ink-600 hover:text-ink-950"
+                      className="h-8 w-8 text-ink-600 hover:text-ink-950 hover:bg-ink-100 dark:hover:bg-ink-200"
                     >
                       <Pencil className="h-3.5 w-3.5" />
                     </Button>
@@ -178,7 +178,7 @@ export function DraggableSectionList<T extends { id: string }>({
                       size="icon"
                       onClick={() => onDelete(item)}
                       aria-label="Delete"
-                      className="h-8 w-8 text-danger-600 hover:bg-danger-100/60"
+                      className="h-8 w-8 text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/40"
                     >
                       <Trash2 className="h-3.5 w-3.5" />
                     </Button>

@@ -62,6 +62,17 @@ export const editorSections: NavItem[] = [
   { label: 'Summary', path: (id) => `/resumes/${id}/edit/summary`, icon: Sparkles, scoped: true },
 ]
 
+/**
+ * Returns the editor sections, conditionally including the Photo section
+ * only if the active template supports photos.
+ */
+export function getEditorSections(supportsPhoto: boolean = false): NavItem[] {
+  if (supportsPhoto) {
+    return editorSections
+  }
+  return editorSections.filter((item) => item.label !== 'Photo')
+}
+
 export const toolSections: NavItem[] = [
   { label: 'AI Assistant', path: (id) => `/resumes/${id}/ai`, icon: Bot, scoped: true },
   { label: 'Templates', path: (id) => `/resumes/${id}/templates`, icon: Palette, scoped: true },

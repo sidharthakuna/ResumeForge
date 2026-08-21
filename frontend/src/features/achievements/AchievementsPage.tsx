@@ -37,7 +37,7 @@ export default function AchievementsPage() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-6 sm:px-6 sm:py-8">
+    <div className="mx-auto max-w-3xl px-3.5 py-4 sm:px-6 sm:py-8">
       <SectionHeader
         title="Achievements"
         description="Awards, honors, and notable recognitions."
@@ -55,15 +55,15 @@ export default function AchievementsPage() {
         onDelete={(id) => removeMutation.mutate(id)}
         itemLabelForDelete={(item) => item.title}
         renderItem={(item) => (
-          <div>
-            <p className="font-medium text-ink-900">{item.title}</p>
-            {item.issuer && <p className="text-sm text-ink-600">{item.issuer}</p>}
+          <div className="min-w-0">
+            <p className="font-semibold text-xs sm:text-sm text-ink-900 truncate">{item.title}</p>
+            {item.issuer && <p className="text-[11px] sm:text-xs text-ink-600 truncate">{item.issuer}</p>}
             {item.achievementDate && (
-              <p className="mt-0.5 font-mono text-xs text-ink-400">
+              <p className="mt-0.5 font-mono text-[10px] sm:text-xs text-ink-400">
                 {format(parseISO(item.achievementDate), 'MMM yyyy')}
               </p>
             )}
-            {item.description && <p className="mt-2 text-sm text-ink-600">{item.description}</p>}
+            {item.description && <p className="mt-1 text-xs text-ink-600 leading-relaxed">{item.description}</p>}
           </div>
         )}
         renderForm={({ editing, onDone }) => (
@@ -76,9 +76,9 @@ export default function AchievementsPage() {
         )}
       />
 
-      <div className="mt-6 flex justify-end">
-        <Button onClick={() => navigate(nextPath)} variant="secondary" className="gap-2">
-          Next: Languages <ArrowRight className="h-4 w-4" />
+      <div className="mt-5 sm:mt-6 flex justify-end">
+        <Button onClick={() => navigate(nextPath)} variant="secondary" className="gap-1.5 text-xs sm:text-sm h-9">
+          Next: Strengths <ArrowRight className="h-3.5 w-3.5" />
         </Button>
       </div>
     </div>
@@ -132,33 +132,37 @@ function AchievementForm({
   const isSaving = addMutation.isPending || updateMutation.isPending
 
   return (
-    <form className="space-y-4" onSubmit={handleSubmit(onSubmit)} noValidate>
-      <div>
-        <Label htmlFor="title">Title</Label>
-        <Input id="title" invalid={!!errors.title} {...register('title')} />
-        <FieldError message={errors.title?.message} />
-      </div>
-      <div>
-        <Label htmlFor="issuer">Issuer (optional)</Label>
-        <Input id="issuer" {...register('issuer')} />
+    <form className="space-y-3.5 sm:space-y-4" onSubmit={handleSubmit(onSubmit)} noValidate>
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+        <div>
+          <Label htmlFor="title">Title *</Label>
+          <Input id="title" invalid={!!errors.title} {...register('title')} placeholder="e.g. 1st Place - University Hackathon" />
+          <FieldError message={errors.title?.message} />
+        </div>
+        <div>
+          <Label htmlFor="issuer">Issuer (optional)</Label>
+          <Input id="issuer" {...register('issuer')} placeholder="e.g. IEEE Student Chapter" />
+        </div>
       </div>
       <div>
         <Label htmlFor="achievementDate">Date (optional)</Label>
         <Input id="achievementDate" type="date" invalid={!!errors.achievementDate} {...register('achievementDate')} />
         <FieldError message={errors.achievementDate?.message} />
       </div>
+
       <div>
         <Label htmlFor="description">Description (optional)</Label>
-        <Textarea id="description" rows={3} {...register('description')} />
+        <Textarea id="description" rows={3} {...register('description')} placeholder="Briefly describe the competition or recognition..." />
       </div>
       <div className="flex justify-end gap-2 pt-2">
-        <Button type="button" variant="outline" onClick={onDone}>
+        <Button type="button" variant="outline" onClick={onDone} className="text-xs h-9">
           Cancel
         </Button>
-        <Button type="submit" loading={isSaving}>
+        <Button type="submit" loading={isSaving} className="bg-indigo-600 text-white hover:bg-indigo-500 text-xs sm:text-sm h-9">
           {editing ? 'Save changes' : 'Add achievement'}
         </Button>
       </div>
     </form>
   )
 }
+

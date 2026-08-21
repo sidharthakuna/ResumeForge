@@ -36,7 +36,7 @@ export default function CertificationsPage() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-6 sm:px-6 sm:py-8">
+    <div className="mx-auto max-w-3xl px-3.5 py-4 sm:px-6 sm:py-8">
       <SectionHeader
         title="Certifications"
         description="Professional certifications and credentials."
@@ -54,11 +54,11 @@ export default function CertificationsPage() {
         onDelete={(id) => removeMutation.mutate(id)}
         itemLabelForDelete={(item) => item.name}
         renderItem={(item) => (
-          <div>
-            <p className="font-medium text-ink-900">{item.name}</p>
-            <p className="text-sm text-ink-600">{item.issuingOrganization}</p>
+          <div className="min-w-0">
+            <p className="font-semibold text-xs sm:text-sm text-ink-900 truncate">{item.name}</p>
+            <p className="text-[11px] sm:text-xs text-ink-600 truncate">{item.issuingOrganization}</p>
             {(item.issueDate || item.expirationDate) && (
-              <p className="mt-0.5 font-mono text-xs text-ink-400">
+              <p className="mt-0.5 font-mono text-[10px] sm:text-xs text-ink-400">
                 {item.issueDate && `Issued ${format(parseISO(item.issueDate), 'MMM yyyy')}`}
                 {item.expirationDate && ` · Expires ${format(parseISO(item.expirationDate), 'MMM yyyy')}`}
               </p>
@@ -68,7 +68,7 @@ export default function CertificationsPage() {
                 href={item.credentialUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-1.5 flex w-fit items-center gap-1 text-xs text-ink-500 hover:text-ink-800"
+                className="mt-1.5 flex w-fit items-center gap-1 text-[11px] sm:text-xs text-indigo-600 dark:text-indigo-400 hover:underline"
                 onClick={(e) => e.stopPropagation()}
               >
                 <ExternalLink className="h-3 w-3" /> Verify credential
@@ -86,9 +86,9 @@ export default function CertificationsPage() {
         )}
       />
 
-      <div className="mt-6 flex justify-end">
-        <Button onClick={() => navigate(nextPath)} variant="secondary" className="gap-2">
-          Next: Achievements <ArrowRight className="h-4 w-4" />
+      <div className="mt-5 sm:mt-6 flex justify-end">
+        <Button onClick={() => navigate(nextPath)} variant="secondary" className="gap-1.5 text-xs sm:text-sm h-9">
+          Next: Achievements <ArrowRight className="h-3.5 w-3.5" />
         </Button>
       </div>
     </div>
@@ -153,18 +153,21 @@ function CertificationForm({
   const isSaving = addMutation.isPending || updateMutation.isPending
 
   return (
-    <form className="space-y-4" onSubmit={handleSubmit(onSubmit)} noValidate>
-      <div>
-        <Label htmlFor="name">Certification name</Label>
-        <Input id="name" invalid={!!errors.name} {...register('name')} />
-        <FieldError message={errors.name?.message} />
+    <form className="space-y-3.5 sm:space-y-4" onSubmit={handleSubmit(onSubmit)} noValidate>
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+        <div>
+          <Label htmlFor="name">Certification name *</Label>
+          <Input id="name" invalid={!!errors.name} {...register('name')} placeholder="e.g. AWS Certified Solutions Architect" />
+          <FieldError message={errors.name?.message} />
+        </div>
+        <div>
+          <Label htmlFor="issuingOrganization">Issuing organization *</Label>
+          <Input id="issuingOrganization" invalid={!!errors.issuingOrganization} {...register('issuingOrganization')} placeholder="e.g. Amazon Web Services" />
+          <FieldError message={errors.issuingOrganization?.message} />
+        </div>
       </div>
-      <div>
-        <Label htmlFor="issuingOrganization">Issuing organization</Label>
-        <Input id="issuingOrganization" invalid={!!errors.issuingOrganization} {...register('issuingOrganization')} />
-        <FieldError message={errors.issuingOrganization?.message} />
-      </div>
-      <div className="grid grid-cols-2 gap-4">
+
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <div>
           <Label htmlFor="issueDate">Issue date (optional)</Label>
           <Input id="issueDate" type="date" invalid={!!errors.issueDate} {...register('issueDate')} />
@@ -175,10 +178,10 @@ function CertificationForm({
           <Input id="expirationDate" type="date" {...register('expirationDate')} />
         </div>
       </div>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <div>
           <Label htmlFor="credentialId">Credential ID (optional)</Label>
-          <Input id="credentialId" {...register('credentialId')} />
+          <Input id="credentialId" {...register('credentialId')} placeholder="e.g. ABC123XYZ" />
         </div>
         <div>
           <Label htmlFor="credentialUrl">Verification URL (optional)</Label>
@@ -187,13 +190,14 @@ function CertificationForm({
         </div>
       </div>
       <div className="flex justify-end gap-2 pt-2">
-        <Button type="button" variant="outline" onClick={onDone}>
+        <Button type="button" variant="outline" onClick={onDone} className="text-xs h-9">
           Cancel
         </Button>
-        <Button type="submit" loading={isSaving}>
+        <Button type="submit" loading={isSaving} className="bg-indigo-600 text-white hover:bg-indigo-500 text-xs sm:text-sm h-9">
           {editing ? 'Save changes' : 'Add certification'}
         </Button>
       </div>
     </form>
   )
 }
+

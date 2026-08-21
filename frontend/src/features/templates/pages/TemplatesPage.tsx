@@ -18,7 +18,7 @@ export default function TemplatesPage() {
   }
 
   return (
-    <div className="px-6 py-8 lg:px-8">
+    <div className="px-3.5 py-4 sm:px-6 sm:py-8 lg:px-8">
       <SectionHeader
         title="Templates"
         description="Pick a look for your exported resume. Your choice carries over to the Export tab."
@@ -27,3 +27,4 @@ export default function TemplatesPage() {
     </div>
   )
 }
+

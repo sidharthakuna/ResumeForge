@@ -87,8 +87,8 @@ export function TemplateGallery({ full, selectedId, onSelect, initialQuery = '' 
   return (
     <div className="space-y-6">
       {/* Search and Category Filter Bar */}
-      <div className="template-search-bar-card p-4 space-y-4">
-        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+      <div className="template-search-bar-card p-3 sm:p-4 space-y-3 sm:space-y-4">
+        <div className="flex flex-col gap-3 sm:gap-4 md:flex-row md:items-center md:justify-between">
           <div className="relative w-full md:w-80">
             <svg viewBox="0 0 24 24" className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-400" fill="none" stroke="currentColor" strokeWidth="2">
               <circle cx="11" cy="11" r="7" />
@@ -99,7 +99,7 @@ export function TemplateGallery({ full, selectedId, onSelect, initialQuery = '' 
               onChange={(e) => setQuery(e.target.value)}
               type="text"
               placeholder="Search templates by name, style, or role…"
-              className="template-search-input"
+              className="template-search-input text-xs sm:text-sm h-9 sm:h-10"
             />
           </div>
 
@@ -128,7 +128,7 @@ export function TemplateGallery({ full, selectedId, onSelect, initialQuery = '' 
         </div>
 
         {/* Group Tabs */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-2 pt-1 scrollbar-none">
+        <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-1.5 pt-0.5 scrollbar-none">
           {TEMPLATE_CATEGORIES.map((cat) => {
             const Icon = getCategoryIcon(cat.key)
             const count = categoryCounts[cat.key] ?? 0
@@ -139,7 +139,7 @@ export function TemplateGallery({ full, selectedId, onSelect, initialQuery = '' 
                 key={cat.key}
                 onClick={() => setFilter(cat.key)}
                 className={clsx(
-                  'group flex shrink-0 items-center gap-2 rounded-xl px-3.5 py-2 text-xs font-bold transition-all',
+                  'group flex shrink-0 items-center gap-1.5 sm:gap-2 rounded-xl px-2.5 sm:px-3.5 py-1.5 sm:py-2 text-[11px] sm:text-xs font-bold transition-all cursor-pointer',
                   isActive
                     ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20 scale-[1.02]'
                     : 'bg-paper-100/80 hover:bg-paper-200/80 text-ink-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700',
@@ -150,7 +150,7 @@ export function TemplateGallery({ full, selectedId, onSelect, initialQuery = '' 
                 <span>{cat.label}</span>
                 <span
                   className={clsx(
-                    'rounded-full px-1.5 py-0.2 text-[10px] font-extrabold',
+                    'rounded-full px-1.5 py-0.2 text-[9px] sm:text-[10px] font-extrabold',
                     isActive
                       ? 'bg-white/25 text-white'
                       : 'bg-paper-200 text-ink-600 dark:bg-slate-700 dark:text-slate-300',
@@ -172,13 +172,14 @@ export function TemplateGallery({ full, selectedId, onSelect, initialQuery = '' 
               setFilter('all')
               setQuery('')
             }}
-            className="mt-3 text-xs font-bold text-indigo-600 hover:underline"
+            className="mt-3 text-xs font-bold text-indigo-600 hover:underline cursor-pointer"
           >
             Reset Filters
           </button>
         </div>
       ) : (
-        <div className={dense ? 'grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4' : 'grid grid-cols-1 gap-6 sm:grid-cols-2'}>
+        <div className={dense ? 'grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4' : 'grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2'}>
+
           {filtered.map((template) => {
             const isSelected = template.id === selectedId
             return (

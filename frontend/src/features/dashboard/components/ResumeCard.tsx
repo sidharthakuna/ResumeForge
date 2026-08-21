@@ -119,13 +119,13 @@ export function ResumeCard({
       </div>
 
       {/* Content Section */}
-      <div className="flex flex-1 flex-col justify-between p-4 sm:p-5 bg-transparent">
+      <div className="flex flex-1 flex-col justify-between p-3.5 sm:p-5 bg-transparent">
         <div>
           <Link to={`/resumes/${full.resume.id}/edit/personal`}>
-            <h3 className="truncate font-display text-[15px] font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+            <h3 className="truncate font-display text-sm sm:text-[15px] font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
               {full.resume.title || authorName || 'Untitled Resume'}
             </h3>
-            <p className="mt-1 truncate text-xs font-medium text-slate-500 dark:text-slate-400">
+            <p className="mt-0.5 sm:mt-1 truncate text-[11px] sm:text-xs font-medium text-slate-500 dark:text-slate-400">
               {template.name}
               {addedAt && ` · ${formatDistanceToNow(new Date(addedAt), { addSuffix: true })}`}
               {!!downloadCount && ` · ${downloadCount} download${downloadCount === 1 ? '' : 's'}`}
@@ -133,30 +133,30 @@ export function ResumeCard({
           </Link>
 
           {/* Completeness Bar */}
-          <div className="mt-3.5 flex items-center gap-2.5">
-            <span className="shrink-0 text-xs font-semibold text-slate-600 dark:text-slate-400">Completeness</span>
-            <div className="h-2 flex-1 overflow-hidden rounded-full bg-slate-200 dark:bg-slate-800">
+          <div className="mt-2.5 sm:mt-3.5 flex items-center gap-2">
+            <span className="shrink-0 text-[11px] sm:text-xs font-semibold text-slate-600 dark:text-slate-400">Completeness</span>
+            <div className="h-1.5 sm:h-2 flex-1 overflow-hidden rounded-full bg-slate-200 dark:bg-slate-800">
               <div
                 className="h-full rounded-full bg-indigo-600 dark:bg-indigo-500 transition-[width] duration-300"
                 style={{ width: `${completion}%` }}
               />
             </div>
-            <span className="shrink-0 font-mono text-xs font-bold text-slate-900 dark:text-white">{completion}%</span>
+            <span className="shrink-0 font-mono text-[11px] sm:text-xs font-bold text-slate-900 dark:text-white">{completion}%</span>
           </div>
         </div>
 
         {/* Action Buttons */}
-        <div className="mt-4 flex items-center gap-2 pt-3 border-t border-slate-200/80 dark:border-slate-800">
+        <div className="mt-3 sm:mt-4 flex items-center gap-2 pt-2.5 sm:pt-3 border-t border-slate-200/80 dark:border-slate-800">
           <Link
             to={`/resumes/${full.resume.id}/edit/personal`}
-            className="flex h-9 flex-1 items-center justify-center gap-1.5 rounded-xl bg-indigo-600 text-xs font-bold text-white shadow-xs hover:bg-indigo-500 active:scale-95 transition-all"
+            className="flex h-8.5 sm:h-9 flex-1 items-center justify-center gap-1.5 rounded-xl bg-indigo-600 text-xs font-bold text-white shadow-xs hover:bg-indigo-500 active:scale-95 transition-all"
           >
             <Pencil className="h-3.5 w-3.5 stroke-[2.2]" /> Edit Resume
           </Link>
 
           <Link
             to={`/resumes/${full.resume.id}/export`}
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-slate-300 bg-slate-50 text-slate-700 hover:bg-slate-100 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-800/80 dark:text-slate-200 dark:hover:bg-slate-700 transition-all shadow-2xs"
+            className="flex h-8.5 w-8.5 sm:h-9 sm:w-9 shrink-0 items-center justify-center rounded-xl border border-slate-300 bg-slate-50 text-slate-700 hover:bg-slate-100 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-800/80 dark:text-slate-200 dark:hover:bg-slate-700 transition-all shadow-2xs"
             aria-label="Preview and Download"
             title="Preview & Export"
           >

@@ -154,28 +154,28 @@ export function EditorLayout() {
 
   return (
     <>
-      {/* Mobile Editor Layout Module (< xl screens) */}
+      {/* Mobile Editor Layout Module (< lg screens) */}
       <MobileEditorLayout />
 
-      {/* Desktop Editor Layout (xl screens and above) */}
-      <div className="hidden h-screen flex-col overflow-hidden xl:flex">
+      {/* Desktop Editor Layout (lg screens and above) */}
+      <div className="hidden h-screen flex-col overflow-hidden lg:flex">
         <TopBar
           right={
             <div className="flex min-w-0 items-center gap-3 px-2">
-              <p className="hidden truncate font-display text-[15px] font-semibold text-ink-900 md:block">
+              <p className="hidden truncate font-display text-[15px] font-bold text-ink-900 md:block">
                 {full.resume.title || 'Untitled resume'}
               </p>
               <Link
                 to={`/resumes/${resumeId}/export`}
-                className="hidden items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-ink-600 transition-colors hover:bg-ink-50 sm:flex"
+                className="hidden items-center gap-1.5 rounded-xl border border-ink-200 bg-paper-50 px-3 py-1.5 text-xs font-semibold text-ink-700 transition-all hover:bg-slate-100 hover:border-ink-300 shadow-2xs sm:flex"
               >
-                <Share2 className="h-[15px] w-[15px]" /> Share
+                <Share2 className="h-3.5 w-3.5" /> Share
               </Link>
               <Link
                 to={`/resumes/${resumeId}/export`}
-                className="flex items-center gap-1.5 rounded-lg bg-brass-500 px-3.5 py-2 text-sm font-medium text-paper-50 shadow-sm transition-colors hover:bg-brass-400"
+                className="flex items-center gap-1.5 rounded-xl bg-indigo-600 px-3.5 py-1.5 text-xs font-bold text-white shadow-xs transition-all hover:bg-indigo-700 active:scale-95"
               >
-                <Download className="h-[15px] w-[15px]" /> <span className="hidden sm:inline">Download</span>
+                <Download className="h-3.5 w-3.5" /> <span>Download PDF</span>
               </Link>
             </div>
           }
@@ -189,10 +189,10 @@ export function EditorLayout() {
           <div
             className={clsx(
               'flex flex-1 overflow-y-auto scrollbar-thin bg-paper-100',
-              isFullWidthPage ? 'p-6 lg:p-8' : 'justify-center min-w-[280px] p-4 sm:p-6',
+              isFullWidthPage ? 'p-6 lg:p-8' : 'justify-center min-w-[320px] p-6 lg:p-8',
             )}
           >
-            <div className={clsx('w-full', isFullWidthPage ? 'max-w-7xl mx-auto' : 'max-w-2xl')}>
+            <div className={clsx('w-full', isFullWidthPage ? 'max-w-7xl mx-auto' : 'max-w-3xl')}>
               <Outlet context={{ full, resumeId } satisfies EditorOutletContext} />
             </div>
           </div>
@@ -202,7 +202,7 @@ export function EditorLayout() {
               {/* Resizable Divider Drag Handle */}
               <div
                 onMouseDown={handleMouseDown}
-                className="group relative hidden w-2 shrink-0 cursor-col-resize items-center justify-center bg-ink-200/80 transition-colors hover:bg-brass-500 active:bg-brass-600 xl:flex"
+                className="group relative hidden w-2 shrink-0 cursor-col-resize items-center justify-center bg-ink-200/80 transition-colors hover:bg-indigo-600 active:bg-indigo-700 lg:flex"
                 title="Drag to resize panels"
               >
                 <div className="h-8 w-1 rounded-full bg-ink-400 opacity-60 transition-opacity group-hover:bg-paper-50 group-hover:opacity-100" />
@@ -210,15 +210,15 @@ export function EditorLayout() {
 
               <div
                 style={{ width: `${rightPanelPercent}%` }}
-                className="hidden shrink-0 flex-col border-l border-ink-100 bg-paper-100 xl:flex"
+                className="hidden shrink-0 flex-col border-l border-ink-100 bg-slate-100/70 dark:bg-slate-900/60 lg:flex"
               >
                 <div ref={previewContainerRef} className="flex min-w-0 flex-1 items-center justify-center overflow-auto scrollbar-thin p-6">
                   <div
-                    className="mx-auto"
+                    className="mx-auto transition-all duration-150"
                     style={{ width: `calc(210mm * ${effectiveZoom / 100})`, height: `calc(297mm * ${effectiveZoom / 100})` }}
                   >
                     <div
-                      className="origin-top-left bg-white shadow-lg"
+                      className="origin-top-left bg-white shadow-xl rounded-xs overflow-hidden border border-slate-200/80 dark:border-slate-800"
                       style={{ width: '210mm', height: '297mm', transform: `scale(${effectiveZoom / 100})` }}
                     >
                       <iframe
@@ -230,18 +230,18 @@ export function EditorLayout() {
                     </div>
                   </div>
                 </div>
-                <div className="flex items-center justify-center gap-2 border-t border-ink-100 bg-paper-50 py-2.5">
+                <div className="flex items-center justify-center gap-2 border-t border-ink-100 bg-paper-50 py-2 shadow-xs">
                   <button
                     onClick={() => setZoom(Math.max(30, effectiveZoom - 5))}
-                    className="flex h-7 w-7 items-center justify-center rounded-full text-ink-500 hover:bg-ink-50"
+                    className="flex h-7 w-7 items-center justify-center rounded-lg text-ink-500 hover:bg-ink-100 hover:text-ink-900 transition-colors cursor-pointer"
                     aria-label="Zoom out"
                   >
                     <Minus className="h-3.5 w-3.5" />
                   </button>
-                  <span className="w-10 text-center font-mono text-xs text-ink-600">{effectiveZoom}%</span>
+                  <span className="w-12 text-center font-mono text-xs font-semibold text-ink-700 dark:text-slate-300">{effectiveZoom}%</span>
                   <button
                     onClick={() => setZoom(Math.min(150, effectiveZoom + 5))}
-                    className="flex h-7 w-7 items-center justify-center rounded-full text-ink-500 hover:bg-ink-50"
+                    className="flex h-7 w-7 items-center justify-center rounded-lg text-ink-500 hover:bg-ink-100 hover:text-ink-900 transition-colors cursor-pointer"
                     aria-label="Zoom in"
                   >
                     <Plus className="h-3.5 w-3.5" />
@@ -249,7 +249,7 @@ export function EditorLayout() {
                   <button
                     onClick={() => setZoom('auto')}
                     disabled={zoom === 'auto'}
-                    className="ml-1 flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium text-ink-500 hover:bg-ink-50 disabled:text-brass-500"
+                    className="ml-1.5 flex items-center gap-1 rounded-lg border border-ink-200 bg-paper-100 px-2.5 py-1 text-xs font-semibold text-ink-700 hover:bg-paper-200 disabled:opacity-50 transition-colors cursor-pointer"
                     title="Fit page to panel width"
                   >
                     <Maximize2 className="h-3 w-3" /> Fit
@@ -260,6 +260,7 @@ export function EditorLayout() {
           )}
         </div>
       </div>
+
     </>
   )
 }

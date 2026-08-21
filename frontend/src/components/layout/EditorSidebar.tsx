@@ -1,7 +1,9 @@
 import { NavLink } from 'react-router-dom'
 import { clsx } from 'clsx'
 import { ArrowLeft, Palette, Type } from 'lucide-react'
-import { editorSections, toolSections } from './nav-config'
+import { getEditorSections, toolSections } from './nav-config'
+import { useEditorUiStore } from '@/features/resume-editor/store/editor-ui.store'
+import { getTemplateById, templateSupportsPhoto } from '@/features/templates/renderers/registry'
 
 interface EditorSidebarProps {
   resumeId: string
@@ -41,6 +43,11 @@ const toneStyles: Record<SectionTone, string> = {
 }
 
 export function EditorSidebar({ resumeId }: EditorSidebarProps) {
+  const selectedTemplateId = useEditorUiStore((s) => s.getSelectedTemplate(resumeId))
+  const template = getTemplateById(selectedTemplateId)
+  const supportsPhoto = templateSupportsPhoto(template)
+  const visibleSections = getEditorSections(supportsPhoto)
+
   const getLinkClass = (label: string) => ({ isActive }: { isActive: boolean }) => {
     const tone = sectionColors[label] || 'indigo'
     return clsx(
@@ -64,7 +71,7 @@ export function EditorSidebar({ resumeId }: EditorSidebarProps) {
 
       <nav className="flex-1 overflow-y-auto scrollbar-thin px-2.5 py-3">
         <ul className="space-y-1">
-          {editorSections.map((item) => (
+          {visibleSections.map((item) => (
             <li key={item.label}>
               <NavLink to={item.path(resumeId)} className={getLinkClass(item.label)}>
                 <item.icon className="h-4 w-4 shrink-0" strokeWidth={1.9} />

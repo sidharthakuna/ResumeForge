@@ -58,21 +58,22 @@ export function RegisterShell({ children }: { children: ReactNode }) {
         <p className="relative text-xs text-ink-500">© {new Date().getFullYear()} ResumeForge</p>
       </div>
 
-      <div className="flex items-center justify-center bg-paper-100 p-6 sm:p-10">
+      <div className="flex items-center justify-center bg-paper-100 p-4 sm:p-10">
         <div className="w-full max-w-md">
-          <div className="mb-7 flex items-center gap-2.5 lg:hidden">
+          <div className="mb-5 sm:mb-7 flex items-center gap-2.5 lg:hidden">
             <div className="flex h-8 w-8 items-center justify-center rounded-md bg-ink-900 text-brass-400">
               <FileText className="h-4.5 w-4.5" strokeWidth={2} />
             </div>
             <span className="font-display text-lg font-semibold text-ink-900">ResumeForge</span>
           </div>
 
-          <h1 className="font-display text-[26px] font-bold tracking-tight text-ink-900">Create an account</h1>
-          <p className="mt-1.5 text-sm text-ink-500">Start building your professional story today.</p>
+          <h1 className="font-display text-xl sm:text-[26px] font-bold tracking-tight text-ink-900">Create an account</h1>
+          <p className="mt-1 text-xs sm:text-sm text-ink-500">Start building your professional story today.</p>
 
-          <div className="mt-7">{children}</div>
+          <div className="mt-5 sm:mt-7">{children}</div>
         </div>
       </div>
     </div>
   )
 }
+

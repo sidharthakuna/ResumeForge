@@ -295,8 +295,9 @@ function render(full: FullResumeResponse): string {
       <p class="role">${jobTitle}</p>
     </div>
     <div class="contact-row">
-      ${personalInfo?.location ? `<div class="contact-line">📍 ${esc(personalInfo.location)}</div>` : ''}
+      ${personalInfo?.location ? `<div class="contact-line">${esc(personalInfo.location)}</div>` : ''}
       <div class="contact-line">
+
         ${personalInfo?.email ? `<a href="mailto:${esc(personalInfo.email)}">${esc(personalInfo.email)}</a>` : ''}
         ${personalInfo?.email && personalInfo?.phone ? ' &nbsp;|&nbsp; ' : ''}
         ${personalInfo?.phone ? `<span>${esc(personalInfo.phone)}</span>` : ''}

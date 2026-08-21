@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Flame, Plus, X, ArrowRight, Sparkles, GripVertical, ChevronUp, ChevronDown, Undo2 } from 'lucide-react'
+import { Flame, Plus, X, ArrowRight, Sparkles, GripVertical, ChevronUp, ChevronDown, Undo2, Check } from 'lucide-react'
 import { toast } from 'sonner'
 import { useEditorContext } from '@/app/layouts/EditorLayout'
 import { useUpdateResume } from '@/features/resume-editor/hooks/useResume'
@@ -187,7 +187,7 @@ export default function StrengthsPage() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-6 sm:px-6 sm:py-8">
+    <div className="mx-auto max-w-3xl px-3.5 py-4 sm:px-6 sm:py-8">
       <SectionHeader
         title="Strengths & Soft Skills"
         description="Key personal strengths, work ethics, and soft skills that highlight your potential."
@@ -195,7 +195,7 @@ export default function StrengthsPage() {
         colorTone="amber"
       />
 
-      <div className="space-y-6">
+      <div className="space-y-4 sm:space-y-6">
         <Card
           onDragOver={(e) => {
             if (draggedPreset) {
@@ -214,15 +214,15 @@ export default function StrengthsPage() {
             isCardDropTarget && draggedPreset && 'ring-2 ring-amber-500/40 border-amber-500 bg-amber-500/5'
           )}
         >
-          <CardHeader>
+          <CardHeader className="p-3 sm:p-4">
             <div className="flex items-center justify-between">
-              <h3 className="text-sm font-semibold text-ink-900">Your Strengths ({strengths.length})</h3>
+              <h3 className="text-xs sm:text-sm font-semibold text-ink-900">Your Strengths ({strengths.length})</h3>
               <span className="strength-badge">
                 <Flame className="h-3 w-3" /> Key Attributes
               </span>
             </div>
           </CardHeader>
-          <CardBody className="space-y-4">
+          <CardBody className="space-y-3.5 sm:space-y-4 p-3.5 sm:p-5">
             {/* Add Custom Strength Input */}
             <div className="flex gap-2">
               <Input
@@ -235,9 +235,10 @@ export default function StrengthsPage() {
                     handleAdd()
                   }
                 }}
+                className="text-xs sm:text-sm h-9"
               />
-              <Button onClick={handleAdd} variant="secondary" className="shrink-0 gap-1.5">
-                <Plus className="h-4 w-4" /> Add
+              <Button onClick={handleAdd} variant="secondary" className="shrink-0 gap-1 text-xs h-9 px-3">
+                <Plus className="h-3.5 w-3.5" /> Add
               </Button>
             </div>
 
@@ -250,16 +251,16 @@ export default function StrengthsPage() {
                 }}
                 onDrop={handleCardDrop}
                 className={clsx(
-                  'rounded-xl border-2 border-dashed p-8 text-center transition-all',
+                  'rounded-xl border-2 border-dashed p-6 sm:p-8 text-center transition-all',
                   draggedPreset
                     ? 'border-amber-500 bg-amber-500/10 text-amber-700 dark:text-amber-300 animate-pulse'
                     : 'border-ink-200 text-ink-400'
                 )}
               >
-                <p className="text-sm font-medium">
+                <p className="text-xs sm:text-sm font-medium">
                   {draggedPreset ? `Drop "${draggedPreset}" here to add` : 'No strengths added yet.'}
                 </p>
-                <p className="mt-1 text-xs text-ink-400">
+                <p className="mt-1 text-[11px] sm:text-xs text-ink-400">
                   Pick or drag from the suggestions below, or type your own above.
                 </p>
               </div>
@@ -293,25 +294,25 @@ export default function StrengthsPage() {
                         onDrop={(e) => handleDrop(idx, e)}
                         onDragEnd={handleDragEnd}
                         className={clsx(
-                          'strength-item-card',
+                          'strength-item-card p-2.5 sm:p-3',
                           isDragging && 'opacity-30 scale-[0.98] border-2 border-dashed border-amber-400',
                           isOver && 'border-2 border-dashed border-amber-500 ring-4 ring-amber-500/20 shadow-md'
                         )}
                       >
-                        <div className="flex items-center gap-2.5 min-w-0 flex-1">
+                        <div className="flex items-center gap-2 min-w-0 flex-1">
                           <div
                             className="flex items-center justify-center text-ink-400 group-hover:text-ink-600 transition-colors p-0.5 rounded hover:bg-ink-100 dark:hover:bg-ink-200"
                             title="Drag to reorder or drag below to remove"
                           >
-                            <GripVertical className="h-4 w-4" />
+                            <GripVertical className="h-3.5 w-3.5" />
                           </div>
-                          <span className="strength-item-num">
+                          <span className="strength-item-num text-[11px]">
                             {idx + 1}
                           </span>
-                          <span className="strength-item-text">{item}</span>
+                          <span className="strength-item-text text-xs sm:text-sm truncate">{item}</span>
                         </div>
 
-                        <div className="flex items-center gap-1 shrink-0">
+                        <div className="flex items-center gap-0.5 shrink-0">
                           {strengths.length > 1 && (
                             <>
                               <button
@@ -321,7 +322,7 @@ export default function StrengthsPage() {
                                 className="rounded p-1 text-ink-400 hover:bg-ink-100 hover:text-ink-900 disabled:opacity-20 transition-colors"
                                 title="Move up"
                               >
-                                <ChevronUp className="h-4 w-4" />
+                                <ChevronUp className="h-3.5 w-3.5" />
                               </button>
                               <button
                                 type="button"
@@ -330,7 +331,7 @@ export default function StrengthsPage() {
                                 className="rounded p-1 text-ink-400 hover:bg-ink-100 hover:text-ink-900 disabled:opacity-20 transition-colors"
                                 title="Move down"
                               >
-                                <ChevronDown className="h-4 w-4" />
+                                <ChevronDown className="h-3.5 w-3.5" />
                               </button>
                             </>
                           )}
@@ -340,7 +341,7 @@ export default function StrengthsPage() {
                             className="rounded p-1 text-ink-400 hover:bg-danger-100/60 hover:text-danger-600 transition-colors"
                             title="Remove strength"
                           >
-                            <X className="h-4 w-4" />
+                            <X className="h-3.5 w-3.5" />
                           </button>
                         </div>
                       </div>
@@ -386,20 +387,20 @@ export default function StrengthsPage() {
             isSuggestionsDropTarget && draggedIdx !== null && 'ring-4 ring-amber-500/30 border-amber-500 bg-amber-500/10 shadow-xl'
           )}
         >
-          <CardHeader>
+          <CardHeader className="p-3 sm:p-4">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <Sparkles className="h-4 w-4 text-amber-600 dark:text-amber-400 shrink-0" />
-                <h3 className="text-sm font-semibold text-ink-900">Quick Suggestions</h3>
+              <div className="flex items-center gap-1.5">
+                <Sparkles className="h-3.5 w-3.5 text-amber-600 dark:text-amber-400 shrink-0" />
+                <h3 className="text-xs sm:text-sm font-semibold text-ink-900">Quick Suggestions</h3>
               </div>
               {draggedIdx !== null && (
-                <span className="text-[11px] text-amber-700 dark:text-amber-300 font-semibold hidden sm:inline">
-                  📥 Drop anywhere here to remove from strengths
+                <span className="text-[11px] text-amber-700 dark:text-amber-300 font-semibold hidden sm:inline flex items-center gap-1">
+                  <Undo2 className="h-3 w-3" /> Drop anywhere here to remove from strengths
                 </span>
               )}
             </div>
           </CardHeader>
-          <CardBody className="pb-5">
+          <CardBody className="p-3.5 sm:p-5">
             {draggedIdx !== null && (
               <div
                 onDragOver={(e) => {
@@ -411,12 +412,12 @@ export default function StrengthsPage() {
                 onDrop={handleSuggestionsDrop}
                 className="mb-3 strength-drop-zone animate-pulse"
               >
-                <Undo2 className="h-4 w-4 text-amber-600 dark:text-amber-400 shrink-0" />
+                <Undo2 className="h-3.5 w-3.5 text-amber-600 dark:text-amber-400 shrink-0" />
                 <span>Drop here to remove "{strengths[draggedIdx]}" from strengths</span>
               </div>
             )}
 
-            <div className="flex flex-wrap gap-2.5">
+            <div className="flex flex-wrap gap-2">
               {PRESET_STRENGTHS.map((preset) => {
                 const isAdded = strengths.includes(preset)
                 return (
@@ -432,17 +433,20 @@ export default function StrengthsPage() {
                     onDragEnd={handleDragEnd}
                     onClick={() => handleAddPreset(preset)}
                     disabled={isAdded}
-                    className={isAdded ? 'strength-preset-btn-added' : 'strength-preset-btn'}
-                    title={isAdded ? 'Already in your strengths (drag down to remove)' : 'Click to add or drag into your strengths'}
+                    className={clsx(
+                      isAdded ? 'strength-preset-btn-added' : 'strength-preset-btn',
+                      'text-xs py-1 px-2.5 flex items-center gap-1.5'
+                    )}
+                    title={isAdded ? 'Already in your strengths' : 'Click to add or drag into your strengths'}
                   >
                     {isAdded ? (
                       <>
-                        <span className="text-emerald-600 dark:text-emerald-400 font-bold text-xs">✓</span>
+                        <Check className="h-3 w-3 text-emerald-600 dark:text-emerald-400 stroke-[2.5]" />
                         <span>{preset}</span>
                       </>
                     ) : (
                       <>
-                        <span className="text-amber-600 dark:text-amber-400 font-bold text-sm leading-none">+</span>
+                        <Plus className="h-3 w-3 text-amber-600 dark:text-amber-400 stroke-[2.5]" />
                         <span>{preset}</span>
                       </>
                     )}
@@ -458,12 +462,13 @@ export default function StrengthsPage() {
           <Button
             onClick={handleSave}
             loading={updateMutation.isPending}
-            className="gap-2 bg-indigo-600 text-white hover:bg-indigo-500 shadow-xs font-semibold rounded-xl"
+            className="gap-1.5 bg-indigo-600 text-white hover:bg-indigo-500 shadow-xs font-semibold rounded-xl text-xs sm:text-sm h-9 px-4"
           >
-            Save &amp; Continue <ArrowRight className="h-4 w-4" />
+            Save &amp; Continue <ArrowRight className="h-3.5 w-3.5" />
           </Button>
         </div>
       </div>
     </div>
   )
 }
+

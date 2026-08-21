@@ -66,6 +66,17 @@ export default function ExportPage() {
     const doc = iframe?.contentDocument || iframe?.contentWindow?.document
     if (doc && doc.documentElement) {
       const cloneDoc = doc.documentElement.cloneNode(true) as HTMLElement
+
+      // Remove injected editor-only interactive styles
+      const injectedStyle = cloneDoc.querySelector('#rf-editor-injected-style')
+      if (injectedStyle) {
+        injectedStyle.remove()
+      }
+
+      // Remove contenteditable & spellcheck from all elements
+      cloneDoc.querySelectorAll('[contenteditable]').forEach((el) => el.removeAttribute('contenteditable'))
+      cloneDoc.querySelectorAll('[spellcheck]').forEach((el) => el.removeAttribute('spellcheck'))
+
       const body = cloneDoc.querySelector('body')
       if (body) {
         body.removeAttribute('contenteditable')
@@ -90,6 +101,7 @@ export default function ExportPage() {
 
     // Inject live on-paper styling & focus indicators
     const styleEl = doc.createElement('style')
+    styleEl.id = 'rf-editor-injected-style'
     styleEl.innerHTML = `
       * {
         transition: background-color 0.12s ease, outline 0.12s ease;
@@ -223,23 +235,23 @@ export default function ExportPage() {
   return (
     <div className="export-studio-container space-y-4">
       {/* Top Header Bar */}
-      <div className="export-top-banner flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between shadow-2xs">
+      <div className="export-top-banner flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between shadow-2xs">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-lg font-bold tracking-tight text-ink-900">
+            <h1 className="text-base sm:text-lg font-bold tracking-tight text-ink-900">
               Document Preview & Export
             </h1>
             <span className="hidden sm:inline-flex items-center gap-1 text-[11px] text-ink-500">
               • Press <kbd className="rounded border border-ink-200 bg-paper-100 px-1 py-0.2 font-mono text-[10px] text-ink-600">Ctrl+S</kbd> to save
             </span>
           </div>
-          <p className="text-xs text-ink-500">
+          <p className="text-[11px] sm:text-xs text-ink-500">
             Click directly on any text on the page to make edits before exporting.
           </p>
         </div>
 
         {/* Top Header Actions */}
-        <div className="flex items-center gap-2.5 self-start sm:self-auto">
+        <div className="flex flex-wrap items-center gap-2 self-stretch sm:self-auto justify-end">
           {/* Print Button */}
           <button
             type="button"
@@ -247,7 +259,7 @@ export default function ExportPage() {
             className="export-top-btn export-top-btn-print"
             title="Print document directly"
           >
-            <Printer className="h-4 w-4 text-slate-500 dark:text-slate-400" />
+            <Printer className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-slate-500 dark:text-slate-400" />
             <span>Print</span>
           </button>
 
@@ -271,12 +283,12 @@ export default function ExportPage() {
           >
             {generateMutation.isPending || downloadMutation.isPending ? (
               <>
-                <Spinner className="h-4 w-4" />
+                <Spinner className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                 <span>Exporting…</span>
               </>
             ) : (
               <>
-                <FileDown className="h-4 w-4" />
+                <FileDown className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                 <span>Download PDF</span>
               </>
             )}
@@ -287,7 +299,7 @@ export default function ExportPage() {
       {/* Main A4 Live Paper Sheet Stage */}
       <div className="export-paper-stage flex flex-col overflow-hidden">
         {/* Paper Canvas Subheader Toolbar */}
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-ink-200/80 bg-paper-50/90 px-3.5 py-2 text-xs font-medium dark:border-slate-800 dark:bg-slate-900/90">
+        <div className="flex flex-wrap items-center justify-between gap-2 sm:gap-3 border-b border-ink-200/80 bg-paper-50/90 px-3 sm:px-3.5 py-1.5 sm:py-2 text-xs font-medium dark:border-slate-800 dark:bg-slate-900/90">
           {/* Active Template & Formatting Controls */}
           <div className="flex items-center gap-2">
             <div className="flex items-center gap-1.5 text-xs font-semibold text-ink-800 dark:text-slate-200">
@@ -341,7 +353,7 @@ export default function ExportPage() {
           </div>
 
           {/* Right Tools: Copy Text & Zoom Controls */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2">
             {/* Copy Plain Text for Job Boards */}
             <button
               type="button"
@@ -354,16 +366,16 @@ export default function ExportPage() {
             </button>
 
             {/* Zoom Controls */}
-            <div className="flex items-center gap-1 border-l border-ink-200 pl-2 dark:border-slate-800">
+            <div className="flex items-center gap-1 border-l border-ink-200 pl-1.5 sm:pl-2 dark:border-slate-800">
               <button
                 type="button"
-                onClick={() => setZoom((z) => Math.max(35, z - 5))}
+                onClick={() => setZoom((z) => Math.max(30, z - 5))}
                 className="rounded p-1 text-ink-500 hover:bg-ink-100 hover:text-ink-900 dark:hover:bg-slate-800 cursor-pointer"
                 title="Zoom Out"
               >
-                <Minus className="h-3.5 w-3.5" />
+                <Minus className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
               </button>
-              <span className="w-8 text-center font-mono text-[11px] text-ink-600 dark:text-slate-300">
+              <span className="w-7 sm:w-8 text-center font-mono text-[10px] sm:text-[11px] text-ink-600 dark:text-slate-300">
                 {zoom}%
               </span>
               <button
@@ -372,12 +384,12 @@ export default function ExportPage() {
                 className="rounded p-1 text-ink-500 hover:bg-ink-100 hover:text-ink-900 dark:hover:bg-slate-800 cursor-pointer"
                 title="Zoom In"
               >
-                <Plus className="h-3.5 w-3.5" />
+                <Plus className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
               </button>
               <button
                 type="button"
                 onClick={() => setZoom(70)}
-                className="ml-1 rounded px-1.5 py-0.5 text-[11px] font-semibold text-indigo-600 hover:bg-indigo-50 dark:hover:bg-indigo-950/60 cursor-pointer"
+                className="ml-0.5 sm:ml-1 rounded px-1 sm:px-1.5 py-0.5 text-[10px] sm:text-[11px] font-semibold text-indigo-600 hover:bg-indigo-50 dark:hover:bg-indigo-950/60 cursor-pointer"
               >
                 Fit
               </button>
@@ -385,8 +397,9 @@ export default function ExportPage() {
           </div>
         </div>
 
-        {/* Paper Canvas (Centered, Sized to 70% Default Zoom for 100% Page Visibility) */}
-        <div className="flex items-start justify-center overflow-auto p-4 sm:p-6 scrollbar-thin min-h-[760px]">
+        {/* Paper Canvas */}
+        <div className="flex items-start justify-center overflow-auto p-2.5 sm:p-6 scrollbar-thin min-h-[440px] sm:min-h-[760px]">
+
           <div
             style={{
               width: `calc(210mm * ${zoom / 100})`,

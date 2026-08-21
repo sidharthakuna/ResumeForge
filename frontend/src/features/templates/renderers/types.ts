@@ -22,8 +22,15 @@ export interface TemplateDefinition {
   layout?: 'single-column' | 'two-column' | 'sidebar'
   /** Primary design focus */
   focus?: 'ats' | 'developer' | 'executive' | 'student' | 'creative'
+  /** Explicit flag if template renders a profile photo */
+  supportsPhoto?: boolean
   /** Renders the resume to a full standalone HTML document string, used both for the live preview iframe and for generate-from-html export. */
   render: (full: FullResumeResponse) => string
+}
+
+export function templateSupportsPhoto(template?: TemplateDefinition | null): boolean {
+  if (!template) return false
+  return template.supportsPhoto === true || template.categories?.includes('photo') === true
 }
 
 /** Shared inline CSS reset + print rules every template document includes. */

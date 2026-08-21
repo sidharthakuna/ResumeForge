@@ -49,8 +49,23 @@
     font-size: 16px !important; /* Prevents iOS/Android from auto-zooming and cropping form */
   }
   html, body {
-    scroll-padding-bottom: 7rem;
     -webkit-text-size-adjust: 100%;
+    overflow-x: hidden;
   }
 }
+
+/* Touch target helper */
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Safe area padding utilities */
+.pb-safe {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom, 1rem));
+}
+.pb-safe-nav {
+  padding-bottom: max(5.5rem, calc(4.5rem + env(safe-area-inset-bottom, 1rem)));
+}
+
 

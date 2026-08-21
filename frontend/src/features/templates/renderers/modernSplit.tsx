@@ -6,12 +6,13 @@ function render(full: FullResumeResponse): string {
     full
 
   const contactItems = [
-    personalInfo?.email ? `✉ ${esc(personalInfo.email)}` : '',
-    personalInfo?.phone ? `☎ ${esc(personalInfo.phone)}` : '',
-    personalInfo?.location ? `📍 ${esc(personalInfo.location)}` : '',
-    personalInfo?.linkedinUrl ? `🔗 ${esc(personalInfo.linkedinUrl)}` : '',
-    personalInfo?.portfolioUrl ? `🌐 ${esc(personalInfo.portfolioUrl)}` : '',
+    personalInfo?.email ? `${esc(personalInfo.email)}` : '',
+    personalInfo?.phone ? `${esc(personalInfo.phone)}` : '',
+    personalInfo?.location ? `${esc(personalInfo.location)}` : '',
+    personalInfo?.linkedinUrl ? `${esc(personalInfo.linkedinUrl)}` : '',
+    personalInfo?.portfolioUrl ? `${esc(personalInfo.portfolioUrl)}` : '',
   ].filter(Boolean)
+
 
   return `<html xmlns="http://www.w3.org/1999/xhtml"><head><meta charset="utf-8" />
 <style>
@@ -67,8 +68,8 @@ function render(full: FullResumeResponse): string {
             <div class="entry-role">${esc(e.jobTitle)}</div>
             <div class="entry-company">${esc(e.company)}</div>
             <div class="entry-meta">
-              <span>📅 ${fmtDate(e.startDate)} – ${e.currentlyWorking ? 'Current' : fmtDate(e.endDate)}</span>
-              ${(e as any).location ? `<span>📍 ${esc((e as any).location)}</span>` : ''}
+              <span>${fmtDate(e.startDate)} – ${e.currentlyWorking ? 'Current' : fmtDate(e.endDate)}</span>
+              ${(e as any).location ? `<span>${esc((e as any).location)}</span>` : ''}
             </div>
             ${e.description ? `<div class="entry-desc">${esc(e.description)}</div>` : ''}
           </div>`,
@@ -103,7 +104,7 @@ function render(full: FullResumeResponse): string {
             ${ed.fieldOfStudy ? `<div class="entry-desc" style="font-weight: 500;">${esc(ed.fieldOfStudy)}</div>` : ''}
             <div class="entry-company">${esc(ed.institution)}</div>
             <div class="entry-meta">
-              <span>📅 ${fmtDate(ed.startDate)} – ${fmtDate(ed.endDate) || 'Present'}</span>
+              <span>${fmtDate(ed.startDate)} – ${fmtDate(ed.endDate) || 'Present'}</span>
             </div>
           </div>`,
               )
