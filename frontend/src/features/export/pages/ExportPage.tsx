@@ -51,9 +51,15 @@ export default function ExportPage() {
   // On-Paper Editing State
   const [hasUnsavedEdits, setHasUnsavedEdits] = useState(false)
   const [lastSavedTime, setLastSavedTime] = useState<string | null>(null)
-  // Default to 70% zoom so all parts of the A4 sheet are visible at first glance
-  const [zoom, setZoom] = useState<number>(70)
+  // Default to 45% zoom on mobile view (< 640px) and 70% on desktop
+  const [zoom, setZoom] = useState<number>(() => {
+    if (typeof window !== 'undefined' && window.innerWidth < 640) {
+      return 45
+    }
+    return 70
+  })
   const [showHistory, setShowHistory] = useState(false)
+
   const [copiedText, setCopiedText] = useState(false)
   const iframeRef = useRef<HTMLIFrameElement | null>(null)
 
@@ -388,11 +394,12 @@ export default function ExportPage() {
               </button>
               <button
                 type="button"
-                onClick={() => setZoom(70)}
+                onClick={() => setZoom(window.innerWidth < 640 ? 45 : 70)}
                 className="ml-0.5 sm:ml-1 rounded px-1 sm:px-1.5 py-0.5 text-[10px] sm:text-[11px] font-semibold text-indigo-600 hover:bg-indigo-50 dark:hover:bg-indigo-950/60 cursor-pointer"
               >
                 Fit
               </button>
+
             </div>
           </div>
         </div>

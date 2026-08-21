@@ -39,9 +39,9 @@ export function MobileEditorLayout() {
   const [activeTab, setActiveTab] = useState<'edit' | 'preview'>('edit')
   const [sectionMenuOpen, setSectionMenuOpen] = useState(false)
 
-  // Zoom controls for mobile preview mode
+  // Zoom controls for mobile preview mode — defaulted to 45% for perfect mobile viewport fit
   const [zoom, setZoom] = useState<number | 'auto'>('auto')
-  const [autoZoom, setAutoZoom] = useState(50)
+  const [autoZoom, setAutoZoom] = useState(45)
   const previewContainerRef = useRef<HTMLDivElement>(null)
 
   useLayoutEffect(() => {
@@ -56,12 +56,14 @@ export function MobileEditorLayout() {
       const height = entry.contentRect.height ?? el.clientHeight
       const fitWidth = ((width - PADDING) / A4_WIDTH_PX) * 100
       const fitHeight = ((height - PADDING) / A4_HEIGHT_PX) * 100
-      const fitted = Math.max(25, Math.min(120, Math.round(Math.min(fitWidth, fitHeight))))
+      // Scale fitted between 25% and 45% on mobile devices
+      const fitted = Math.max(25, Math.min(45, Math.round(Math.min(fitWidth, fitHeight))))
       setAutoZoom(fitted)
     })
     observer.observe(el)
     return () => observer.disconnect()
   }, [activeTab])
+
 
   const effectiveZoom = zoom === 'auto' ? autoZoom : zoom
 
