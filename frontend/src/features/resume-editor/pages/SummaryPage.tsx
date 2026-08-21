@@ -234,11 +234,12 @@ export default function SummaryPage() {
               <p className="mb-2 text-xs font-semibold text-indigo-600 dark:text-indigo-400">Generate Declaration</p>
               <div className="flex gap-2">
                 <Input
-                  placeholder="City (e.g. San Francisco, CA)"
+                  placeholder="City (e.g. Bengaluru, India)"
                   value={aiCity}
                   onChange={(e) => setAiCity(e.target.value)}
                   className="text-xs h-9"
                 />
+
 
                 <Button
                   size="sm"

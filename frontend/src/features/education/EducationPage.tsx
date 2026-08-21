@@ -149,12 +149,12 @@ function EducationForm({
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <div>
           <Label htmlFor="degree">Degree *</Label>
-          <Input id="degree" placeholder="B.S. in Computer Science" invalid={!!errors.degree} {...register('degree')} />
+          <Input id="degree" placeholder="B.Tech in Computer Science and Engineering" invalid={!!errors.degree} {...register('degree')} />
           <FieldError message={errors.degree?.message} />
         </div>
         <div>
           <Label htmlFor="institution">Institution *</Label>
-          <Input id="institution" placeholder="University of California, Berkeley" invalid={!!errors.institution} {...register('institution')} />
+          <Input id="institution" placeholder="National Institute of Technology (NIT) / University" invalid={!!errors.institution} {...register('institution')} />
           <FieldError message={errors.institution?.message} />
         </div>
       </div>
@@ -166,9 +166,10 @@ function EducationForm({
         </div>
         <div>
           <Label htmlFor="grade">Grade / CGPA / Percentage (optional)</Label>
-          <Input id="grade" placeholder="GPA: 3.8 / 4.0" {...register('grade')} />
+          <Input id="grade" placeholder="CGPA: 8.8 / 10.0 or 88%" {...register('grade')} />
         </div>
       </div>
+
 
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <div>
