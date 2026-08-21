@@ -21,7 +21,7 @@ import { useEditorUiStore } from '@/features/resume-editor/store/editor-ui.store
 import { getTemplateById, templateSupportsPhoto } from '@/features/templates/renderers/registry'
 import { getEditorSections, toolSections } from '@/components/layout/nav-config'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
-import { FullPageSpinner } from '@/components/ui/Spinner'
+import { FullPageSpinner, MobileEditorSkeleton } from '@/components/ui/Spinner'
 import { EmptyState } from '@/components/ui/EmptyState'
 import { ApiError } from '@/lib/axios'
 
@@ -70,8 +70,9 @@ export function MobileEditorLayout() {
   if (!resumeId) return null
 
   if (isLoading) {
-    return <FullPageSpinner label="Loading your resume…" />
+    return <MobileEditorSkeleton />
   }
+
 
   if (error || !full) {
     return (

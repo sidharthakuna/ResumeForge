@@ -23,7 +23,7 @@ import { useCreateResume, useDeleteResume } from '@/features/resume-editor/hooks
 import { ResumeCard } from '@/features/dashboard/components/ResumeCard'
 import { Button } from '@/components/ui/Button'
 import { EmptyState } from '@/components/ui/EmptyState'
-import { FullPageSpinner, DashboardSkeleton } from '@/components/ui/Spinner'
+import { FullPageSpinner, DashboardSkeleton, CreatingResumeOverlay } from '@/components/ui/Spinner'
 import { ConfirmDialog } from '@/components/ui/ConfirmDialog'
 
 import { getUser } from '@/lib/session'
@@ -78,7 +78,9 @@ export default function DashboardPage() {
 
   return (
     <div className="dashboard-container space-y-8" id="your-resumes">
+      {createResume.isPending && <CreatingResumeOverlay />}
       {/* 1. Header Hero Card */}
+
       <div className="dashboard-hero-card">
         <div className="flex flex-col gap-4 sm:gap-6 lg:flex-row lg:items-center lg:justify-between">
           <div className="flex items-start gap-3 sm:gap-4">

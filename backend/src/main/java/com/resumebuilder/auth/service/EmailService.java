@@ -73,8 +73,9 @@ public class EmailService {
             mailSender.send(message);
             log.info("HTML email successfully dispatched to {} via SMTP", toEmail);
         } catch (Exception ex) {
-            log.warn("Could not dispatch email via SMTP (error: {}). Development fallback: OTP is {}", ex.getMessage(), rawOtp);
+            log.error("Could not dispatch email via SMTP to {}: {}. Development fallback: OTP is {}", toEmail, ex.getMessage(), rawOtp, ex);
         }
+
     }
 
     private String buildEmailTemplate(String heading, String message, String otp, String footnote) {
