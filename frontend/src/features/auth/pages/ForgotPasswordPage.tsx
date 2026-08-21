@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { KeyRound, ArrowLeft, CheckCircle2, RefreshCw, Lock, Eye, EyeOff } from 'lucide-react'
+import { ArrowLeft, CheckCircle2, RefreshCw, Eye, EyeOff, KeyRound } from 'lucide-react'
 import { LoginShell } from '@/features/auth/components/LoginShell'
 import { useForgotPassword, useResetPassword } from '@/features/auth/hooks/useAuth'
 import { Label } from '@/components/ui/Label'
@@ -22,7 +22,6 @@ export default function ForgotPasswordPage() {
   const [cooldown, setCooldown] = useState(60)
   const inputRefs = useRef<(HTMLInputElement | null)[]>([])
 
-  // Cooldown countdown timer for resending OTP
   useEffect(() => {
     if (step !== 'RESET' || cooldown <= 0) return
     const timer = setInterval(() => {
@@ -31,7 +30,6 @@ export default function ForgotPasswordPage() {
     return () => clearInterval(timer)
   }, [step, cooldown])
 
-  // Focus first digit when switching to reset step
   useEffect(() => {
     if (step === 'RESET') {
       setTimeout(() => {
@@ -98,12 +96,12 @@ export default function ForgotPasswordPage() {
     const otp = digits.join('')
 
     if (otp.length !== 6) {
-      toast.error('Please enter the full 6-digit code')
+      toast.error('Please enter the full 6-digit verification code')
       return
     }
 
     if (!newPassword || newPassword.length < 8) {
-      toast.error('Password must be at least 8 characters')
+      toast.error('Password must be at least 8 characters long')
       return
     }
 
@@ -125,16 +123,24 @@ export default function ForgotPasswordPage() {
   }
 
   return (
-    <LoginShell>
+    <LoginShell
+      title={
+        step === 'EMAIL'
+          ? 'Reset your password'
+          : step === 'RESET'
+          ? 'Enter verification code'
+          : 'Password Updated'
+      }
+      subtitle={
+        step === 'EMAIL'
+          ? 'We will send a 6-digit recovery code to your email'
+          : step === 'RESET'
+          ? `Code sent to ${email}`
+          : 'Your account password has been successfully reset'
+      }
+    >
       {step === 'EMAIL' && (
         <form onSubmit={handleSendCode} className="space-y-4" noValidate>
-          <div className="text-center sm:text-left mb-2">
-            <h2 className="text-lg font-bold text-ink-900">Reset your password</h2>
-            <p className="mt-1 text-xs text-ink-500">
-              Enter your account email and we'll send you a 6-digit verification code to reset your password.
-            </p>
-          </div>
-
           <div>
             <Label htmlFor="reset-email">Account Email</Label>
             <Input
@@ -144,13 +150,14 @@ export default function ForgotPasswordPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               autoComplete="email"
+              className="mt-1"
               required
             />
           </div>
 
           <Button
             type="submit"
-            className="w-full h-11 bg-indigo-600 hover:bg-indigo-500 text-white font-bold"
+            className="w-full h-11 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl shadow-md shadow-indigo-600/20"
             size="lg"
             loading={forgotPasswordMutation.isPending}
           >
@@ -160,7 +167,7 @@ export default function ForgotPasswordPage() {
           <div className="pt-2 text-center">
             <Link
               to="/login"
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-ink-600 hover:text-indigo-600 transition-colors"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-ink-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
             >
               <ArrowLeft className="h-3.5 w-3.5" /> Back to Sign In
             </Link>
@@ -170,16 +177,11 @@ export default function ForgotPasswordPage() {
 
       {step === 'RESET' && (
         <form onSubmit={handleResetSubmit} className="space-y-4" noValidate>
-          <div className="text-center sm:text-left mb-2">
-            <h2 className="text-lg font-bold text-ink-900">Enter code &amp; new password</h2>
-            <p className="mt-1 text-xs text-ink-500">
-              Code sent to <span className="font-semibold text-ink-800 dark:text-slate-200">{email}</span>.
-            </p>
-          </div>
-
           {/* 6-Digit OTP Box Input */}
           <div>
-            <Label className="mb-2 block">6-Digit Verification Code</Label>
+            <Label className="mb-2 block text-xs font-bold uppercase tracking-wider text-ink-600 dark:text-slate-400">
+              6-Digit Code
+            </Label>
             <div className="flex items-center justify-between gap-1.5 sm:gap-2" onPaste={handlePaste}>
               {digits.map((digit, index) => (
                 <input
@@ -197,7 +199,7 @@ export default function ForgotPasswordPage() {
                   className={`h-11 w-9 sm:h-12 sm:w-11 rounded-xl border text-center font-mono text-lg font-extrabold transition-all outline-none ${
                     digit
                       ? 'border-indigo-600 bg-indigo-50/40 text-indigo-900 ring-2 ring-indigo-500/20 dark:bg-indigo-950/30 dark:text-indigo-300'
-                      : 'border-ink-200 bg-paper-100/60 text-ink-900 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 dark:border-slate-800 dark:bg-slate-900'
+                      : 'border-ink-200 bg-paper-100/60 text-ink-900 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100'
                   }`}
                   autoComplete="one-time-code"
                 />
@@ -207,7 +209,7 @@ export default function ForgotPasswordPage() {
 
           <div>
             <Label htmlFor="new-password">New Password</Label>
-            <div className="relative">
+            <div className="relative mt-1">
               <Input
                 id="new-password"
                 type={showPassword ? 'text' : 'password'}
@@ -220,7 +222,7 @@ export default function ForgotPasswordPage() {
               <button
                 type="button"
                 onClick={() => setShowPassword((p) => !p)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-ink-400 hover:text-ink-700 cursor-pointer"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-ink-400 hover:text-ink-700 dark:hover:text-slate-200 cursor-pointer"
               >
                 {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
               </button>
@@ -236,13 +238,14 @@ export default function ForgotPasswordPage() {
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               autoComplete="new-password"
+              className="mt-1"
               required
             />
           </div>
 
           <Button
             type="submit"
-            className="w-full h-11 bg-indigo-600 hover:bg-indigo-500 text-white font-bold"
+            className="w-full h-11 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl shadow-md shadow-indigo-600/20"
             size="lg"
             loading={resetPasswordMutation.isPending}
           >
@@ -253,18 +256,18 @@ export default function ForgotPasswordPage() {
             <button
               type="button"
               onClick={() => setStep('EMAIL')}
-              className="text-ink-500 hover:text-ink-700 cursor-pointer"
+              className="text-ink-500 hover:text-ink-800 dark:text-slate-400 dark:hover:text-slate-200 cursor-pointer"
             >
               Change email
             </button>
 
             {cooldown > 0 ? (
-              <span className="text-ink-400">Resend code in {cooldown}s</span>
+              <span className="text-ink-400 dark:text-slate-500 font-mono">Resend in {cooldown}s</span>
             ) : (
               <button
                 type="button"
                 onClick={handleResend}
-                className="font-bold text-indigo-600 hover:text-indigo-700 cursor-pointer flex items-center gap-1"
+                className="font-bold text-indigo-600 hover:text-indigo-700 dark:text-indigo-400 cursor-pointer flex items-center gap-1"
               >
                 <RefreshCw className="h-3 w-3" /> Resend Code
               </button>
@@ -274,19 +277,18 @@ export default function ForgotPasswordPage() {
       )}
 
       {step === 'SUCCESS' && (
-        <div className="text-center space-y-4 py-4">
-          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 dark:bg-emerald-950 dark:text-emerald-400">
+        <div className="text-center space-y-4 py-2">
+          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 dark:bg-emerald-950/80 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/40">
             <CheckCircle2 className="h-6 w-6" />
           </div>
-          <h2 className="text-lg font-bold text-ink-900">Password Reset Complete</h2>
           <p className="text-xs text-ink-600 dark:text-slate-300">
-            Your password has been securely updated. You can now log in to your account with your new credentials.
+            You can now log in to your account with your newly created password.
           </p>
           <Button
             onClick={() => navigate('/login', { replace: true })}
-            className="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold h-11"
+            className="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold h-11 rounded-xl"
           >
-            Go to Sign In
+            Return to Sign In
           </Button>
         </div>
       )}

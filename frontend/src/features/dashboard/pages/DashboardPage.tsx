@@ -23,8 +23,9 @@ import { useCreateResume, useDeleteResume } from '@/features/resume-editor/hooks
 import { ResumeCard } from '@/features/dashboard/components/ResumeCard'
 import { Button } from '@/components/ui/Button'
 import { EmptyState } from '@/components/ui/EmptyState'
-import { FullPageSpinner } from '@/components/ui/Spinner'
+import { FullPageSpinner, DashboardSkeleton } from '@/components/ui/Spinner'
 import { ConfirmDialog } from '@/components/ui/ConfirmDialog'
+
 import { getUser } from '@/lib/session'
 
 export default function DashboardPage() {
@@ -64,7 +65,7 @@ export default function DashboardPage() {
     })
   }
 
-  if (isLoading) return <FullPageSpinner label="Loading your resumes…" />
+  if (isLoading) return <DashboardSkeleton />
 
   const totalResumes = resumes?.length ?? 0
   const completedCount = resumes?.filter((r) => r.full.resume.status === 'COMPLETED').length ?? 0

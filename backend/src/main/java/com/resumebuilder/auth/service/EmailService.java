@@ -1,6 +1,5 @@
 package com.resumebuilder.auth.service;
 
-import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +16,8 @@ public class EmailService {
     @Autowired(required = false)
     private JavaMailSender mailSender;
 
-    @Value("${spring.mail.username:noreply@resumeforge.dev}")
-    private String fromEmail;
+    @Value("${spring.mail.username:}")
+    private String configuredUsername;
 
     /**
      * Send Verification OTP email for account activation.
@@ -57,8 +56,8 @@ public class EmailService {
         log.info(" >>> YOUR ONE-TIME PASSCODE (OTP): {} <<<", rawOtp);
         log.info("==================================================================");
 
-        if (mailSender == null) {
-            log.warn("JavaMailSender is not configured or SMTP properties are missing. OTP logged to console above.");
+        if (mailSender == null || configuredUsername == null || configuredUsername.isBlank()) {
+            log.warn("JavaMailSender or mail username not configured. OTP logged to console above.");
             return;
         }
 
@@ -66,8 +65,8 @@ public class EmailService {
             MimeMessage message = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 
-            helper.setFrom(fromEmail);
-            helper.setTo(toEmail);
+            helper.setFrom(configuredUsername.trim(), "ResumeForge");
+            helper.setTo(toEmail.trim());
             helper.setSubject(subject);
             helper.setText(htmlBody, true);
 
@@ -76,7 +75,6 @@ public class EmailService {
         } catch (Exception ex) {
             log.warn("Could not dispatch email via SMTP (error: {}). Development fallback: OTP is {}", ex.getMessage(), rawOtp);
         }
-
     }
 
     private String buildEmailTemplate(String heading, String message, String otp, String footnote) {
@@ -95,7 +93,7 @@ public class EmailService {
                     <table width="100%%" border="0" cellspacing="0" cellpadding="0" style="max-width:540px;background:#ffffff;border-radius:16px;border:1px solid #e2e8f0;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,0.04);">
                       <!-- Header -->
                       <tr>
-                        <td style="background:linear-gradient(135deg,#4f46e5 0%%,#7c3aed 100%%);padding:28px 32px;text-align:center;">
+                        <td style="background:#4f46e5;padding:28px 32px;text-align:center;">
                           <h1 style="margin:0;font-size:22px;font-weight:800;color:#ffffff;letter-spacing:-0.5px;">ResumeForge</h1>
                           <p style="margin:4px 0 0;font-size:12px;color:rgba(255,255,255,0.85);">AI-Powered Resume Optimization</p>
                         </td>

@@ -39,7 +39,7 @@ public class AuthService {
 
         String normalizedEmail = request.email().trim().toLowerCase();
 
-        if (userRepository.existsByEmail(normalizedEmail)) {
+        if (userRepository.existsByEmailIgnoreCase(normalizedEmail)) {
             throw new InvalidCredentialsException("An account with this email already exists");
         }
 
@@ -72,7 +72,7 @@ public class AuthService {
                     "Too many login attempts. Please try again later.");
         }
 
-        User user = userRepository.findByEmail(normalizedEmail)
+        User user = userRepository.findByEmailIgnoreCase(normalizedEmail)
                 .orElseThrow(() -> new InvalidCredentialsException("Invalid email or password"));
 
         if (user.getPassword() == null || !passwordEncoder.matches(request.password(), user.getPassword())) {
@@ -88,10 +88,8 @@ public class AuthService {
      */
     public void sendOtp(SendOtpRequest request) {
         String normalizedEmail = request.email().trim().toLowerCase();
-        if (request.purpose() == OtpPurpose.PASSWORD_RESET && !userRepository.existsByEmail(normalizedEmail)) {
-            // Silently return or log to prevent email enumeration, but in this UX we can send error or proceed
-            log.info("Password reset requested for non-existent email: {}", normalizedEmail);
-            return;
+        if (request.purpose() == OtpPurpose.PASSWORD_RESET && !userRepository.existsByEmailIgnoreCase(normalizedEmail)) {
+            throw new InvalidCredentialsException("No account found with this email. Please check your email or create an account.");
         }
         otpService.generateAndSendOtp(normalizedEmail, request.purpose());
     }
@@ -104,7 +102,7 @@ public class AuthService {
         String normalizedEmail = request.email().trim().toLowerCase();
         otpService.verifyOtp(normalizedEmail, request.otp(), request.purpose());
 
-        userRepository.findByEmail(normalizedEmail).ifPresent(user -> {
+        userRepository.findByEmailIgnoreCase(normalizedEmail).ifPresent(user -> {
             user.setEmailVerified(true);
             userRepository.save(user);
         });
@@ -115,10 +113,11 @@ public class AuthService {
      */
     public void forgotPassword(ForgotPasswordRequest request) {
         String normalizedEmail = request.email().trim().toLowerCase();
-        if (userRepository.existsByEmail(normalizedEmail)) {
+        if (userRepository.existsByEmailIgnoreCase(normalizedEmail)) {
             otpService.generateAndSendOtp(normalizedEmail, OtpPurpose.PASSWORD_RESET);
         } else {
             log.info("Password reset requested for non-registered email: {}", normalizedEmail);
+            throw new InvalidCredentialsException("No account found with this email. Please check your email or create an account.");
         }
     }
 
@@ -130,7 +129,7 @@ public class AuthService {
         String normalizedEmail = request.email().trim().toLowerCase();
         otpService.verifyOtp(normalizedEmail, request.otp(), OtpPurpose.PASSWORD_RESET);
 
-        User user = userRepository.findByEmail(normalizedEmail)
+        User user = userRepository.findByEmailIgnoreCase(normalizedEmail)
                 .orElseThrow(() -> new InvalidCredentialsException("User account not found"));
 
         user.setPassword(passwordEncoder.encode(request.newPassword()));

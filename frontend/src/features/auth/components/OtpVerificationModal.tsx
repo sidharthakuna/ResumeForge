@@ -139,8 +139,8 @@ export function OtpVerificationModal({
                 onKeyDown={(e) => handleKeyDown(index, e)}
                 className={`h-12 w-10 sm:h-13 sm:w-11 rounded-xl border text-center font-mono text-xl font-extrabold transition-all outline-none ${
                   digit
-                    ? 'border-indigo-600 bg-indigo-50/40 text-indigo-900 ring-2 ring-indigo-500/20 dark:bg-indigo-950/30 dark:text-indigo-300'
-                    : 'border-ink-200 bg-paper-100/60 text-ink-900 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 dark:border-slate-800 dark:bg-slate-900'
+                    ? 'border-indigo-600 bg-indigo-50/40 text-indigo-900 ring-2 ring-indigo-500/20 dark:bg-indigo-950/40 dark:text-indigo-300 dark:border-indigo-500'
+                    : 'border-ink-200 bg-paper-100/60 text-ink-900 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100'
                 }`}
                 autoComplete="one-time-code"
               />

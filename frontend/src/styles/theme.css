@@ -68,4 +68,11 @@
   padding-bottom: max(5.5rem, calc(4.5rem + env(safe-area-inset-bottom, 1rem)));
 }
 
+@keyframes loading-bar {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+  100% { transform: translateX(300%); }
+}
+
+
 

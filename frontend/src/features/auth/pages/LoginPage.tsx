@@ -7,15 +7,12 @@ import { AlertTriangle, Lock } from 'lucide-react'
 import { LoginShell } from '@/features/auth/components/LoginShell'
 import { GoogleLoginButton } from '@/features/auth/components/GoogleLoginButton'
 import { loginSchema, type LoginFormValues } from '@/features/auth/schemas/auth.schema'
-
 import { useLogin } from '@/features/auth/hooks/useAuth'
 import { Label } from '@/components/ui/Label'
 import { Input } from '@/components/ui/Input'
 import { FieldError } from '@/components/ui/FieldError'
 import { Button } from '@/components/ui/Button'
 
-// Max wrong attempts tracked on the frontend before showing a strong warning.
-// The real enforcement is on the backend (10 per 15 min per email).
 const MAX_ATTEMPTS_BEFORE_WARNING = 5
 
 export default function LoginPage() {
@@ -63,10 +60,8 @@ export default function LoginPage() {
         setFailedAttempts(0)
       },
       onError: (err: unknown) => {
-        // 429 = rate limited by the backend
         const status = (err as { status?: number })?.status
         if (status === 429) {
-          // Lock out for 15 minutes matching backend window
           const until = new Date(Date.now() + 15 * 60 * 1000)
           setIsLockedOut(true)
           setLockoutUntil(until)
@@ -88,30 +83,33 @@ export default function LoginPage() {
   }
 
   return (
-    <LoginShell>
+    <LoginShell
+      title="Sign in to your account"
+      subtitle="Enter your details to manage your resumes and exports"
+    >
       <form className="space-y-4" onSubmit={handleSubmit(onSubmit)} noValidate>
         {/* Lockout banner */}
         {isLockedOut && (
-          <div className="flex items-start gap-3 rounded-lg border border-danger-200 bg-danger-50 px-4 py-3">
-            <Lock className="mt-0.5 h-4 w-4 shrink-0 text-danger-600" />
-            <div>
-              <p className="text-sm font-semibold text-danger-700">Too many failed attempts</p>
-              <p className="mt-0.5 text-xs text-danger-600">
-                Your account is temporarily locked. Try again in{' '}
+          <div className="flex items-start gap-2.5 rounded-xl border border-red-200 bg-red-50/80 p-3 text-red-900 dark:border-red-900/50 dark:bg-red-950/40 dark:text-red-300">
+            <Lock className="mt-0.5 h-4 w-4 shrink-0 text-red-600" />
+            <div className="text-xs">
+              <p className="font-bold">Account temporarily locked</p>
+              <p className="mt-0.5 opacity-90">
+                Too many failed attempts. Try again in{' '}
                 <span className="font-mono font-bold">{formatCountdown(countdown)}</span>.
               </p>
             </div>
           </div>
         )}
 
-        {/* Attempt warning (before lockout) */}
+        {/* Attempt warning */}
         {showAttemptWarning && (
-          <div className="flex items-start gap-3 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3">
+          <div className="flex items-start gap-2.5 rounded-xl border border-amber-200 bg-amber-50/80 p-3 text-amber-900 dark:border-amber-900/50 dark:bg-amber-950/40 dark:text-amber-300">
             <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-amber-600" />
-            <p className="text-xs text-amber-700">
+            <p className="text-xs">
               {failedAttempts} failed attempt{failedAttempts !== 1 ? 's' : ''}. You have{' '}
-              <span className="font-semibold">{attemptsLeft} attempt{attemptsLeft !== 1 ? 's' : ''}</span>{' '}
-              remaining before your account is temporarily locked.
+              <span className="font-bold">{attemptsLeft} attempt{attemptsLeft !== 1 ? 's' : ''}</span>{' '}
+              remaining before temporary lockout.
             </p>
           </div>
         )}
@@ -125,10 +123,12 @@ export default function LoginPage() {
             autoComplete="email"
             invalid={!!errors.email}
             disabled={isLockedOut}
+            className="mt-1"
             {...register('email')}
           />
           <FieldError message={errors.email?.message} />
         </div>
+
         <div>
           <div className="flex items-center justify-between">
             <Label htmlFor="password">Password</Label>
@@ -145,13 +145,15 @@ export default function LoginPage() {
             autoComplete="current-password"
             invalid={!!errors.password}
             disabled={isLockedOut}
+            className="mt-1"
             {...register('password')}
           />
           <FieldError message={errors.password?.message} />
         </div>
+
         <Button
           type="submit"
-          className="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold h-11"
+          className="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold h-11 rounded-xl shadow-md shadow-indigo-600/20"
           size="lg"
           loading={login.isPending}
           disabled={isLockedOut}
@@ -161,40 +163,24 @@ export default function LoginPage() {
       </form>
 
       <div className="my-5 flex items-center gap-3">
-        <div className="h-px flex-1 bg-ink-100" />
-        <span className="text-[11px] font-medium uppercase tracking-wide text-ink-300">Or continue with</span>
-        <div className="h-px flex-1 bg-ink-100" />
+        <div className="h-px flex-1 bg-ink-200/60 dark:bg-slate-800" />
+        <span className="text-[11px] font-bold uppercase tracking-wider text-ink-400 dark:text-slate-500">
+          Or continue with
+        </span>
+        <div className="h-px flex-1 bg-ink-200/60 dark:bg-slate-800" />
       </div>
 
       <GoogleLoginButton text="signin_with" />
 
-      <p className="mt-6 text-center text-sm text-ink-500">
+      <p className="mt-6 text-center text-xs sm:text-sm text-ink-500 dark:text-slate-400">
         Don't have an account?{' '}
-        <Link to="/register" className="font-semibold text-indigo-600 dark:text-indigo-400 hover:underline underline-offset-2">
-          Create one now
+        <Link
+          to="/register"
+          className="font-bold text-indigo-600 dark:text-indigo-400 hover:underline underline-offset-2"
+        >
+          Create an account
         </Link>
       </p>
     </LoginShell>
-
-  )
-}
-
-function GoogleIcon() {
-  return (
-    <svg viewBox="0 0 18 18" className="h-4 w-4" aria-hidden>
-      <path
-        fill="#4285F4"
-        d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84a4.14 4.14 0 0 1-1.8 2.72v2.26h2.92c1.7-1.57 2.68-3.88 2.68-6.62Z"
-      />
-      <path
-        fill="#34A853"
-        d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.92-2.26c-.81.54-1.84.86-3.04.86-2.34 0-4.32-1.58-5.03-3.7H.96v2.33A9 9 0 0 0 9 18Z"
-      />
-      <path fill="#FBBC05" d="M3.97 10.72a5.4 5.4 0 0 1 0-3.44V4.95H.96a9 9 0 0 0 0 8.1l3.01-2.33Z" />
-      <path
-        fill="#EA4335"
-        d="M9 3.58c1.32 0 2.51.45 3.44 1.35l2.58-2.58C13.46.89 11.43 0 9 0A9 9 0 0 0 .96 4.95l3.01 2.33C4.68 5.16 6.66 3.58 9 3.58Z"
-      />
-    </svg>
   )
 }

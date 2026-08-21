@@ -1,45 +1,44 @@
 import type { ReactNode } from 'react'
-import { Logo } from '@/components/layout/Logo'
+import { FileText, ShieldCheck, Sparkles } from 'lucide-react'
 
-/**
- * Centered glass-card layout for Login, matching the mockup: soft gradient
- * blobs anchored bottom-left/bottom-right, a subtle radial wash top-right,
- * and a white card with a thin top accent line floating above it all.
- * Register uses its own split-panel shell instead (see RegisterShell) —
- * the two mockup screens are different enough in shape that sharing one
- * generic AuthShell would mean compromising both.
- */
-export function LoginShell({ children }: { children: ReactNode }) {
+export function LoginShell({
+  children,
+  title = 'Welcome Back',
+  subtitle = 'Sign in to access your resumes and career assets',
+}: {
+  children: ReactNode
+  title?: string
+  subtitle?: string
+}) {
   return (
-    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-paper-100 px-4 py-8 sm:px-6 sm:py-12">
-      <div
-        className="pointer-events-none absolute -left-24 -bottom-32 h-96 w-96 rounded-full bg-gradient-to-tr from-cyan-100 to-brass-50 opacity-70 blur-2xl"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute -right-28 -bottom-40 h-[28rem] w-[28rem] rounded-full bg-brass-100 opacity-60 blur-2xl"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute right-0 top-0 h-72 w-72 bg-gradient-to-bl from-brass-50 to-transparent opacity-80"
-        aria-hidden
-      />
+    <div className="relative flex min-h-screen items-center justify-center bg-slate-50 px-4 py-8 sm:px-6 sm:py-12 dark:bg-slate-950">
 
-      <div className="relative w-full max-w-md">
-        <div className="mb-5 sm:mb-7 flex flex-col items-center text-center">
-          <div className="mb-3 sm:mb-4 flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-2xl bg-paper-50 shadow-md">
-            <Logo size="md" wordmark={false} />
+      <div className="relative w-full max-w-[420px]">
+        {/* Brand Header */}
+        <div className="mb-6 flex flex-col items-center text-center">
+          <div className="mb-3.5 flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-600 text-white shadow-md shadow-indigo-600/20">
+            <FileText className="h-6 w-6" strokeWidth={2.2} />
           </div>
-          <h1 className="font-display text-xl sm:text-[26px] font-bold tracking-tight text-ink-900">Welcome Back</h1>
-          <p className="mt-0.5 sm:mt-1 text-xs sm:text-sm text-ink-500">Log in to continue to your dashboard.</p>
+          <span className="text-xs font-extrabold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
+            ResumeForge
+          </span>
+          <h1 className="mt-1 text-xl sm:text-2xl font-extrabold tracking-tight text-ink-900 dark:text-slate-100">
+            {title}
+          </h1>
+          <p className="mt-1 text-xs sm:text-sm text-ink-500 dark:text-slate-400 max-w-xs">{subtitle}</p>
         </div>
 
-        <div className="relative overflow-hidden rounded-2xl border border-ink-100 bg-paper-50 p-5 sm:p-7 shadow-xl">
-          <div className="absolute inset-x-0 top-0 h-1 bg-indigo-600" />
+        {/* High-Precision Auth Card */}
+        <div className="relative rounded-2xl border border-ink-200/80 bg-paper-50 p-6 sm:p-7 shadow-xs dark:border-slate-800 dark:bg-slate-900/90">
           {children}
+        </div>
+
+        {/* Security & Trust Footer */}
+        <div className="mt-6 flex items-center justify-center gap-2 text-[11px] font-medium text-ink-400 dark:text-slate-500">
+          <ShieldCheck className="h-3.5 w-3.5 text-emerald-500" />
+          <span>256-bit SSL Encrypted • 100% Privacy Protected</span>
         </div>
       </div>
     </div>
   )
 }
-

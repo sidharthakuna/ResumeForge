@@ -42,7 +42,7 @@ export default function RegisterPage() {
       setPendingAuth(authRes)
       setRegisteredEmail(values.email)
       setShowOtpModal(true)
-      toast.success('Account created! A 6-digit verification code was sent to your email.')
+      toast.success('Account created! Verification code sent to your email.')
     } catch {
       // Error handled in hook
     }
@@ -83,17 +83,27 @@ export default function RegisterPage() {
       <GoogleLoginButton text="signup_with" />
 
       <div className="my-5 flex items-center gap-3">
-        <div className="h-px flex-1 bg-ink-100" />
-        <span className="text-[11px] font-medium uppercase tracking-wide text-ink-300">Or continue with email</span>
-        <div className="h-px flex-1 bg-ink-100" />
+        <div className="h-px flex-1 bg-ink-200/60 dark:bg-slate-800" />
+        <span className="text-[11px] font-bold uppercase tracking-wider text-ink-400 dark:text-slate-500">
+          Or continue with email
+        </span>
+        <div className="h-px flex-1 bg-ink-200/60 dark:bg-slate-800" />
       </div>
 
       <form className="space-y-4" onSubmit={handleSubmit(onSubmit)} noValidate>
         <div>
           <Label htmlFor="fullName">Full Name</Label>
-          <Input id="fullName" placeholder="Sidhartha Kuna" autoComplete="name" invalid={!!errors.fullName} {...register('fullName')} />
+          <Input
+            id="fullName"
+            placeholder="Sidhartha Kuna"
+            autoComplete="name"
+            invalid={!!errors.fullName}
+            className="mt-1"
+            {...register('fullName')}
+          />
           <FieldError message={errors.fullName?.message} />
         </div>
+
         <div>
           <Label htmlFor="email">Email Address</Label>
           <Input
@@ -102,35 +112,42 @@ export default function RegisterPage() {
             placeholder="name@company.com"
             autoComplete="email"
             invalid={!!errors.email}
+            className="mt-1"
             {...register('email')}
           />
           <FieldError message={errors.email?.message} />
         </div>
+
         <div>
           <Label htmlFor="password">Password</Label>
           <Input
             id="password"
             type="password"
+            placeholder="At least 8 characters"
             autoComplete="new-password"
             invalid={!!errors.password}
+            className="mt-1"
             {...register('password')}
           />
           <FieldError message={errors.password?.message} />
         </div>
+
         <div>
-          <Label htmlFor="confirmPassword">Confirm password</Label>
+          <Label htmlFor="confirmPassword">Confirm Password</Label>
           <Input
             id="confirmPassword"
             type="password"
+            placeholder="Re-enter your password"
             autoComplete="new-password"
             invalid={!!errors.confirmPassword}
+            className="mt-1"
             {...register('confirmPassword')}
           />
           <FieldError message={errors.confirmPassword?.message} />
         </div>
 
         <div>
-          <label className="flex items-start gap-2.5 text-xs sm:text-sm text-ink-600">
+          <label className="flex items-start gap-2.5 text-xs text-ink-600 dark:text-slate-300">
             <input
               type="checkbox"
               className="mt-0.5 h-4 w-4 shrink-0 rounded border-ink-300 text-indigo-600 focus:ring-2 focus:ring-indigo-500"
@@ -138,11 +155,11 @@ export default function RegisterPage() {
             />
             <span>
               I agree to the{' '}
-              <a href="#" className="text-indigo-600 underline underline-offset-2" onClick={(e) => e.preventDefault()}>
+              <a href="#" className="font-semibold text-indigo-600 hover:underline dark:text-indigo-400" onClick={(e) => e.preventDefault()}>
                 Terms of Service
               </a>{' '}
               and{' '}
-              <a href="#" className="text-indigo-600 underline underline-offset-2" onClick={(e) => e.preventDefault()}>
+              <a href="#" className="font-semibold text-indigo-600 hover:underline dark:text-indigo-400" onClick={(e) => e.preventDefault()}>
                 Privacy Policy
               </a>
               .
@@ -151,19 +168,27 @@ export default function RegisterPage() {
           <FieldError message={errors.agreeToTerms?.message} />
         </div>
 
-        <Button type="submit" className="w-full h-11 bg-indigo-600 hover:bg-indigo-500 text-white font-bold" size="lg" loading={registerMutation.isPending}>
+        <Button
+          type="submit"
+          className="w-full h-11 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl shadow-md shadow-indigo-600/20"
+          size="lg"
+          loading={registerMutation.isPending}
+        >
           Create Account
         </Button>
       </form>
 
-      <p className="mt-6 text-center text-sm text-ink-500">
+      <p className="mt-6 text-center text-xs sm:text-sm text-ink-500 dark:text-slate-400">
         Already have an account?{' '}
-        <Link to="/login" className="font-semibold text-indigo-600 dark:text-indigo-400 hover:underline underline-offset-2">
-          Log in here
+        <Link
+          to="/login"
+          className="font-bold text-indigo-600 dark:text-indigo-400 hover:underline underline-offset-2"
+        >
+          Sign in here
         </Link>
       </p>
 
-      {/* 6-Digit Email Verification Modal */}
+      {/* Segmented OTP Modal */}
       <OtpVerificationModal
         isOpen={showOtpModal}
         email={registeredEmail}
