@@ -3,7 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 import { toast } from 'sonner'
 import { authApi } from '@/features/auth/api/auth.api'
 import { setSession, clearSession } from '@/lib/session'
-import { ApiError } from '@/lib/axios'
+import { getErrorMessage } from '@/lib/axios'
 import type {
   LoginRequest,
   RegisterRequest,
@@ -27,7 +27,7 @@ export function useLogin() {
       navigate(next ? decodeURIComponent(next) : '/dashboard', { replace: true })
     },
     onError: (err) => {
-      toast.error(err instanceof ApiError ? err.message : 'Could not sign in')
+      toast.error(getErrorMessage(err, 'Invalid email or password'))
     },
   })
 }
@@ -45,7 +45,7 @@ export function useGoogleAuth() {
       navigate(next ? decodeURIComponent(next) : '/dashboard', { replace: true })
     },
     onError: (err) => {
-      toast.error(err instanceof ApiError ? err.message : 'Google authentication failed')
+      toast.error(getErrorMessage(err, 'Google authentication failed. Please try again.'))
     },
   })
 }
@@ -54,7 +54,7 @@ export function useRegister() {
   return useMutation({
     mutationFn: (body: RegisterRequest) => authApi.register(body),
     onError: (err) => {
-      toast.error(err instanceof ApiError ? err.message : 'Could not create your account')
+      toast.error(getErrorMessage(err, 'Could not create your account. Please check your details.'))
     },
   })
 }
@@ -66,7 +66,7 @@ export function useSendOtp() {
       toast.success(res?.message || 'Verification code sent to your email')
     },
     onError: (err) => {
-      toast.error(err instanceof ApiError ? err.message : 'Failed to send verification code')
+      toast.error(getErrorMessage(err, 'Failed to send verification code. Please try again.'))
     },
   })
 }
@@ -78,7 +78,7 @@ export function useVerifyOtp() {
       toast.success(res?.message || 'Email successfully verified!')
     },
     onError: (err) => {
-      toast.error(err instanceof ApiError ? err.message : 'Invalid or expired verification code')
+      toast.error(getErrorMessage(err, 'Incorrect or expired verification code.'))
     },
   })
 }
@@ -90,7 +90,7 @@ export function useForgotPassword() {
       toast.success(res?.message || 'Password reset instructions sent to your email')
     },
     onError: (err) => {
-      toast.error(err instanceof ApiError ? err.message : 'Failed to request password reset')
+      toast.error(getErrorMessage(err, 'Failed to request password reset.'))
     },
   })
 }
@@ -105,7 +105,7 @@ export function useResetPassword() {
       navigate('/login', { replace: true })
     },
     onError: (err) => {
-      toast.error(err instanceof ApiError ? err.message : 'Failed to reset password')
+      toast.error(getErrorMessage(err, 'Failed to reset password. Please verify the code.'))
     },
   })
 }

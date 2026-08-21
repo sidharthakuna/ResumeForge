@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 import { queryKeys } from '@/lib/query-keys'
-import { ApiError } from '@/lib/axios'
+import { getErrorMessage } from '@/lib/axios'
 
 interface SubResourceApi<TRequest, TResponse> {
   add: (resumeId: string, body: TRequest) => Promise<TResponse>
@@ -28,7 +28,7 @@ export function createSubResourceHooks<TRequest, TResponse>(
         qc.invalidateQueries({ queryKey: queryKeys.resume.full(resumeId) })
         toast.success(`${noun} added`)
       },
-      onError: (err) => toast.error(err instanceof ApiError ? err.message : `Could not add ${noun.toLowerCase()}`),
+      onError: (err) => toast.error(getErrorMessage(err, `Could not add ${noun.toLowerCase()}`)),
     })
   }
 
@@ -41,7 +41,7 @@ export function createSubResourceHooks<TRequest, TResponse>(
         toast.success(`${noun} updated`)
       },
       onError: (err) =>
-        toast.error(err instanceof ApiError ? err.message : `Could not update ${noun.toLowerCase()}`),
+        toast.error(getErrorMessage(err, `Could not update ${noun.toLowerCase()}`)),
     })
   }
 
@@ -54,7 +54,7 @@ export function createSubResourceHooks<TRequest, TResponse>(
         toast.success(`${noun} removed`)
       },
       onError: (err) =>
-        toast.error(err instanceof ApiError ? err.message : `Could not remove ${noun.toLowerCase()}`),
+        toast.error(getErrorMessage(err, `Could not remove ${noun.toLowerCase()}`)),
     })
   }
 
