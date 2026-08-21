@@ -87,13 +87,14 @@ export function TopBar({ right, onSearch }: { right?: React.ReactNode; onSearch?
 
       <div className="flex shrink-0 items-center gap-2 sm:gap-3">
         <a
-          href="https://sidharthakuna.github.io/Portfolio/"
+          href="https://github.com/sidharthakuna/ResumeForge"
           target="_blank"
           rel="noreferrer"
           className="hidden h-9 w-9 items-center justify-center rounded-xl text-ink-600 transition-colors hover:bg-ink-50 hover:text-ink-900 sm:flex"
-          aria-label="Help"
-          title="Portfolio / Help"
+          aria-label="Help & Documentation"
+          title="Help & Documentation"
         >
+
           <HelpCircle className="h-[18px] w-[18px]" strokeWidth={1.8} />
         </a>
 

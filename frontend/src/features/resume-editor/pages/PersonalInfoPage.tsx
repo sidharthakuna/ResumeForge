@@ -128,12 +128,12 @@ export default function PersonalInfoPage() {
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               <div>
                 <Label htmlFor="fullName">Full name *</Label>
-                <Input id="fullName" placeholder="Sidhartha Kuna" invalid={!!errors.fullName} {...register('fullName')} />
+                <Input id="fullName" placeholder="Alex Rivera" invalid={!!errors.fullName} {...register('fullName')} />
                 <FieldError message={errors.fullName?.message} />
               </div>
               <div>
                 <Label htmlFor="jobTitle">Job Title / Tagline</Label>
-                <Input id="jobTitle" placeholder="Java Backend Developer | B.Tech CSE" invalid={!!errors.jobTitle} {...register('jobTitle')} />
+                <Input id="jobTitle" placeholder="Senior Full Stack Developer" invalid={!!errors.jobTitle} {...register('jobTitle')} />
                 <FieldError message={errors.jobTitle?.message} />
               </div>
             </div>
@@ -141,19 +141,19 @@ export default function PersonalInfoPage() {
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               <div>
                 <Label htmlFor="email">Email *</Label>
-                <Input id="email" type="email" placeholder="sidharthakuna@gmail.com" invalid={!!errors.email} {...register('email')} />
+                <Input id="email" type="email" placeholder="alex.rivera@example.com" invalid={!!errors.email} {...register('email')} />
                 <FieldError message={errors.email?.message} />
               </div>
               <div>
                 <Label htmlFor="phone">Phone</Label>
-                <Input id="phone" placeholder="+91 7981794512" invalid={!!errors.phone} {...register('phone')} />
+                <Input id="phone" placeholder="+1 (555) 234-5678" invalid={!!errors.phone} {...register('phone')} />
                 <FieldError message={errors.phone?.message} />
               </div>
             </div>
 
             <div>
               <Label htmlFor="location">Location</Label>
-              <Input id="location" placeholder="Andhra Pradesh, India" invalid={!!errors.location} {...register('location')} />
+              <Input id="location" placeholder="San Francisco, CA" invalid={!!errors.location} {...register('location')} />
               <FieldError message={errors.location?.message} />
             </div>
 
@@ -162,7 +162,7 @@ export default function PersonalInfoPage() {
                 <Label htmlFor="githubUrl">GitHub URL</Label>
                 <Input
                   id="githubUrl"
-                  placeholder="https://github.com/..."
+                  placeholder="https://github.com/alexrivera"
                   invalid={!!errors.githubUrl}
                   {...register('githubUrl')}
                 />
@@ -172,7 +172,7 @@ export default function PersonalInfoPage() {
                 <Label htmlFor="linkedinUrl">LinkedIn URL</Label>
                 <Input
                   id="linkedinUrl"
-                  placeholder="https://linkedin.com/in/..."
+                  placeholder="https://linkedin.com/in/alexrivera"
                   invalid={!!errors.linkedinUrl}
                   {...register('linkedinUrl')}
                 />
@@ -182,13 +182,14 @@ export default function PersonalInfoPage() {
                 <Label htmlFor="portfolioUrl">Portfolio URL</Label>
                 <Input
                   id="portfolioUrl"
-                  placeholder="https://yourportfolio.com"
+                  placeholder="https://alexrivera.dev"
                   invalid={!!errors.portfolioUrl}
                   {...register('portfolioUrl')}
                 />
                 <FieldError message={errors.portfolioUrl?.message} />
               </div>
             </div>
+
 
             <div className="flex items-center justify-between gap-2.5 pt-3.5 border-t border-ink-100">
               <Button

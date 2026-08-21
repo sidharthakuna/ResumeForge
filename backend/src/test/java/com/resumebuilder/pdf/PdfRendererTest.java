@@ -43,11 +43,11 @@ class PdfRendererTest {
             </style>
             </head>
             <body>
-              <h1>Sidhartha Kuna</h1>
+              <h1>Alex Rivera</h1>
               <div>
-                <span>📍 Madanapalle</span>
-                <span>✉ sidhartha@example.com</span>
-                <span>📞 1234567890</span>
+                <span>San Francisco, CA</span>
+                <span>alex.rivera@example.com</span>
+                <span>+1 555 234 5678</span>
               </div>
             </body>
             </html>
@@ -94,15 +94,16 @@ class PdfRendererTest {
             </style></head>
             <body><div class="page">
               <div class="header">
-                <h1>SIDHARTHA KUNA</h1>
-                <div class="tagline">Java Backend Developer Intern</div>
+                <h1>ALEX RIVERA</h1>
+                <div class="tagline">Senior Software Engineer</div>
                 <div class="contact-line">
-                  <span>📍 Madanapalle</span>
-                  <span>✉ test@email.com</span>
-                  <span>📞 123456</span>
+                  <span>San Francisco, CA</span>
+                  <span>alex.rivera@example.com</span>
+                  <span>+1 555 234 5678</span>
                 </div>
               </div>
             </div></body></html>
+
             """;
         byte[] pdf = pdfRenderer.render(html);
         assertThat(pdf).isNotEmpty();

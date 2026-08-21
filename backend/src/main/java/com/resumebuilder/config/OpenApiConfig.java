@@ -27,9 +27,10 @@ public class OpenApiConfig {
                                 )
                                 .contact(
                                         new Contact()
-                                                .name("Sidhartha Kuna")
-                                                .email("your-email@example.com")
+                                                .name("ResumeForge Support")
+                                                .email("support@resumeforge.dev")
                                 )
+
                 )
                 .addSecurityItem(
                         new SecurityRequirement()

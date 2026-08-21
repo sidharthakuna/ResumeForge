@@ -312,8 +312,9 @@ function render(full: FullResumeResponse): string {
 
 export const sidharthaClassicTemplate: TemplateDefinition = {
   id: 'sidhartha-classic',
-  name: 'Sidhartha Professional',
+  name: 'Classic Professional',
   description: 'Clean ATS-friendly serif & line dividers layout matching academic and engineering standards.',
   badge: 'Featured ATS',
   render,
 }
+
